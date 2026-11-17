@@ -205,7 +205,7 @@ def main():
         if "reset_stack" in st:
             reset_stack += 1
             if reset_stack == 1:
-                print(f"RESET-STACK prog{p}: reset cycles 3-5 read {st['reset_stack']}, spec {{01,S}} {{01,S-1}} {{01,S-2}}")
+                print(f"note prog{p}: reset cycles 3-5 read {st['reset_stack']}, spec {{01,S}} {{01,S-1}} {{01,S-2}}")
         if err:
             bad += 1
             if bad <= 10:
@@ -213,9 +213,10 @@ def main():
     print(f"compared: {tot['cycles']} cycles, {tot['instructions']} instructions "
           f"({tot['instructions'] // max(1, a.nprog)} per program), IRQ {tot['IRQ']}, NMI {tot['NMI']}, "
           f"RDY-held reads {tot['rdy_holds']}, stopped at an undocumented byte: {tot['stopped']}")
-    print(f"reset cycles 3-5 not at S, S-1, S-2: {reset_stack} programs")
+    # spec §5 (#30) doesn't compare a in reset cycles 3-5; the S, S-1, S-2 pattern is reported, not failed
+    print(f"note (not a spec check): reset cycles 3-5 not at S, S-1, S-2 in {reset_stack} programs")
     print(f"c8: seed={a.seed} programs={a.nprog} cycles={a.nst} mismatching_programs={bad}")
-    ok = bad == 0 and reset_stack == 0
+    ok = bad == 0
     print("PASS" if ok else "FAIL")
     return 0 if ok else 1
 

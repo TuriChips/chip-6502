@@ -1,7 +1,7 @@
 // C8 testbench (Beru, chip-6502#6): runs random programs on the RTL m6502 and dumps every cycle's pins
 // and inputs; tests/random/c8/run.py replays the inputs through ref/pins6502.py and compares.
 // Memory is the testbench's own 64 KiB array (combinational read, write at the clock edge when rw = 0).
-// Stimulus (spec §6, §2): rdy random in any cycle; irq_n / nmi_n change only in a cycle with sync = 1
+// Stimulus (spec §6, §2, §5): rdy random in any cycle from reset cycle 8 on (1 before, #40); irq_n / nmi_n change only in a cycle with sync = 1
 // (set right after the edge that starts it), nmi_n stays put for >= 2 cycles (it can only change at
 // sync cycles, and every instruction or sequence is >= 2 cycles). res_n = 0 for 10 cycles, inputs high.
 // Plusargs: +dir= +nprog= +nst= +seed= +rdy= (percent of cycles with rdy = 0) +irq= +nmi= (per-mille
@@ -41,7 +41,8 @@ module tb;
                 @(negedge clk);                       // inputs for this cycle (the edge that started it has passed)
                 if (n == 10) res_n = 1;
                 if (n >= 10) begin
-                    rdy = ($urandom % 100) >= rdy_pct;
+                    // spec §5 (#40): rdy = 1 until the edge that starts reset cycle 8 (n = 18); random from there
+                    rdy = (n < 18) ? 1'b1 : (($urandom % 100) >= rdy_pct);
                     #1;                               // let sync settle after any input change
                     if (sync === 1'b1 && n >= 30) begin
                         if (($urandom % 1000) < irq_pm) irq_n = ~irq_n;
