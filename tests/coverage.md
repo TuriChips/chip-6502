@@ -76,6 +76,11 @@ Spec: docs/spec.md (v1). Status per row: **done** (test written and passing, log
 | C7 | No X/Z, no bus conflict, with mutants and the positive bus_conflict case | | todo |
 | C8 | Random programs vs the reference model | Beru | n/a |
 
+## Cross-check against SingleStepTests/65x02 (spec 9 item 2, a cross-check not ground truth)
+
+`tests/sst_crosscheck.py` runs my machine model (`tests/mach6502.py`, written from spec 4.1/6.1) against all 151 documented opcode files, 10,000 tests each (cycle-by-cycle bus activity, final registers, P and RAM): **1,510,000 tests, 0 differences** when the taken-branch cycles follow the vectors (`M6502_BRANCH_REAL=1`). With spec 4.1 A.5.8 as written, only the 8 branch opcodes differ (taken branches: the T2 address, and the carried vs uncarried T3 address): filed for Igris. Decimal mode (ADC/SBC with D = 1, spec 6 Decision) agrees with the vectors on every operand they sample.
+
 ## Tools
 
+- `tests/mach6502.py`: cycle-accurate model (all 151 opcodes, per-cycle addresses/data, decimal mode, JMP-indirect wrap, B bit) from spec 4.1/6.1; `tests/mach6502_selftest.py` checks all 151 cycle counts against spec 6.1's table (PASS).
 - `tests/asm6502.py`: assembler with the 151 opcodes of §6.0; `tests/asm6502_selftest.py` checks its table against the spec file and that every (mnemonic, mode) assembles to its byte (PASS).
