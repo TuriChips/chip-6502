@@ -142,7 +142,8 @@ def build_irq(seed, n_events=70):
         nmi_vis = pend_clock is not None and poll_clock >= pend_clock + 1
         if nmi == 0: nmi_off_next = True
         take = None
-        if nmi_vis: take = 'nmi'
+        if opc == 0x00: pass                                                                            # BRK has no poll point (spec 6.5): the first instruction at the vector runs
+        elif nmi_vis: take = 'nmi'
         elif irq == 0 and i_poll == 0: take = 'irq'
         if take and m.pc != end:
             mn = M.INV[opc][0]; cause[(take, mn if mn in ('CLI', 'SEI', 'PLP', 'RTI') else ('branch-taken-same-page' if taken_branch_same_page else 'branch' if opc in BRK_OPS else 'other'))] += 1
