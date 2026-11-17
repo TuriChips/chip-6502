@@ -1,6 +1,6 @@
 # 6502 C8 coverage (Beru, chip-6502#6)
 
-What C8's random programs exercise, counted by `tests/random/c8/coverage.py`. It replays a C8 run's recorded inputs through the model; the RTL's agreement on all of it is C8's own log. Latest: `logs/c8-coverage-20261117T155645Z/coverage.txt` (200 programs × 7,000 cycles, seed 91, 0 mismatches).
+What C8's random programs exercise, counted by `tests/random/c8/coverage.py`. It replays a C8 run's recorded inputs through the model; the RTL's agreement on all of it is C8's own log. Latest: `logs/c8-coverage-20261117T161515Z/coverage.txt` (1,000 programs × 7,000 cycles, seed 92, 0 mismatches: 6.7 M cycles, 1.45 M instructions, 102 k IRQs, 9 k NMIs).
 
 ## Exercised
 - **Opcodes:** all 151 documented (§6.0). The 105 undocumented bytes aren't tested (§6), and a program reaching one stops being compared there.
@@ -26,7 +26,7 @@ What C8's random programs exercise, counted by `tests/random/c8/coverage.py`. It
 - **C7** `bus_conflict` positive case, by `conflict_check.py`.
 
 ## Not yet exercised
-1. **RTI pulling I = 1 while I = 0 with `irq_n` low** (judged by the new I, so no IRQ). It needs `irq_n` to fall exactly at an RTI that runs with I = 0, which is rare. I'll check a larger sample next.
+None: all 61 listed behaviours occur (the rarest, RTI pulling I = 1 while I = 0 with `irq_n` low, twice in 1,000 programs; it did not occur in 200).
 
 ## Out of C8's scope (other tests own them)
 - **S.O.:** held at 1 in C8 (§2); covered by a directed test (Titus).
