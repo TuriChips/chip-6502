@@ -1,0 +1,1 @@
+tests/random/run.sh on main 7e2124f: 1m45s, all PASS (sst ran because build/sst was cached; in CI it SKIPs). Mutant check: #31 re-injected into rtl/datapath/m6502_regs.v -> FAIL c8, FAIL c8-resets, exit 1 (not committed).

@@ -1,0 +1,1 @@
+PASS pins6502 selftest: RDY, IRQ/I mask, §6 poll rule (NMI visibility, CLI/SEI/RTI, branch delay, priority, no hijack, RDY)

@@ -1,0 +1,1 @@
+PASS ref6502 selftest: 151 opcodes' cycle counts, page cross, JMP wrap, decimal
