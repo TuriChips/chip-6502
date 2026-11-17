@@ -112,7 +112,7 @@ BRK_OPS = {A.OPS[(b, 'rel')] for b in BR}
 def build_irq(seed, n_events=70):
     src, image, base = build(seed); end = build.labels['end']; rnd = random.Random(500 + seed)
     m = M.Mach(CODE); m.rom_from = 0x8000; m.mem = dict(image); m.i = 1
-    rows = []; t = 0; irq = 1; nmi = 1; nmi_prev = 1; pend_clock = None; irq_off_at = None; nmi_off_next = False; k = 0; nirq = nnmi = 0
+    import collections; cause = collections.Counter(); rows = []; t = 0; irq = 1; nmi = 1; nmi_prev = 1; pend_clock = None; irq_off_at = None; nmi_off_next = False; k = 0; nirq = nnmi = 0
     def wr(addr, v):
         addr &= 0xFFFF
         if addr < m.rom_from: m.mem[addr] = v & 255
@@ -121,7 +121,8 @@ def build_irq(seed, n_events=70):
         # events at the start of this instruction (the edge that starts its sync cycle)
         if nmi_off_next: nmi = 1; nmi_off_next = False
         if irq_off_at is not None and k >= irq_off_at: irq = 1; irq_off_at = None
-        if irq == 1 and nmi == 1 and rnd.random() < 1.0 / 14:
+        nxt = M.INV.get(m.mem.get(m.pc, 0), ('?',))[0]
+        if irq == 1 and nmi == 1 and rnd.random() < (0.5 if nxt in ('CLI', 'SEI', 'PLP', 'RTI') or nxt in BR else 1.0 / 14):
             ev = rnd.choice(['irq', 'irq', 'nmi', 'both'])
             if ev in ('irq', 'both'): irq = 0; irq_off_at = k + rnd.choice([1, 1, 2, 5, 12])     # held until taken or released (masked: I = 1)
             if ev in ('nmi', 'both'):
@@ -144,6 +145,7 @@ def build_irq(seed, n_events=70):
         if nmi_vis: take = 'nmi'
         elif irq == 0 and i_poll == 0: take = 'irq'
         if take and m.pc != end:
+            mn = M.INV[opc][0]; cause[(take, mn if mn in ('CLI', 'SEI', 'PLP', 'RTI') else ('branch-taken-same-page' if taken_branch_same_page else 'branch' if opc in BRK_OPS else 'other'))] += 1
             vec = 0xFFFA if take == 'nmi' else 0xFFFE
             pc = m.pc; seq = [(pc, 1, m.mem.get(pc, 0), 1), (pc, 1, m.mem.get(pc, 0), 0), wr(0x100 + m.s, pc >> 8), wr(0x100 + ((m.s - 1) & 255), pc & 255), wr(0x100 + ((m.s - 2) & 255), m.p(0))]
             m.s = (m.s - 3) & 255; lo = m.mem.get(vec, 0); hi = m.mem.get(vec + 1, 0)
@@ -156,11 +158,12 @@ def build_irq(seed, n_events=70):
             if take == 'nmi': pend_clock = None; nnmi += 1
             else: irq_off_at = k + 1; nirq += 1
         k += 1
+    build_irq.cause = cause
     return src, image, rows, nirq, nnmi
-for seed in (5, 6):
+for seed in (5, 6, 7, 8):
     src, image, rows, nirq, nnmi = build_irq(seed - 4)
     name = f"cyc_s{seed}"
     open(f"{d}/{name}.asm", "w").write("\n".join(src) + "\n"); A.write_hex(image, f"{d}/{name}.hex")
     with open(f"{d}/{name}.cyc", "w") as f:
         for r_ in rows: f.write(fmt(r_))
-    print(f"seed {seed} (interrupts): {len(rows)} cycles, {nirq} IRQ sequences, {nnmi} NMI sequences")
+    print(f"seed {seed} (interrupts): {len(rows)} cycles, {nirq} IRQ sequences, {nnmi} NMI sequences; after: " + ", ".join(f"{k[0]}/{k[1]} {v}" for k, v in sorted(build_irq.cause.items())))
