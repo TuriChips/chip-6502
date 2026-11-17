@@ -14,10 +14,10 @@ for op in ops:
     tests = json.load(open(os.path.join(d, op + ".json")))[:limit]; nbad = 0; first = None
     for t in tests:
         i, f = t["initial"], t["final"]; m = M.Mach(i["pc"]); m.a, m.x, m.y, m.s = i["a"], i["x"], i["y"], i["s"]; m.setp(i["p"]); m.mem = {a: v for a, v in i["ram"]}
-        cyc = m.step(); got = [[a, v, "read" if rw else "write"] for a, rw, v, sy in cyc]
-        gp = m.p(0) & 0xCF | (i["p"] & 0x10) if False else m.p(0)
+        listed = {a for a, v in i["ram"]}; cyc = m.step(); unlisted = [a for a, rw, v, sy in cyc if rw == 1 and a not in listed]   # the vector says unlisted addresses must not be accessed
+        got = [[a, v, "read" if rw else "write"] for a, rw, v, sy in cyc]
         fin = {a: v for a, v in f["ram"]}
-        ok = got == t["cycles"] and (m.pc, m.s, m.a, m.x, m.y) == (f["pc"], f["s"], f["a"], f["x"], f["y"]) and (m.p(0) & 0xCF) == (f["p"] & 0xCF) and all(m.mem.get(a, 0) == v for a, v in fin.items())
+        ok = not unlisted and got == t["cycles"] and (m.pc, m.s, m.a, m.x, m.y) == (f["pc"], f["s"], f["a"], f["x"], f["y"]) and (m.p(0) & 0xCF) == (f["p"] & 0xCF) and all(m.mem.get(a, 0) == v for a, v in fin.items())
         if not ok:
             nbad += 1
             if first is None: first = (t["name"], got, t["cycles"], (m.pc, m.s, m.a, m.x, m.y, m.p(0)), f)
