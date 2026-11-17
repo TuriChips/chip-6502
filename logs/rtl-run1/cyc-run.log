@@ -1,0 +1,4 @@
+seed 1: PASS: cycles=8934 errors=0
+seed 2: PASS: cycles=9090 errors=0
+seed 3: PASS: cycles=9137 errors=0
+cyc: 0 failing

@@ -1,0 +1,1 @@
+C5 decimal mode on the whole CPU: tests/c5/gen_decimal.py programs (loops over every A x operand x carry with SED; ADC resp. SBC; A and PHP's P written to 7000/7001) run on the local RTL merge (#28 f641951, #22 ef54251, #23 6365699, #16 13afb3b); expected values from tests/mach6502.py (spec 6). Both PASS. Negative control: a corrupted expected value fails the run.

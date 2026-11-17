@@ -1,0 +1,4 @@
+seed 5 (interrupts): 15152 cycles, 186 IRQ sequences, 205 NMI sequences; after: irq/CLI 1, irq/PLP 26, irq/RTI 114, irq/SEI 2, irq/branch 8, irq/branch-taken-same-page 6, irq/other 29, nmi/PLP 57, nmi/RTI 64, nmi/branch 1, nmi/other 83
+seed 6 (interrupts): 14724 cycles, 173 IRQ sequences, 188 NMI sequences; after: irq/PLP 26, irq/RTI 96, irq/branch 11, irq/branch-taken-same-page 7, irq/other 33, nmi/PLP 45, nmi/RTI 58, nmi/branch 3, nmi/other 82
+seed 7 (interrupts): 15227 cycles, 200 IRQ sequences, 198 NMI sequences; after: irq/CLI 3, irq/PLP 36, irq/RTI 111, irq/SEI 1, irq/branch 8, irq/branch-taken-same-page 6, irq/other 35, nmi/PLP 48, nmi/RTI 83, nmi/other 67
+seed 8 (interrupts): 16283 cycles, 251 IRQ sequences, 218 NMI sequences; after: irq/PLP 28, irq/RTI 159, irq/SEI 1, irq/branch 6, irq/branch-taken-same-page 8, irq/other 49, nmi/PLP 55, nmi/RTI 80, nmi/other 83

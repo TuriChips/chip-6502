@@ -1,0 +1,1 @@
+All 16 cycle-by-cycle runs (seeds 1-8: instructions, RDY, interrupts; resets r0-r7) on origin/main's merged RTL (95848be), default reset timing of the spec (first SYNC in reset cycle 8, vector reads 6-7) after fixing the testbench's reset-cycle counter (#37, Igris's ruling). All PASS.
