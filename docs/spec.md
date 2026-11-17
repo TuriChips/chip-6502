@@ -237,6 +237,8 @@ While `res_n` = 0 the CPU is "guaranteed to be in a Read state" (`rw` = 1), and 
 | cycles 6–7 | **FFFC**, **FFFD** | **1** | **0** | no | no | the vector reads (Example 9.1); C6 checks them |
 | cycle 8 on | §4.0, every pin | | | | | first opcode fetch at the vector, `sync` = 1 |
 
+**RDY during reset** (chip-6502#40): not specified. The RDY text (Hardware Manual p.37) is about program execution, and Example 9.1 doesn't mention RDY. So whether `rdy` = 0 holds a reset-sequence cycle is left open. *Decision* (stimulus rule): **tests keep `rdy` = 1 from the edge where `res_n` is first sampled 0 until the edge that starts cycle 8.** `rdy` may fall at that edge (holding the first opcode fetch, which §2 does specify). So "cycle 8" is always the 8th clock after release, and the RTL may do either. C3 doesn't test RDY in reset.
+
 `sync` isn't compared before cycle 8 because no MOS page shows it during reset. From cycle 8 on, comparison never pauses (§4.0), **preamble included, with no exemption window**: the C8 preamble writes A, X, Y, S and P before anything reads them, as for the 8080 (Beru, turichips#26). S after reset stays not compared (§3).
 
 ## 6. Instructions (normative once checked)
