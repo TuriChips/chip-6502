@@ -1,4 +1,6 @@
 # synth/ (Leo)
+> **Correction (chip-6502#47).** The 140 flops and the layout numbers below came from a flow that let Yosys merge the registered case-table inputs into inferred ROM read ports and rebuild them (`memory_dff`), which added 23 flops that are not in the RTL. The scripts now use `memory -nomap -nordff`. On main at 83a3879 the flat generic count is 2,485 cells with 117 flops (longest path 60 cells), and the mapped sky130 count is 2,053 cells and 13,628 µm² before placement (117 `dfxtp_1`). The layout, GDS and routed numbers below are from the old flow and will be redone after #43 merges; do not quote them.
+
 Only `m6502` is synthesized. `m6502_mem` and `m6502_system` are test fixtures.
 
 ## Generic Yosys (`synth/run.sh` → `synth/report.txt`, `synth/logs/yosys.log`)
@@ -28,3 +30,11 @@ Not done: timing closure, power, clock tree (ideal clock), signoff DRC and LVS, 
 
 ## Scripts
 `TOP=` and `SRC=` override the top module and sources, `PERIOD_NS=` the clock period. With the 4004 and 74181 sources the same scripts reproduce the numbers in those repos.
+
+## Follow-ups from chip-6502#47
+Run on main 83a3879 (RTL as of #45; #43 is not merged, so item 4 is still open).
+
+1. **RTL synthesized:** main 83a3879.
+2. **Flops per module** (not flattened, `synth/report_hier.txt`): `m6502_alu` 14, `m6502_control` 30, `m6502_regs` 66, `m6502_timing` 7, total 117; `m6502`, `m6502_decode` and `m6502_plan` have none. That matches Zura's estimate of about 117. The 23 extra flops in the earlier flat count were the Yosys artifact described above, not RTL state.
+3. **Register-to-register timing** (`synth/sky130/sta.tcl`, `synth/sky130/logs/sta.log`): library `sky130_fd_sc_hd__tt_025C_1v80` (typical corner), OpenSTA inside OpenROAD 2.0_3175, ideal clock, no placement and no wire parasitics. Worst flop-to-flop path: 9.503 ns data arrival plus 0.168 ns setup, from `_3958_` to `_3901_`, so about 9.7 ns, roughly 103 MHz. This uses the mapped netlist before place and route (not committed here; the rerun will commit it), so it excludes wire delay and will move slightly after placement.
+4. **Rerun after #43:** not done yet. The full flow, layout and tables above get regenerated on the main commit that includes #43.
