@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# CYC_EXTRA="+SYNC_CYCLE=9 +VEC_CYCLE=7" accepts the RTL's reset length (chip-6502#37, diagnostics only).
+# CYC_EXTRA passes extra plusargs to the testbench (e.g. +SYNC_CYCLE=8 +VEC_CYCLE=6 are the defaults, from the spec; diagnostics only).
 # Random-program cycle tests on the m6502 pins: generates (tests/gen_cycles6502.py) and runs the 4 seeds (4 = RDY stimulus). Exit 1 if any fails.
 set -uo pipefail
 cd "$(git rev-parse --show-toplevel)"
