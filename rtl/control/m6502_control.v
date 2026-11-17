@@ -47,8 +47,11 @@ module m6502_control (
     localparam [4:0] OP_SEI = 18, OP_SEV = 22;
 
     reg [7:0] ir, tmp_r;
-    reg       intseq, intnmi, nmi_latch, nmi_q, nmi_det_q, so_q, so_latch, br3;
+    reg       intseq, intnmi, nmi_q, so_q, so_latch, br3;
+    reg       nmi_pend;                // an NMI edge is pending (spec 6 rule 3)
     reg [1:0] s1, s2, s3;              // poll samples {irq, nmi} at the end of the last 3 completed cycles (spec 6 poll rule)
+    reg       a1, a2, a3;              // an NMI edge was detected AFTER the edge that took sample s1 / s2 / s3
+    wire      nmi_pending = nmi_pend;
     assign tmp = tmp_r;
 
     wire running = (rs == 4'd8);
@@ -87,6 +90,7 @@ module m6502_control (
     // interrupt decision at T0 from the poll sample of the second-to-last cycle of the previous instruction (spec 6 poll
     // rule, chip-6502#25): s2 normally; s3 after a taken branch with no page cross (it polls at the end of its cycle 1)
     wire [1:0] poll_s  = br3 ? s3 : s2;
+    wire       poll_a  = br3 ? a3 : a2;
     wire       int_nmi = poll_s[0];
     wire       int_now = poll_s[0] | poll_s[1];
     wire t0      = running & (t == 3'd0);
@@ -134,38 +138,44 @@ module m6502_control (
     end
 
     // ---- state
-    wire nmi_det = nmi_q & ~nmi_n;                               // falling edge seen at this clock edge
+    // NMI: an edge is detected at the edge where nmi_n is sampled 0 after 1 and stays pending until a poll that sampled it
+    // commits to the NMI sequence. The commit is retrospective (at T0, possibly after RDY holds), so it must clear only the
+    // edges that poll could see: an edge detected after the poll edge, at any later clock edge including those of a held T0,
+    // stays pending (spec 6 rules 3 and 5, chip-6502#42). a1..a3 record "an edge came after sample s1..s3".
+    wire nmi_det = nmi_q & ~nmi_n;
     wire sample_irq = ~irq_n & ~p_i;                             // irq_n at the poll edge, I as it stands in that cycle
     always @(posedge clk) begin
         if (!res_n) begin
             ir <= 8'd0; tmp_r <= 8'd0; intseq <= 1'b0; intnmi <= 1'b0;
-            nmi_latch <= 1'b0; nmi_q <= 1'b1; nmi_det_q <= 1'b0; so_q <= 1'b1; so_latch <= 1'b0;
-            br3 <= 1'b0; s1 <= 2'd0; s2 <= 2'd0; s3 <= 2'd0;
+            nmi_pend <= 1'b0; nmi_q <= 1'b1; so_q <= 1'b1; so_latch <= 1'b0;
+            br3 <= 1'b0; s1 <= 2'd0; s2 <= 2'd0; s3 <= 2'd0; a1 <= 1'b0; a2 <= 1'b0; a3 <= 1'b0;
         end else begin
-            nmi_q <= nmi_n; so_q <= so_n; nmi_det_q <= nmi_det;
-            // NMI: pending from the edge it is detected; a poll sees it from the next edge on (it samples the register)
-            if (nmi_det) nmi_latch <= 1'b1;
+            nmi_q <= nmi_n; so_q <= so_n;
+            if (nmi_det) nmi_pend <= 1'b1;
             if (so_q & ~so_n) so_latch <= 1'b1;
             if (!running) begin
                 s1 <= 2'd0; s2 <= 2'd0; s3 <= 2'd0; br3 <= 1'b0;   // the reset sequence doesn't poll
-            end else if (go) begin
+                a1 <= 1'b0; a2 <= 1'b0; a3 <= 1'b0;
+            end else if (!go) begin
+                a1 <= a1 | nmi_det; a2 <= a2 | nmi_det; a3 <= a3 | nmi_det;   // an RDY-held clock edge: no new sample
+            end else begin
+                a3 <= a2 | nmi_det; a2 <= a1 | nmi_det; a1 <= nmi_det;
                 if (t == 3'd0) begin
                     so_latch <= so_q & ~so_n;
                     br3 <= 1'b0;
                     if (int_now) begin
                         ir <= 8'h00; intseq <= 1'b1; intnmi <= int_nmi;
-                        // committing to the NMI sequence clears pending, except for edges detected after the poll edge
-                        if (int_nmi) nmi_latch <= nmi_det_q | nmi_det;
+                        if (int_nmi) nmi_pend <= poll_a | nmi_det;       // services only what that poll could see
                     end else begin
                         ir <= d_in; intseq <= 1'b0; intnmi <= 1'b0;
                     end
                     // sequences don't poll: a forced BRK and a real BRK clear the samples
                     if (int_now || d_in == 8'h00) begin s1 <= 2'd0; s2 <= 2'd0; s3 <= 2'd0; end
-                    else begin s3 <= s2; s2 <= s1; s1 <= {sample_irq, nmi_latch}; end
+                    else begin s3 <= s2; s2 <= s1; s1 <= {sample_irq, nmi_pending}; end
                 end else begin
                     if (p_tmpl) tmp_r <= d_in;
                     if (mode == M_BRK) begin s1 <= 2'd0; s2 <= 2'd0; s3 <= 2'd0; end
-                    else begin s3 <= s2; s2 <= s1; s1 <= {sample_irq, nmi_latch}; end
+                    else begin s3 <= s2; s2 <= s1; s1 <= {sample_irq, nmi_pending}; end
                     // a taken branch with no page cross ends after cycle 3 but polled at the end of cycle 1
                     if (mode == M_REL && t == 3'd2 && p_last) br3 <= 1'b1;
                 end
