@@ -1,0 +1,102 @@
+RTL: local integration of main fb939fc + the branch heads in rtl_heads.txt (merge 9efe9bf); model: 4cef692
+== chunk seed=1
+compared: 2752763 cycles, 583936 instructions (1167 per program), IRQ 35143, NMI 3570, RDY-held reads 243927, stopped at an undocumented byte: 125
+reset cycles 3-5 not at S, S-1, S-2: 0 programs
+c8: seed=1 programs=500 cycles=7000 mismatching_programs=0
+PASS
+== chunk seed=2
+compared: 2827759 cycles, 592452 instructions (1184 per program), IRQ 36545, NMI 3636, RDY-held reads 250914, stopped at an undocumented byte: 115
+reset cycles 3-5 not at S, S-1, S-2: 0 programs
+c8: seed=2 programs=500 cycles=7000 mismatching_programs=0
+PASS
+== chunk seed=3
+compared: 2813684 cycles, 594672 instructions (1189 per program), IRQ 34844, NMI 3660, RDY-held reads 250171, stopped at an undocumented byte: 115
+reset cycles 3-5 not at S, S-1, S-2: 0 programs
+c8: seed=3 programs=500 cycles=7000 mismatching_programs=0
+PASS
+== chunk seed=4
+compared: 2877345 cycles, 604124 instructions (1208 per program), IRQ 33914, NMI 3697, RDY-held reads 254530, stopped at an undocumented byte: 106
+reset cycles 3-5 not at S, S-1, S-2: 0 programs
+c8: seed=4 programs=500 cycles=7000 mismatching_programs=0
+PASS
+== chunk seed=5
+compared: 2819277 cycles, 601709 instructions (1203 per program), IRQ 34061, NMI 3722, RDY-held reads 249859, stopped at an undocumented byte: 118
+reset cycles 3-5 not at S, S-1, S-2: 0 programs
+c8: seed=5 programs=500 cycles=7000 mismatching_programs=0
+PASS
+== chunk seed=6
+compared: 2792174 cycles, 586984 instructions (1173 per program), IRQ 35558, NMI 3571, RDY-held reads 248045, stopped at an undocumented byte: 116
+reset cycles 3-5 not at S, S-1, S-2: 0 programs
+c8: seed=6 programs=500 cycles=7000 mismatching_programs=0
+PASS
+== chunk seed=7
+compared: 2787772 cycles, 587893 instructions (1175 per program), IRQ 35661, NMI 3522, RDY-held reads 246670, stopped at an undocumented byte: 117
+reset cycles 3-5 not at S, S-1, S-2: 0 programs
+c8: seed=7 programs=500 cycles=7000 mismatching_programs=0
+PASS
+== chunk seed=8
+compared: 2656116 cycles, 568373 instructions (1136 per program), IRQ 30944, NMI 3444, RDY-held reads 234808, stopped at an undocumented byte: 136
+reset cycles 3-5 not at S, S-1, S-2: 0 programs
+c8: seed=8 programs=500 cycles=7000 mismatching_programs=0
+PASS
+== chunk seed=9
+compared: 2773654 cycles, 582989 instructions (1165 per program), IRQ 34618, NMI 3579, RDY-held reads 245557, stopped at an undocumented byte: 129
+reset cycles 3-5 not at S, S-1, S-2: 0 programs
+c8: seed=9 programs=500 cycles=7000 mismatching_programs=0
+PASS
+== chunk seed=10
+compared: 2838369 cycles, 596513 instructions (1193 per program), IRQ 35391, NMI 3741, RDY-held reads 251511, stopped at an undocumented byte: 112
+reset cycles 3-5 not at S, S-1, S-2: 0 programs
+c8: seed=10 programs=500 cycles=7000 mismatching_programs=0
+PASS
+== chunk seed=11
+compared: 2736157 cycles, 598133 instructions (1196 per program), IRQ 29832, NMI 3622, RDY-held reads 243525, stopped at an undocumented byte: 125
+reset cycles 3-5 not at S, S-1, S-2: 0 programs
+c8: seed=11 programs=500 cycles=7000 mismatching_programs=0
+PASS
+== chunk seed=12
+compared: 2752301 cycles, 581173 instructions (1162 per program), IRQ 32899, NMI 3551, RDY-held reads 245673, stopped at an undocumented byte: 127
+reset cycles 3-5 not at S, S-1, S-2: 0 programs
+c8: seed=12 programs=500 cycles=7000 mismatching_programs=0
+PASS
+== chunk seed=13
+compared: 2740230 cycles, 585220 instructions (1170 per program), IRQ 33327, NMI 3583, RDY-held reads 244369, stopped at an undocumented byte: 129
+reset cycles 3-5 not at S, S-1, S-2: 0 programs
+c8: seed=13 programs=500 cycles=7000 mismatching_programs=0
+PASS
+== chunk seed=14
+compared: 2778492 cycles, 588218 instructions (1176 per program), IRQ 33353, NMI 3582, RDY-held reads 245896, stopped at an undocumented byte: 119
+reset cycles 3-5 not at S, S-1, S-2: 0 programs
+c8: seed=14 programs=500 cycles=7000 mismatching_programs=0
+PASS
+== chunk seed=15
+compared: 2741147 cycles, 583344 instructions (1166 per program), IRQ 34685, NMI 3559, RDY-held reads 243372, stopped at an undocumented byte: 126
+reset cycles 3-5 not at S, S-1, S-2: 0 programs
+c8: seed=15 programs=500 cycles=7000 mismatching_programs=0
+PASS
+== chunk seed=16
+compared: 2738136 cycles, 576497 instructions (1152 per program), IRQ 33646, NMI 3570, RDY-held reads 243251, stopped at an undocumented byte: 129
+reset cycles 3-5 not at S, S-1, S-2: 0 programs
+c8: seed=16 programs=500 cycles=7000 mismatching_programs=0
+PASS
+== chunk seed=17
+compared: 2752212 cycles, 587726 instructions (1175 per program), IRQ 31901, NMI 3562, RDY-held reads 243293, stopped at an undocumented byte: 124
+reset cycles 3-5 not at S, S-1, S-2: 0 programs
+c8: seed=17 programs=500 cycles=7000 mismatching_programs=0
+PASS
+== chunk seed=18
+compared: 2754466 cycles, 578673 instructions (1157 per program), IRQ 36914, NMI 3510, RDY-held reads 244793, stopped at an undocumented byte: 123
+reset cycles 3-5 not at S, S-1, S-2: 0 programs
+c8: seed=18 programs=500 cycles=7000 mismatching_programs=0
+PASS
+== chunk seed=19
+compared: 2783641 cycles, 595963 instructions (1191 per program), IRQ 30725, NMI 3578, RDY-held reads 247307, stopped at an undocumented byte: 121
+reset cycles 3-5 not at S, S-1, S-2: 0 programs
+c8: seed=19 programs=500 cycles=7000 mismatching_programs=0
+PASS
+== chunk seed=20
+compared: 2862602 cycles, 616629 instructions (1233 per program), IRQ 33964, NMI 3739, RDY-held reads 255651, stopped at an undocumented byte: 104
+reset cycles 3-5 not at S, S-1, S-2: 0 programs
+c8: seed=20 programs=500 cycles=7000 mismatching_programs=0
+PASS
+== END
