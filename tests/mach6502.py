@@ -12,7 +12,7 @@ READ = {'ADC', 'AND', 'BIT', 'CMP', 'CPX', 'CPY', 'EOR', 'LDA', 'LDX', 'LDY', 'O
 STORE = {'STA', 'STX', 'STY'}
 RMW = {'ASL', 'DEC', 'INC', 'LSR', 'ROL', 'ROR'}
 BR = {'BPL': ('N', 0), 'BMI': ('N', 1), 'BVC': ('V', 0), 'BVS': ('V', 1), 'BCC': ('C', 0), 'BCS': ('C', 1), 'BNE': ('Z', 0), 'BEQ': ('Z', 1)}
-BRANCH_REAL = bool(os.environ.get('M6502_BRANCH_REAL'))       # False = spec 4.1 A.5.8 as written; True = the taken-branch cycles of the SingleStepTests vectors (chip-6502 issue)
+BRANCH_REAL = os.environ.get('M6502_BRANCH_REAL', '1') != '0'   # True (default) = spec A.5.8 as amended by chip-6502#19/#21: taken T2 = PC+2, page-cross T3 = {(PC+2)H, (PC+2+offset)L}; '0' = the literal earlier text
 class Mach:
     def __init__(s, pc=0, mem=None):
         s.a = s.x = s.y = 0; s.s = 0xFF; s.pc = pc; s.mem = mem if mem is not None else {}
