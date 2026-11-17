@@ -9,7 +9,8 @@ the vector reads at FFFC/FFFD in reset cycles 6-7. Comparison never pauses after
 A program whose execution reaches one of the 105 undocumented bytes (§6: not tested) stops being
 compared there and is counted as "stopped".
 
-Generator: a preamble at the reset vector writes S, A, X, Y, D, C, V, N, Z (I is 1 after reset, §3)
+Generator: memory outside the stream is 70% harmless 1-byte opcodes (SAFE) and 30% any documented opcode,
+so wild control flow keeps running documented code. A preamble at the reset vector writes S, A, X, Y, D, C, V, N, Z (I is 1 after reset, §3)
 before anything reads them, then jumps to a 4 KiB stream of random documented instructions at 0200.
 Jump, JSR and branch targets are instruction starts; JMP (ind) pointers (some at $xxFF) are in the data
 area; zero page holds pointers into the data area for (zp,X) and (zp),Y; BRK is followed by a pad byte.
@@ -52,8 +53,17 @@ def operand(rng, op, mode, starts_hint):
     return []
 
 
+# 1-byte documented opcodes with no control flow and no stack use: a wild jump (an RTS/RTI pulling a
+# non-code address, a self-modified operand) that lands on them keeps executing documented code and
+# slides forward into the preamble at F800, which re-initialises and jumps back to the stream.
+SAFE = [op for op, (m, md) in R.OPS.items() if md in ("imp", "acc") and m not in
+        ("BRK", "RTI", "RTS", "PHA", "PLA", "PHP", "PLP", "TXS")]
+SAFE_FILL = 0.7                       # share of non-code bytes taken from SAFE; the rest any documented opcode
+DOC = sorted(R.OPS)                   # (stores write all 256 values as programs run, so data still varies)
+
+
 def gen(rng):
-    mem = bytearray(rng.randrange(256) for _ in range(65536))
+    mem = bytearray(rng.choice(SAFE) if rng.random() < SAFE_FILL else rng.choice(DOC) for _ in range(65536))
     for zp in range(0, 256, 2):                           # zero-page pointers into the data area
         if rng.random() < 0.8:
             a = rng.randrange(DATA, DATA_END - 0x200)
