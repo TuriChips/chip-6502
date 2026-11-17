@@ -114,6 +114,7 @@ module m6502_alu (
             5'd19: begin wr_a = 1'b0; n_d = 1'b0; u_d = 1'b1; end    // CLD
             5'd20: begin wr_a = 1'b0; n_d = 1'b1; u_d = 1'b1; end    // SED
             5'd21: begin wr_a = 1'b0; n_v = 1'b0; u_v = 1'b1; end    // CLV
+            5'd22: begin wr_a = 1'b0; n_v = 1'b1; u_v = 1'b1; end    // SEV (the S.O. pin; chip-6502#26)
             default: begin wr_a = 1'b0; end                          // 0 and 22..31: nothing
         endcase
     end
