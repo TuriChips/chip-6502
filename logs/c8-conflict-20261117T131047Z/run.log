@@ -1,0 +1,4 @@
+cmd: tests/random/c8/conflict_check.py --rtl <local integration: main fb939fc + ada/alu ada/regs ada/mem zura/timing zura/decode zura/control zura/top zura/system, HEAD 8128cd9>
+faulty RTL: bus_conflict = 1 in 284 cycles, 284 of them with d_oe = rw = 1
+clean RTL:  bus_conflict = 1 in 0 cycles
+PASS conflict_check: bus_conflict rises exactly when two drivers are on
