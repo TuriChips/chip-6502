@@ -1,0 +1,8 @@
+ada/alu 938d408
+ada/regs ef54251
+ada/mem 7485b74
+zura/timing 83a4c91
+zura/decode 5e5b099
+zura/control 2dcff28
+zura/top f641951
+zura/system cc85601

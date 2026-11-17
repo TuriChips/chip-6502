@@ -1,0 +1,1 @@
+pins6502.py gained a behaviour-neutral trace hook (self.trace = None by default) at 2026-11-17 15:55:01 UTC, during: == chunk seed=8. Selftest PASS before and after.
