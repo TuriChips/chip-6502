@@ -21,7 +21,7 @@ module tb;
               .rdy(rdy), .irq_n(irq_n), .nmi_n(nmi_n), .so_n(1'b1));
     always #5 clk = ~clk;
 
-    integer fd, p, n, nprog, nst, seed, rdy_pct, irq_pm, nmi_pm, r, rel, low_left, nrst, rst_pm_div; reg dump, pre_done;
+    integer fd, p, n, nprog, nst, seed, rdy_pct, irq_pm, nmi_pm, r, rel, low_left, nrst, rst_pm_div; reg dump, pre_done; integer nmi_chg;
     reg [1023:0] dir; reg [8*256-1:0] fname;
 
     always @(posedge clk) if (res_n && rw === 1'b0) mem[a] <= d_out;
@@ -41,7 +41,7 @@ module tb;
             $readmemh(fname, mem);
             $sformat(fname, "%0s/prog%0d/pins.txt", dir, p);
             fd = $fopen(fname, "w");
-            res_n = 0; rdy = 1; irq_n = 1; nmi_n = 1; rel = 10; nrst = 0; dump = 0; low_left = 0; pre_done = 0;
+            res_n = 0; rdy = 1; irq_n = 1; nmi_n = 1; rel = 10; nrst = 0; dump = 0; low_left = 0; pre_done = 0; nmi_chg = -10;
             for (n = 0; n < nst; n = n + 1) begin
                 @(negedge clk);                       // inputs for this cycle (the edge that started it has passed)
                 if (n == 10) begin res_n = 1; rel = 10; end
@@ -59,7 +59,9 @@ module tb;
                     if (sync === 1'b1 && a == 16'h0200) pre_done = 1;   // the preamble has jumped to the stream
                     if (sync === 1'b1 && pre_done) begin   // §5: the preamble sets S before an interrupt can push
                         if (($urandom % 1000) < irq_pm) irq_n = ~irq_n;
-                        if (($urandom % 1000) < nmi_pm) nmi_n = ~nmi_n;
+                        // §6 / p.38: nmi_n stays low >= 2 cycles; RDY-held fetches give consecutive sync cycles, so
+                        // a change is allowed only 2+ cycles after the previous one
+                        if (($urandom % 1000) < nmi_pm && n >= nmi_chg + 2) begin nmi_n = ~nmi_n; nmi_chg = n; end
                     end
                 end
                 #1;
