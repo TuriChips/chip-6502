@@ -17,6 +17,7 @@ class Mach:
     def __init__(s, pc=0, mem=None):
         s.a = s.x = s.y = 0; s.s = 0xFF; s.pc = pc; s.mem = mem if mem is not None else {}
         s.n = s.v = s.d = s.i = s.z = s.c = 0
+        s.rom_from = 0x10000           # addresses at or above this are ROM: writes are put on the bus but not stored (tests use 0x8000)
     # --- state helpers
     def p(s, b=0):                                   # P as pushed: bit 5 = 1, bit 4 = b
         return s.n << 7 | s.v << 6 | 1 << 5 | b << 4 | s.d << 3 | s.i << 2 | s.z << 1 | s.c
@@ -73,7 +74,9 @@ class Mach:
         def rd(addr, sync=0):
             addr &= 0xFFFF; v = s.rd(addr); cyc.append((addr, 1, v, sync)); return v
         def wr(addr, v):
-            addr &= 0xFFFF; v &= 255; s.mem[addr] = v; cyc.append((addr, 0, v, 0))
+            addr &= 0xFFFF; v &= 255
+            if addr < s.rom_from: s.mem[addr] = v
+            cyc.append((addr, 0, v, 0))
         pc = s.pc; opc = rd(pc, 1); m, mode = INV[opc]
         if mode in ('imp', 'acc') and m not in ('PHA', 'PHP', 'PLA', 'PLP', 'RTS', 'RTI', 'BRK'):
             rd(pc + 1); s.pc = pc + 1                                  # A.1: dummy read of the next byte
