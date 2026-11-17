@@ -25,7 +25,7 @@
 -- Running command `
 read_verilog rtl/top.v rtl/control/m6502_control.v rtl/control/m6502_decode.v rtl/control/m6502_plan.v rtl/control/m6502_timing.v rtl/datapath/m6502_alu.v rtl/datapath/m6502_regs.v ;
 hierarchy -check -top m6502;
-proc; flatten; opt; memory -nomap; memory_map; opt; techmap; opt;
+proc; flatten; opt; memory -nomap -nordff; memory_map; opt; techmap; opt;
 abc -g AND,NAND,OR,NOR,XOR,XNOR,ANDNOT,ORNOT,MUX; opt_clean -purge;
 check -assert;
 tee -o synth/report.txt stat;
@@ -797,28 +797,23 @@ Performed a total of 0 transformations.
 
 12.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
 
-12.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
-Checking read port `$flatten\u_control.\u_dec.$auto$proc_rom.cc:150:do_switch$185'[0] in module `\m6502': no output FF found.
-Checking read port address `$flatten\u_control.\u_dec.$auto$proc_rom.cc:150:do_switch$185'[0] in module `\m6502': merged address FF to cell.
-
-12.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+12.5. Executing OPT_CLEAN pass (remove unused cells and wires).
 Finding unused cells or wires in module \m6502..
 
-12.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+12.6. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
 
-12.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
+12.7. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
 Performed a total of 0 transformations.
 
-12.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+12.8. Executing OPT_CLEAN pass (remove unused cells and wires).
 Finding unused cells or wires in module \m6502..
 
-12.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+12.9. Executing MEMORY_COLLECT pass (generating $mem cells).
 
 13. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
 Mapping memory $flatten\u_control.\u_dec.$auto$proc_rom.cc:150:do_switch$185 in module \m6502:
   created 256 $dff cells and 0 static cells of width 24.
-Extracted data FF from read port 0 of m6502.$flatten\u_control.\u_dec.$auto$proc_rom.cc:150:do_switch$185: $$flatten\u_control.\u_dec.$auto$proc_rom.cc:150:do_switch$185$rdreg[0]
-  read interface: 1 $dff and 255 $mux cells.
+  read interface: 0 $dff and 255 $mux cells.
   write interface: 0 write mux blocks.
 
 14. Executing OPT pass (performing simple optimizations).
@@ -837,7 +832,7 @@ Running muxtree optimizer on module \m6502..
   Evaluating internal representation of mux trees.
   Analyzing evaluation results.
 Removed 0 multiplexer ports.
-<suppressed ~70 debug messages>
+<suppressed ~69 debug messages>
 
 14.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
   Optimizing cells in module \m6502.
@@ -866,7 +861,7 @@ Running muxtree optimizer on module \m6502..
   Evaluating internal representation of mux trees.
   Analyzing evaluation results.
 Removed 0 multiplexer ports.
-<suppressed ~71 debug messages>
+<suppressed ~70 debug messages>
 
 14.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
   Optimizing cells in module \m6502.
@@ -917,8 +912,8 @@ Generating RTLIL representation for module `\_90_lut'.
 Successfully finished Verilog frontend.
 
 15.2. Continuing TECHMAP pass.
-Using extmapper simplemap for cells of type $eq.
 Using extmapper simplemap for cells of type $mux.
+Using extmapper simplemap for cells of type $eq.
 Using extmapper simplemap for cells of type $logic_not.
 Using extmapper simplemap for cells of type $sdffe.
 Running "alumacc" on wrapper $extern:wrap:$add:A_SIGNED=0:A_WIDTH=3:B_SIGNED=0:B_WIDTH=3:Y_WIDTH=3:394426c56d1a028ba8fdd5469b163e04011def47.
@@ -947,7 +942,6 @@ Using extmapper simplemap for cells of type $and.
 Using extmapper simplemap for cells of type $xor.
 Running "alumacc" on wrapper $extern:wrap:$add:A_SIGNED=0:A_WIDTH=9:B_SIGNED=0:B_WIDTH=9:Y_WIDTH=9:394426c56d1a028ba8fdd5469b163e04011def47.
 Using template $extern:wrap:$add:A_SIGNED=0:A_WIDTH=9:B_SIGNED=0:B_WIDTH=9:Y_WIDTH=9:394426c56d1a028ba8fdd5469b163e04011def47 for cells of type $extern:wrap:$add:A_SIGNED=0:A_WIDTH=9:B_SIGNED=0:B_WIDTH=9:Y_WIDTH=9:394426c56d1a028ba8fdd5469b163e04011def47.
-Using extmapper simplemap for cells of type $dff.
 Using template $paramod$c5c783b17ab1d780abfad8cfe6563a0a7b47a3b0\_90_pmux for cells of type $pmux.
 Using template $paramod$f1a1302b8e09c99a2717f99de3f6cd758facf154\_90_pmux for cells of type $pmux.
 Using template $paramod$4f9ddb8bcc47f1c63c5307c488aaf2e8cb141a6c\_90_pmux for cells of type $pmux.
@@ -998,7 +992,7 @@ Using template $paramod\_90_lcu\WIDTH=32'00000000000000000000000000001010 for ce
 Using template $paramod\_90_lcu\WIDTH=32'00000000000000000000000000000101 for cells of type $lcu.
 Using template $paramod\_90_lcu\WIDTH=32'00000000000000000000000000010000 for cells of type $lcu.
 No more expansions possible.
-<suppressed ~3937 debug messages>
+<suppressed ~3934 debug messages>
 
 16. Executing OPT pass (performing simple optimizations).
 
@@ -1008,8 +1002,8 @@ Optimizing module m6502.
 
 16.2. Executing OPT_MERGE pass (detect identical cells).
 Finding identical cells in module `\m6502'.
-<suppressed ~10560 debug messages>
-Removed a total of 3520 cells.
+<suppressed ~10563 debug messages>
+Removed a total of 3521 cells.
 
 16.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
 Running muxtree optimizer on module \m6502..
@@ -1026,17 +1020,11 @@ Finding identical cells in module `\m6502'.
 Removed a total of 0 cells.
 
 16.6. Executing OPT_DFF pass (perform DFF optimizations).
-Adding SRST signal on $auto$ff.cc:266:slice$11766 ($_DFF_P_) from module m6502 (D = $memory$flatten\u_control.\u_dec.$auto$proc_rom.cc:150:do_switch$185$rdmux[0][0][0]$a$2964 [5], Q = \u_control.mode [4], rval = 1'0).
-Adding SRST signal on $auto$ff.cc:266:slice$11774 ($_DFF_P_) from module m6502 (D = $memory$flatten\u_control.\u_dec.$auto$proc_rom.cc:150:do_switch$185$rdmux[0][2][3]$b$2983 [13], Q = \u_control.asel [0], rval = 1'0).
-Adding SRST signal on $auto$ff.cc:266:slice$11775 ($_DFF_P_) from module m6502 (D = $memory$flatten\u_control.\u_dec.$auto$proc_rom.cc:150:do_switch$185$rdmux[0][2][3]$a$2982 [14], Q = \u_control.asel [1], rval = 1'0).
-Adding SRST signal on $auto$ff.cc:266:slice$11777 ($_DFF_P_) from module m6502 (D = $memory$flatten\u_control.\u_dec.$auto$proc_rom.cc:150:do_switch$185$rdmux[0][0][0]$b$2965 [16], Q = \u_control.bsel [1], rval = 1'0).
-Adding SRST signal on $auto$ff.cc:266:slice$11781 ($_DFF_P_) from module m6502 (D = $memory$flatten\u_control.\u_dec.$auto$proc_rom.cc:150:do_switch$185$rdmux[0][0][0]$b$2965 [20], Q = \u_control.xwe, rval = 1'0).
-Adding SRST signal on $auto$ff.cc:266:slice$11782 ($_DFF_P_) from module m6502 (D = $memory$flatten\u_control.\u_dec.$auto$proc_rom.cc:150:do_switch$185$rdmux[0][0][0]$b$2965 [21], Q = \u_control.ywe, rval = 1'0).
 
 16.7. Executing OPT_CLEAN pass (remove unused cells and wires).
 Finding unused cells or wires in module \m6502..
-Removed 235 unused cells and 4003 unused wires.
-<suppressed ~238 debug messages>
+Removed 224 unused cells and 4001 unused wires.
+<suppressed ~227 debug messages>
 
 16.8. Executing OPT_EXPR pass (perform const folding).
 Optimizing module m6502.
@@ -1062,7 +1050,7 @@ Removed a total of 0 cells.
 
 16.14. Executing OPT_CLEAN pass (remove unused cells and wires).
 Finding unused cells or wires in module \m6502..
-Removed 0 unused cells and 5 unused wires.
+Removed 0 unused cells and 6 unused wires.
 <suppressed ~1 debug messages>
 
 16.15. Executing OPT_EXPR pass (perform const folding).
@@ -1097,7 +1085,7 @@ Optimizing module m6502.
 17. Executing ABC pass (technology mapping using ABC).
 
 17.1. Extracting gate netlist of module `\m6502' to `<abc-temp-dir>/input.blif'..
-Extracted 3595 gates and 3751 wires to a netlist network with 153 inputs and 166 outputs.
+Extracted 3582 gates and 3715 wires to a netlist network with 130 inputs and 141 outputs.
 
 17.1.1. Executing ABC.
 Running ABC command: "<yosys-exe-dir>/yosys-abc" -s -f <abc-temp-dir>/abc.script 2>&1
@@ -1122,25 +1110,25 @@ ABC: + &put
 ABC: + write_blif <abc-temp-dir>/output.blif 
 
 17.1.2. Re-integrating ABC results.
-ABC RESULTS:               NOT cells:       18
-ABC RESULTS:            ANDNOT cells:      108
-ABC RESULTS:                OR cells:      196
-ABC RESULTS:               MUX cells:      196
+ABC RESULTS:               NOT cells:       23
+ABC RESULTS:                OR cells:      197
 ABC RESULTS:             ORNOT cells:       94
-ABC RESULTS:               NOR cells:       61
-ABC RESULTS:              NAND cells:      805
-ABC RESULTS:               XOR cells:       58
-ABC RESULTS:              XNOR cells:       96
-ABC RESULTS:               AND cells:      783
-ABC RESULTS:        internal signals:     3432
-ABC RESULTS:           input signals:      153
-ABC RESULTS:          output signals:      166
+ABC RESULTS:            ANDNOT cells:      103
+ABC RESULTS:               NOR cells:       57
+ABC RESULTS:              NAND cells:      787
+ABC RESULTS:               XOR cells:       57
+ABC RESULTS:              XNOR cells:       95
+ABC RESULTS:               AND cells:      765
+ABC RESULTS:               MUX cells:      190
+ABC RESULTS:        internal signals:     3444
+ABC RESULTS:           input signals:      130
+ABC RESULTS:          output signals:      141
 Removing temp directory.
 
 18. Executing OPT_CLEAN pass (remove unused cells and wires).
 Finding unused cells or wires in module \m6502..
-Removed 0 unused cells and 2014 unused wires.
-<suppressed ~183 debug messages>
+Removed 0 unused cells and 1975 unused wires.
+<suppressed ~193 debug messages>
 
 19. Executing CHECK pass (checking for obvious problems).
 Checking module m6502...
@@ -1150,90 +1138,95 @@ Found and reported 0 problems.
 
 === m6502 ===
 
-   Number of wires:               2375
-   Number of wire bits:           2588
-   Number of public wires:          61
-   Number of public wire bits:     210
+   Number of wires:               2334
+   Number of wire bits:           2511
+   Number of public wires:          51
+   Number of public wire bits:     187
    Number of memories:               0
    Number of memory bits:            0
    Number of processes:              0
-   Number of cells:               2555
-     $_ANDNOT_                     108
-     $_AND_                        783
-     $_DFF_P_                       17
-     $_MUX_                        196
-     $_NAND_                       805
-     $_NOR_                         61
-     $_NOT_                         18
+   Number of cells:               2485
+     $_ANDNOT_                     103
+     $_AND_                        765
+     $_MUX_                        190
+     $_NAND_                       787
+     $_NOR_                         57
+     $_NOT_                         23
      $_ORNOT_                       94
-     $_OR_                         196
+     $_OR_                         197
      $_SDFFE_PN0N_                   9
      $_SDFFE_PN0P_                 102
      $_SDFFE_PN1P_                   1
-     $_SDFF_PN0_                     7
+     $_SDFF_PN0_                     3
      $_SDFF_PN1_                     2
-     $_SDFF_PP0_                     2
-     $_XNOR_                        96
-     $_XOR_                         58
+     $_XNOR_                        95
+     $_XOR_                         57
 
 21. Executing LTP pass (find longest path).
 
-Longest topological path in m6502 (length=53):
-    0: \u_timing.rs_r [0]
-    1: $abc$22139$new_n324_ (via $abc$22139$auto$blifparse.cc:386:parse_blif$22144)
-    2: $abc$22139$new_n326_ (via $abc$22139$auto$blifparse.cc:386:parse_blif$22146)
-    3: $abc$22139$new_n331_ (via $abc$22139$auto$blifparse.cc:386:parse_blif$22151)
-    4: $abc$22139$new_n359_ (via $abc$22139$auto$blifparse.cc:386:parse_blif$22179)
-    5: $abc$22139$new_n539_ (via $abc$22139$auto$blifparse.cc:386:parse_blif$22359)
-    6: $abc$22139$new_n617_ (via $abc$22139$auto$blifparse.cc:386:parse_blif$22437)
-    7: $abc$22139$new_n776_ (via $abc$22139$auto$blifparse.cc:386:parse_blif$22596)
-    8: $abc$22139$new_n777_ (via $abc$22139$auto$blifparse.cc:386:parse_blif$22597)
-    9: $abc$22139$new_n795_ (via $abc$22139$auto$blifparse.cc:386:parse_blif$22615)
-   10: $abc$22139$new_n888_ (via $abc$22139$auto$blifparse.cc:386:parse_blif$22708)
-   11: $abc$22139$new_n889_ (via $abc$22139$auto$blifparse.cc:386:parse_blif$22709)
-   12: $abc$22139$new_n890_ (via $abc$22139$auto$blifparse.cc:386:parse_blif$22710)
-   13: $abc$22139$new_n1026_ (via $abc$22139$auto$blifparse.cc:386:parse_blif$22846)
-   14: $abc$22139$new_n1031_ (via $abc$22139$auto$blifparse.cc:386:parse_blif$22851)
-   15: $abc$22139$new_n1032_ (via $abc$22139$auto$blifparse.cc:386:parse_blif$22852)
-   16: $abc$22139$new_n1036_ (via $abc$22139$auto$blifparse.cc:386:parse_blif$22856)
-   17: $abc$22139$new_n1117_ (via $abc$22139$auto$blifparse.cc:386:parse_blif$22937)
-   18: $abc$22139$new_n1118_ (via $abc$22139$auto$blifparse.cc:386:parse_blif$22938)
-   19: $abc$22139$new_n1119_ (via $abc$22139$auto$blifparse.cc:386:parse_blif$22939)
-   20: $abc$22139$new_n1120_ (via $abc$22139$auto$blifparse.cc:386:parse_blif$22940)
-   21: $abc$22139$new_n1121_ (via $abc$22139$auto$blifparse.cc:386:parse_blif$22941)
-   22: $abc$22139$new_n1124_ (via $abc$22139$auto$blifparse.cc:386:parse_blif$22944)
-   23: $abc$22139$new_n1125_ (via $abc$22139$auto$blifparse.cc:386:parse_blif$22945)
-   24: $abc$22139$new_n1126_ (via $abc$22139$auto$blifparse.cc:386:parse_blif$22946)
-   25: $abc$22139$new_n1127_ (via $abc$22139$auto$blifparse.cc:386:parse_blif$22947)
-   26: $abc$22139$new_n1144_ (via $abc$22139$auto$blifparse.cc:386:parse_blif$22964)
-   27: $abc$22139$new_n1145_ (via $abc$22139$auto$blifparse.cc:386:parse_blif$22965)
-   28: $abc$22139$new_n1161_ (via $abc$22139$auto$blifparse.cc:386:parse_blif$22981)
-   29: $abc$22139$new_n1163_ (via $abc$22139$auto$blifparse.cc:386:parse_blif$22983)
-   30: $abc$22139$new_n1171_ (via $abc$22139$auto$blifparse.cc:386:parse_blif$22991)
-   31: $abc$22139$new_n1172_ (via $abc$22139$auto$blifparse.cc:386:parse_blif$22992)
-   32: $abc$22139$new_n1175_ (via $abc$22139$auto$blifparse.cc:386:parse_blif$22995)
-   33: $abc$22139$new_n1176_ (via $abc$22139$auto$blifparse.cc:386:parse_blif$22996)
-   34: $abc$22139$new_n1182_ (via $abc$22139$auto$blifparse.cc:386:parse_blif$23002)
-   35: $abc$22139$new_n1183_ (via $abc$22139$auto$blifparse.cc:386:parse_blif$23003)
-   36: $abc$22139$new_n1184_ (via $abc$22139$auto$blifparse.cc:386:parse_blif$23004)
-   37: $abc$22139$new_n1187_ (via $abc$22139$auto$blifparse.cc:386:parse_blif$23007)
-   38: $abc$22139$new_n1403_ (via $abc$22139$auto$blifparse.cc:386:parse_blif$23223)
-   39: $abc$22139$new_n1405_ (via $abc$22139$auto$blifparse.cc:386:parse_blif$23225)
-   40: $abc$22139$new_n1407_ (via $abc$22139$auto$blifparse.cc:386:parse_blif$23227)
-   41: $abc$22139$new_n1411_ (via $abc$22139$auto$blifparse.cc:386:parse_blif$23231)
-   42: $abc$22139$new_n1680_ (via $abc$22139$auto$blifparse.cc:386:parse_blif$23500)
-   43: $abc$22139$new_n1681_ (via $abc$22139$auto$blifparse.cc:386:parse_blif$23501)
-   44: $abc$22139$new_n1682_ (via $abc$22139$auto$blifparse.cc:386:parse_blif$23502)
-   45: $abc$22139$new_n1683_ (via $abc$22139$auto$blifparse.cc:386:parse_blif$23503)
-   46: \u_alu.res [7] (via $abc$22139$auto$blifparse.cc:386:parse_blif$23504)
-   47: $abc$22139$new_n2432_ (via $abc$22139$auto$blifparse.cc:386:parse_blif$24252)
-   48: $abc$22139$new_n2433_ (via $abc$22139$auto$blifparse.cc:386:parse_blif$24253)
-   49: $abc$22139$new_n2434_ (via $abc$22139$auto$blifparse.cc:386:parse_blif$24254)
-   50: $abc$22139$new_n2435_ (via $abc$22139$auto$blifparse.cc:386:parse_blif$24255)
-   51: $abc$22139$new_n2436_ (via $abc$22139$auto$blifparse.cc:386:parse_blif$24256)
-   52: $abc$22139$new_n2437_ (via $abc$22139$auto$blifparse.cc:386:parse_blif$24257)
-   53: \d_out [7] (via $abc$22139$auto$blifparse.cc:386:parse_blif$24258)
+Longest topological path in m6502 (length=60):
+    0: \u_control.ir [1]
+    1: $abc$22071$new_n335_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$22135)
+    2: $abc$22071$new_n336_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$22136)
+    3: $abc$22071$new_n347_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$22147)
+    4: $abc$22071$new_n413_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$22213)
+    5: $abc$22071$new_n414_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$22214)
+    6: $abc$22071$new_n415_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$22215)
+    7: $abc$22071$new_n417_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$22217)
+    8: $abc$22071$new_n418_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$22218)
+    9: $abc$22071$new_n419_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$22219)
+   10: $abc$22071$new_n420_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$22220)
+   11: $abc$22071$new_n422_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$22222)
+   12: $abc$22071$new_n465_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$22265)
+   13: $abc$22071$new_n478_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$22278)
+   14: $abc$22071$new_n864_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$22664)
+   15: $abc$22071$new_n871_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$22671)
+   16: $abc$22071$new_n873_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$22673)
+   17: $abc$22071$new_n874_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$22674)
+   18: $abc$22071$new_n943_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$22743)
+   19: $abc$22071$new_n947_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$22747)
+   20: $abc$22071$new_n1228_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$23028)
+   21: $abc$22071$new_n1229_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$23029)
+   22: $abc$22071$new_n1235_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$23035)
+   23: $abc$22071$new_n1244_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$23044)
+   24: $abc$22071$new_n1322_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$23122)
+   25: $abc$22071$new_n1323_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$23123)
+   26: $abc$22071$new_n1324_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$23124)
+   27: $abc$22071$new_n1325_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$23125)
+   28: $abc$22071$new_n1326_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$23126)
+   29: $abc$22071$new_n1329_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$23129)
+   30: $abc$22071$new_n1330_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$23130)
+   31: $abc$22071$new_n1331_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$23131)
+   32: $abc$22071$new_n1332_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$23132)
+   33: $abc$22071$new_n1349_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$23149)
+   34: $abc$22071$new_n1350_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$23150)
+   35: $abc$22071$new_n1366_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$23166)
+   36: $abc$22071$new_n1368_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$23168)
+   37: $abc$22071$new_n1376_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$23176)
+   38: $abc$22071$new_n1377_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$23177)
+   39: $abc$22071$new_n1380_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$23180)
+   40: $abc$22071$new_n1381_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$23181)
+   41: $abc$22071$new_n1387_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$23187)
+   42: $abc$22071$new_n1388_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$23188)
+   43: $abc$22071$new_n1389_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$23189)
+   44: $abc$22071$new_n1392_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$23192)
+   45: $abc$22071$new_n1597_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$23397)
+   46: $abc$22071$new_n1599_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$23399)
+   47: $abc$22071$new_n1601_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$23401)
+   48: $abc$22071$new_n1605_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$23405)
+   49: $abc$22071$new_n1862_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$23662)
+   50: $abc$22071$new_n1863_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$23663)
+   51: $abc$22071$new_n1864_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$23664)
+   52: $abc$22071$new_n1865_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$23665)
+   53: \u_alu.res [7] (via $abc$22071$auto$blifparse.cc:386:parse_blif$23666)
+   54: $abc$22071$new_n2619_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$24419)
+   55: $abc$22071$new_n2620_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$24420)
+   56: $abc$22071$new_n2621_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$24421)
+   57: $abc$22071$new_n2622_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$24422)
+   58: $abc$22071$new_n2623_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$24423)
+   59: $abc$22071$new_n2624_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$24424)
+   60: \d_out [7] (via $abc$22071$auto$blifparse.cc:386:parse_blif$24425)
 
-End of script. Logfile hash: 7378f52265, CPU: user 4.65s system 0.04s, MEM: 58.78 MB peak
+End of script. Logfile hash: c356d02d27, CPU: user 2.78s system 0.03s, MEM: 59.11 MB peak
 Yosys 0.33 (git sha1 2584903a060)
-Time spent: 27% 26x opt_expr (1 sec), 19% 1x abc (1 sec), ...
+Time spent: 26% 1x abc (0 sec), 25% 26x opt_expr (0 sec), ...
