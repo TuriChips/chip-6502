@@ -1,0 +1,4 @@
+compared: 219526 cycles, 46306 instructions, resets 124, model writes undone at a reset: 56
+stopped early: 2 at an undocumented byte, 0 with the reset vector or preamble overwritten before a reset
+c8 resets: seed=1 programs=20 cycles=12000 mismatching_programs=0
+PASS
