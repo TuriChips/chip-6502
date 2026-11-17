@@ -1,0 +1,5 @@
+commit: 1beacacd4005052de1a34620cea88bcd25ae5182
+FIB 01 01 02 03 05 08 0D 15 22 37 59 90 E9
+bus_conflict seen 0 times
+TRAP pc=0237 clocks=1362
+DEMO PASS: printed 'FIB 01 01 02 03 05 08 0D 15 22 37 59 90 E9'
