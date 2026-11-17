@@ -4,7 +4,7 @@
 
 | | total |
 |---|---|
-| programs | 10,001 |
+| programs | 10,000 |
 | mismatching programs | **1** (seed 108, program 310: chip-6502#42, an NMI edge at the NMI sequence's T0 lost under a 2+ cycle RDY hold; fixed by #43, where this chunk passes) |
 | cycles compared | 67,221,320 |
 | instructions | 14,424,616 (1,442 per program) |
