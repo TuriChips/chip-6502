@@ -1,0 +1,21 @@
+netlist: synth/sky130/m6502_sky130.v from PR #45 (6a43f0f), sha256 c7398b43f689cad1; harness 2a26c55; Icarus Verilog version 12.0 (stable) ()
+cmd: tests/random/gl_sky130.sh 500 7000 1
+compared: 3348491 cycles, 722585 instructions (1445 per program), IRQ 54066, NMI 4410, RDY-held reads 295506, stopped at an undocumented byte: 28
+note (not a spec check): reset cycles 3-5 not at S, S-1, S-2 in 0 programs
+c8: seed=1 programs=500 cycles=7000 mismatching_programs=0
+PASS
+compared: 1096210 cycles, 238484 instructions, resets 751, model writes undone at a reset: 392
+stopped early: 17 at an undocumented byte, 0 with the reset vector or preamble overwritten before a reset
+c8 resets: seed=1001 programs=101 cycles=12000 mismatching_programs=0
+PASS
+PASS gate-level sky130 C8
+
+real	22m2.589s
+user	21m45.130s
+sys	0m1.918s
+
+cmd: gl_def_check.py (DEF from PR #45)
+netlist: 2089 cells, 2103 nets with 2+ connections, 41 port bits
+DEF: 2550 components (461 tap/fill), 2103 signal nets with 2+ connections, 41 pins
+PASS gl_def_check: DEF matches the netlist
+== END
