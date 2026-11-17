@@ -103,7 +103,7 @@ module m6502_control (
         if (!running) begin
             // reset sequence (spec 4, 5): reads only; FFFC/FFFD load PC
             case (rs)
-                4'd3, 4'd4, 4'd5: addr_sel = 3'd3;
+                4'd3, 4'd4, 4'd5: begin addr_sel = 3'd3; s_op = 2'd1; end    // {01,S}, {01,S-1}, {01,S-2}: reads, S steps down as pushes would
                 4'd6: begin addr_sel = 3'd5; vec_sel = 3'd2; ab_op = 4'd1; end
                 4'd7: begin addr_sel = 3'd5; vec_sel = 3'd3; ab_op = 4'd7; end
                 default: ;
