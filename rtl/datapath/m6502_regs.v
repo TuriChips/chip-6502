@@ -49,7 +49,7 @@ module m6502_regs (
     wire [8:0]  adl_y   = {1'b0, adl} + {1'b0, y};
     wire [8:0]  pl_y    = {1'b0, pl} + {1'b0, y};
     wire [15:0] pc_inc  = r_pc + 16'd1;
-    wire [8:0]  br_sum  = {1'b0, pc_inc[7:0]} + {1'b0, d_in};
+    wire [8:0]  br_sum  = {1'b0, r_pc[7:0]} + {1'b0, d_in};   // ab_op 9 runs at T2, after T1's pc_op 1 has stepped PC past the offset
     wire        ab_wr_pc = (ab_op >= 4'd7) && (ab_op <= 4'd10);
 
     always @(posedge clk) begin
@@ -87,7 +87,7 @@ module m6502_regs (
                 4'd7:  r_pc <= {d_in, adl};
                 4'd8:  r_pc <= {adh, adl};
                 4'd9:  begin
-                    r_pc    <= {pc_inc[15:8], br_sum[7:0]};
+                    r_pc    <= {r_pc[15:8], br_sum[7:0]};
                     br_sign <= d_in[7];
                     carry_q <= br_sum[8] ^ d_in[7];
                 end
