@@ -19,16 +19,39 @@ module tb_cyc6502;
     if (!$value$plusargs("N=%d", n) || n == 0) begin $display("FAIL empty or missing +N"); $finish; end
     fd = $fopen(expf, "r");
     for (i = 0; i < n; i = i + 1) begin r = $fscanf(fd, "%h %d %d %s %d\n", xa, xr, xs, expf_d, xrdy); ea[i] = xa; er[i] = xr; es[i] = xs; erdy[i] = xrdy; ed[i] = (expf_d == "xx") ? 8'h00 : hex2(expf_d); end
-    repeat (12) @(posedge clk); @(negedge clk); res_n = 1;       // RESET held low for >= 8 cycles (spec 5)
+    if (!$value$plusargs("RESET_AT=%d", rst_at)) rst_at = -1;
+    if (!$value$plusargs("RESET_LEN=%d", rst_len)) rst_len = 10;
+    repeat (12) @(posedge clk); @(negedge clk); res_n = 1; rcyc = 0;       // RESET held low for >= 8 cycles (spec 5)
   end
   string expf_d;
   function [7:0] hex2(input string s); hex2 = 0; hex2 = (s[0] >= "A" ? s[0] - "A" + 10 : s[0] - "0") * 16 + (s[1] >= "A" ? s[1] - "A" + 10 : s[1] - "0"); endfunction
   // RDY: the value for the clock that starts at this edge (changes only at cycle starts, spec 7)
   always @(posedge clk) if (res_n && started && idx < n) rdy <= erdy[idx];
-  always @(negedge clk) if (res_n) begin
+  // C6: +RESET_AT=<cycle index> asserts res_n low from the clock that starts there for +RESET_LEN clocks (default 10, >= 8: spec 5); the expected rows resume with the
+  // restarted run. Compared (spec 5, chip-6502#29): while res_n = 0 (from the 2nd clock) and in reset cycles 1-7 after release: rw = 1, d_oe = 0; cycles 6-7: a = FFFC, FFFD;
+  // the first SYNC must be cycle 8. Cycle 1 is the cycle that starts at the first edge where res_n is sampled 1.
+  integer rst_at = -1, rst_len = 10, rlow = 0, rcyc = 0; reg rdone = 0;
+  always @(posedge clk) begin
+    if (rst_at >= 0 && !rdone && started && res_n && idx == rst_at) begin res_n <= 0; rlow <= 1; rdone <= 1; started <= 0; end
+    else if (!res_n && rlow > 0) begin
+      rlow <= rlow + 1; if (rlow + 1 > rst_len) begin res_n <= 1; rlow <= 0; rcyc <= 0; end
+    end
+  end
+  always @(negedge clk) begin
     cyc = cyc + 1;
-    if (!started && sync === 1'b1) started = 1;                    // comparison starts at the first SYNC after reset (spec 5)
-    if (started) begin
+    if (!res_n) begin
+      if (rlow >= 2 || (rst_at < 0 && cyc > 2)) if (rw !== 1'b1 || d_oe !== 1'b0) begin errors = errors + 1; if (errors < 10) $display("FAIL while res_n = 0: rw=%b d_oe=%b", rw, d_oe); end
+    end else if (!started) begin
+      rcyc = rcyc + 1;
+      if (rcyc <= 7 && (rw !== 1'b1 || d_oe !== 1'b0)) begin errors = errors + 1; if (errors < 10) $display("FAIL reset cycle %0d: rw=%b d_oe=%b (reads only)", rcyc, rw, d_oe); end
+      if (rcyc == 6 && a !== 16'hFFFC) begin errors = errors + 1; if (errors < 10) $display("FAIL reset cycle 6: a=%h, expected FFFC", a); end
+      if (rcyc == 7 && a !== 16'hFFFD) begin errors = errors + 1; if (errors < 10) $display("FAIL reset cycle 7: a=%h, expected FFFD", a); end
+      if (sync === 1'b1) begin
+        if (rcyc != 8) begin errors = errors + 1; if (errors < 10) $display("FAIL the first SYNC is reset cycle %0d, expected 8", rcyc); end
+        started = 1;
+      end
+    end
+    if (res_n && started) begin
       if (^{a, d_out, d_oe, rw, sync} === 1'bx && !(rw === 1'b1 && ^{a, d_oe, rw, sync} !== 1'bx)) begin errors = errors + 1; if (errors < 10) $display("FAIL C7 X/Z on an output at cycle %0d", idx); end
       if (a !== ea[idx] || rw !== er[idx] || sync !== es[idx] || d_oe !== !er[idx] || (!er[idx] && d_out !== ed[idx])) begin
         errors = errors + 1;
@@ -38,6 +61,6 @@ module tb_cyc6502;
       idx = idx + 1;
       if (idx == n) begin $display("%s: cycles=%0d errors=%0d", errors ? "FAIL" : "PASS", n, errors); $finish; end
     end
-    if (cyc > 3 * n + 200) begin $display("FAIL timeout after %0d cycles (idx %0d)", cyc, idx); $finish; end
+    if (cyc > 3 * n + 400) begin $display("FAIL timeout after %0d cycles (idx %0d)", cyc, idx); $finish; end
   end
 endmodule

@@ -83,3 +83,22 @@ for seed, rdy_mode in ((1, False), (2, False), (3, False), (4, True)):
     with open(f"{d}/cyc_s{seed}.cyc", "w") as f:
         for a, rw, v, sy, rdy in rows: f.write("%04X %d %d %s %d\n" % (a, rw, sy, "xx" if rw else "%02X" % v, rdy))
     print(f"seed {seed}: {len(rows)} cycles")
+
+# --- C6: reset in the middle of the run (seed 1's program), at 8 consecutive cycles. The partly executed instruction is abandoned; RAM keeps the writes made before the reset
+#     (memory is not reset); after release the program restarts from the reset vector, so the expected rows are the first R cycles and then the whole fresh run on the modified RAM.
+src, image, cycles = build(1)
+for k in range(8):
+    R = 3000 + k
+    ram = dict(image)
+    for a, rw, v, sy in cycles[:R]:
+        if rw == 0 and a < 0x8000: ram[a] = v
+    m = M.Mach(CODE); m.rom_from = 0x8000; m.mem = dict(ram); m.i = 1; fresh = []
+    end = [l for l in range(0)]
+    labels = {}; A.assemble(src, False, labels); endpc = labels['end']
+    while m.pc != endpc and len(fresh) < 200000: fresh += m.step()
+    rows = [(a, rw, v, sy, 1) for a, rw, v, sy in cycles[:R]] + [(a, rw, v, sy, 1) for a, rw, v, sy in fresh]
+    name = f"cyc_r{k}"
+    open(f"{d}/{name}.asm", "w").write("\n".join(src) + "\n"); A.write_hex(image, f"{d}/{name}.hex"); open(f"{d}/{name}.plus", "w").write(f"+RESET_AT={R}\n")
+    with open(f"{d}/{name}.cyc", "w") as f:
+        for a, rw, v, sy, rdy in rows: f.write("%04X %d %d %s %d\n" % (a, rw, sy, "xx" if rw else "%02X" % v, rdy))
+print("wrote 8 reset variants")
