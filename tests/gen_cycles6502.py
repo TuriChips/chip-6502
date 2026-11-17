@@ -4,7 +4,7 @@ vectors), a program of random documented instructions in every addressing mode (
 crossings, zero-page wraps, stack wraps and writes to anywhere in RAM all occur), control-flow macros (branches over a 2-byte pad, JSR to an inline RTS, JMP, JMP (xxFF),
 RTI, BRK/IRQ-vector RTI) and the expected value of EVERY cycle (address, rw, sync, data written) from tests/mach6502.py (written from spec 4.1/6.1/6).
 Memory above 8000 is ROM: writes appear on the bus but are not stored, in the testbench and in the model.
-Output: <outdir>/cyc_s<seed>.asm, .hex (the memory image: RAM then program), .cyc: one line per cycle `AAAA R S DD` (R = rw, S = sync, DD = write data or xx).
+Output: <outdir>/cyc_s<seed>.asm, .hex (the memory image: RAM then program), .cyc: one line per clock `AAAA R S DD RDY` (R = rw, S = sync, DD = write data or xx, RDY = the value driven during that clock). Seed 4 is seed 3's program with RDY low in runs (C3).
 Every ~3 instructions a neutral state dump (PHP; PHA; STX; STY; PLA; PLP) puts P, A, X, Y on the bus, so a wrong register or flag shows at the next dump, not only when a later instruction happens to read it (C1). Comparison starts at the first sync after reset (spec 5), preamble included: LDX #s; TXS; LDA #p; PHA; PLP; LDA #a; LDX #x; LDY #y (no register is read before it is written)."""
 import os, random, sys
 sys.dont_write_bytecode = True
@@ -63,10 +63,23 @@ def build(seed, n=3000):
     end = labels['end']
     while m.pc != end and len(cycles) < 200000: cycles += m.step()
     return src, image, cycles
-for seed in (1, 2, 3):
-    src, image, cycles = build(seed)
+def with_rdy(cycles, rnd):
+    """C3: RDY. Runs of 1-4 clocks with RDY low (changed only at the start of a cycle, spec 4.0/7). A read cycle with RDY low is repeated (same address, rw = 1, same SYNC)
+    until RDY is high; a write cycle completes whatever RDY is, and the stop happens in the next read cycle if RDY is still low (spec 2, Hardware Manual p.37)."""
+    out = []; i = 0; low = 0
+    while i < len(cycles):
+        if low == 0 and rnd.random() < 0.08: low = rnd.randrange(1, 5)
+        rdy = 0 if low > 0 else 1
+        if low > 0: low -= 1
+        a, rw, v, sy = cycles[i]
+        out.append((a, rw, v, sy, rdy))
+        if not (rw == 1 and rdy == 0): i += 1                 # a read with RDY low repeats
+    return out
+for seed, rdy_mode in ((1, False), (2, False), (3, False), (4, True)):
+    src, image, cycles = build(seed if seed < 4 else 3)       # seed 4 = seed 3's program with RDY stimulus
+    rows = with_rdy(cycles, random.Random(100 + seed)) if rdy_mode else [(a, rw, v, sy, 1) for a, rw, v, sy in cycles]
     open(f"{d}/cyc_s{seed}.asm", "w").write("\n".join(src) + "\n")
     A.write_hex(image, f"{d}/cyc_s{seed}.hex")
     with open(f"{d}/cyc_s{seed}.cyc", "w") as f:
-        for a, rw, v, sy in cycles: f.write("%04X %d %d %s\n" % (a, rw, sy, "xx" if rw else "%02X" % v))
-    print(f"seed {seed}: {len(cycles)} cycles")
+        for a, rw, v, sy, rdy in rows: f.write("%04X %d %d %s %d\n" % (a, rw, sy, "xx" if rw else "%02X" % v, rdy))
+    print(f"seed {seed}: {len(rows)} cycles")
