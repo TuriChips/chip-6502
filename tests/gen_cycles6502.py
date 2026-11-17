@@ -5,7 +5,7 @@ crossings, zero-page wraps, stack wraps and writes to anywhere in RAM all occur)
 RTI, BRK/IRQ-vector RTI) and the expected value of EVERY cycle (address, rw, sync, data written) from tests/mach6502.py (written from spec 4.1/6.1/6).
 Memory above 8000 is ROM: writes appear on the bus but are not stored, in the testbench and in the model.
 Output: <outdir>/cyc_s<seed>.asm, .hex (the memory image: RAM then program), .cyc: one line per cycle `AAAA R S DD` (R = rw, S = sync, DD = write data or xx).
-Comparison starts at the first sync after reset (spec 5), preamble included: LDX #s; TXS; LDA #p; PHA; PLP; LDA #a; LDX #x; LDY #y (no register is read before it is written)."""
+Every ~3 instructions a neutral state dump (PHP; PHA; STX; STY; PLA; PLP) puts P, A, X, Y on the bus, so a wrong register or flag shows at the next dump, not only when a later instruction happens to read it (C1). Comparison starts at the first sync after reset (spec 5), preamble included: LDX #s; TXS; LDA #p; PHA; PLP; LDA #a; LDX #x; LDY #y (no register is read before it is written)."""
 import os, random, sys
 sys.dont_write_bytecode = True
 here = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, here)
@@ -35,6 +35,8 @@ def program(rnd, n):
         elif r < 0.98:       # RTI to the next instruction: push PCH, PCL, P
             lab += 1; L += [f"        LDA #>g{lab}", "        PHA", f"        LDA #<g{lab}", "        PHA", f"        LDA #{rnd.randrange(256) & 0xCF}", "        PHA", "        RTI", f"g{lab}:"]
         else: L += ["        BRK", "        NOP"]        # the IRQ/BRK vector points at an RTI; it returns to BRK + 2
+        if rnd.random() < 0.3:    # state dump, neutral: the writes show P, A, X, Y (and S through the addresses); PLA then PLP restore A, N, Z and P exactly
+            L += ["        PHP", "        PHA", "        STX $7FF0", "        STY $7FF1", "        PLA", "        PLP"]
     return L
 def expand(lines):
     """resolve '#<label' / '#>label' for the assembler: two-pass by hand"""
