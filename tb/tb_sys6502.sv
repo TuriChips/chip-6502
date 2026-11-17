@@ -24,6 +24,7 @@ module tb_sys6502;
     if (bus_conflict === 1'b1) conflicts = conflicts + 1;
     if (seen && !expect_conflict) begin
       if (^{a, d_out, d_oe, rw, sync, bus, con_data, con_strobe, bus_conflict} === 1'bx) begin errors = errors + 1; if (errors < 10) $display("FAIL C7 X/Z on an output at clock %0d", cyc); end
+      if (d_oe !== !rw) begin errors = errors + 1; if (errors < 10) $display("FAIL C7 d_oe = %b but rw = %b at clock %0d (spec 4.0: d_oe = NOT rw)", d_oe, rw, cyc); end
       if (bus_conflict !== 1'b0) begin errors = errors + 1; if (errors < 10) $display("FAIL C7 bus_conflict at clock %0d", cyc); end
       if (rw === 1'b0 && (a == 16'h7000 || a == 16'h7001)) begin
         if (d_out !== exp[got]) begin errors = errors + 1; if (errors < 10) $display("FAIL write %0d: expected %h got %h", got, exp[got], d_out); end
