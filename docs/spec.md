@@ -210,11 +210,18 @@ A.5.8 Branches BCC BCS BEQ BMI BNE BPL BVC BVS (2, 3 or 4), A-13:
 |----|-----|------|------|
 | T0 | PC | opcode | always |
 | T1 | PC+1 | offset | always |
-| T2 | {PCH, (PCL + 2 + offset) mod 256}, "PC + 2 + offset (w/o carry)" | opcode (disc.) | only if taken |
-| T3 | PC + 2 + offset, **with** carry | opcode (disc.) | only if taken **and** the page is crossed |
-| T0 | the target (taken) or PC+2 (not taken) | opcode | next instruction |
+| T2 | **PC + 2** (the next opcode's address) | opcode (disc.) | only if taken |
+| T3 | {PCH of PC + 2, (PCL + 2 + offset) mod 256}, the **uncarried** target | opcode (disc.) | only if taken **and** the page is crossed |
+| T0 | the target, PC + 2 + offset **with** carry (taken), or PC + 2 (not taken) | opcode | next instruction |
 
-So a taken branch's first extra cycle reads at the **uncarried** target, the same pattern as the indexed reads above. T2's high byte is PC+2's page: the manual writes T2 as "PC + 2 + offset (w/o carry)" and T3 as "with carry", and they differ only when the carry would change the page.
+PC here is the branch opcode's address. *Decision* (chip-6502#17, 2026-11-17): **a taken branch's extra cycles read at PC + 2, then (page cross only) at the uncarried target, both discarded; the real target is read once, as the next instruction's T0.** Cycle counts are unchanged: 2, 3 or 4 (B-4 to B-6).
+
+Why this is a Decision and not a transcription. A-13's page image (re-read 2026-11-17) prints T2 = "PC + 2 + offset (w/o carry)", comment "Offset Added to Program Counter", and T3 = "PC + 2 + offset (with carry)", comment "Carry Added", both with Data "OP CODE" (A.5.8 doesn't say "discarded" in either row). Read literally as bus addresses, a taken same-page branch would read the target in T2 and then again as the next T0, and a taken page-crossing branch would read the real target twice. We read the Address Bus column of A.5.8 as **the PC value being formed** in that cycle (the comments say the offset and the carry are being added), which is put on the bus one cycle later. That reading:
+- gives the same "next byte first, then the uncarried address, then the carried one" pattern as the indexed reads (A.2.5, A.3.6), with each address read once;
+- matches all 39,862 taken-branch vectors of SingleStepTests 65x02 `6502/v1` (commit 2f6980a, Beru's cross-check in chip-6502#17), with no exceptions;
+- matches the widely published per-cycle behaviour of the NMOS part (cycle 3 "fetch opcode of next instruction, if branch is taken add operand to PCL"; cycle 4 "fetch opcode of next instruction, fix PCH"), a secondary source.
+
+The SST vectors stay a cross-check (§9 item 2). This Decision is what the RTL and the model follow. Example (from #17): `BEQ` at 9664 with offset 88 (−120), taken, reads 9664, 9665, **9666**, **96EE**, then fetches the next opcode at **95EE**.
 
 **Appendix A is fully transcribed.** §4.0 now states the per-cycle comparison rule. Interrupt timing is in §6.
 
