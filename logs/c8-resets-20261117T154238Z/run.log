@@ -1,0 +1,5 @@
+RTL: local integration (rtl_heads.txt), merge 835c1f8; cmd: run_resets.py --nprog 100 --nst 12000 --seed 2
+compared: 1051145 cycles, 225012 instructions, resets 725, model writes undone at a reset: 285
+stopped early: 19 at an undocumented byte, 0 with the reset vector or preamble overwritten before a reset
+c8 resets: seed=2 programs=100 cycles=12000 mismatching_programs=0
+PASS

@@ -1,0 +1,64 @@
+cmd: run.py --nprog 200 --nst 7000 --seed 91 (0 mismatches), then coverage.py --out build/c8cov --seed 91 --nprog 200
+opcodes executed: 151/151; never: none
+       5497  read abx page cross
+       4867  read abx no cross
+       6732  read aby page cross
+       5211  read aby no cross
+       3661  read izy page cross
+       3492  read izy no cross
+       1678  store abx (dummy read always)
+       1022  store aby (dummy read always)
+       1284  store izy (dummy read always)
+       9884  RMW zp (double write)
+       7200  RMW zpx (double write)
+       9035  RMW abs (double write)
+       6192  RMW abx (double write)
+        788  BPL not taken
+       3661  BPL taken, same page
+         70  BPL taken, page cross
+        795  BMI not taken
+        898  BMI taken, same page
+         86  BMI taken, page cross
+        393  BVC not taken
+       3355  BVC taken, same page
+        393  BVC taken, page cross
+        986  BVS not taken
+       3470  BVS taken, same page
+         72  BVS taken, page cross
+        380  BCC not taken
+       5791  BCC taken, same page
+        101  BCC taken, page cross
+        401  BCS not taken
+       1362  BCS taken, same page
+         57  BCS taken, page cross
+         29  BNE not taken
+      10267  BNE taken, same page
+        389  BNE taken, page cross
+       1422  BEQ not taken
+         55  BEQ taken, same page
+          3  BEQ taken, page cross
+        308  JMP (ind) at $xxFF (wrap)
+        105  JMP (ind) no wrap
+       5157  ADC decimal (D = 1)
+       5720  SBC decimal (D = 1)
+       5664  ADC binary
+       5565  SBC binary
+        325  BRK
+      20557  IRQ sequence
+       1779  NMI sequence
+      31817  RDY hold on an opcode fetch (sync)
+      76368  RDY hold on a non-fetch read
+      15486  RDY low during a write (ignored)
+        313  CLI 1->0 with irq_n low: not taken right after (old I)
+         12  PLP 1->0 with irq_n low: not taken right after (old I)
+        310  IRQ one instruction after CLI/PLP cleared I (old-I latency)
+         68  SEI 0->1 with irq_n low: one IRQ right after (old I)
+          1  PLP 0->1 with irq_n low: one IRQ right after (old I)
+      18435  RTI pulling I = 0 with irq_n low: IRQ right after (new I)
+          0  RTI pulling I = 1 with irq_n low: no IRQ (new I)
+        133  NMI deferred by a taken no-cross branch's early poll (branch delay)
+        509  NMI detected at the poll edge itself: deferred to the next instruction
+        203  NMI and IRQ at the same poll: NMI wins
+          4  NMI pending while a sequence runs (taken after the first handler instruction)
+      13638  poll cycle repeated by RDY (poll at its last repetition)
+behaviours listed: 61, not exercised: 1: RTI pulling I = 1 with irq_n low: no IRQ (new I)

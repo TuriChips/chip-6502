@@ -33,6 +33,7 @@ class PinModel:
         self.nmi_pending = None       # first cycle whose closing edge may see the pending NMI, or None
         self.instructions = 0
         self.interrupts = collections.Counter()
+        self.trace = None             # optional callback(dict) at each poll, for coverage (tests/random/c8/coverage.py)
 
     def clear_nmi(self, last=1):
         """Reset (§6 rule 6): no pending NMI; last = nmi_n as sampled before the restart."""
@@ -59,6 +60,8 @@ class PinModel:
 
     def _sequence(self, nmi):
         self.interrupts["NMI" if nmi else "IRQ"] += 1
+        if self.trace:
+            self.trace(dict(seq_start="NMI" if nmi else "IRQ", n=self.n, nmi_pending=self.nmi_pending))
         yield from self._emit(self.cpu.interrupt(nmi=nmi), [])
 
     def states(self):
@@ -77,10 +80,16 @@ class PinModel:
             poll = 1 if (op[0] in R.BRANCH and k == 3) else k - 1      # cycle numbers from 1
             edge = ends[poll - 1]                          # global cycle whose closing edge polls
             i_seen = i_before if op[0] in OLD_I else c.i
-            if self.nmi_pending is not None and self.nmi_pending <= edge:
+            nmi_vis = self.nmi_pending is not None and self.nmi_pending <= edge
+            irq_take = self.irq_n(edge) == 0 and i_seen == 0
+            if self.trace:                                 # coverage only; no effect on the model
+                self.trace(dict(op=op, k=k, ends=ends, poll=poll, edge=edge, i_before=i_before, i_after=c.i,
+                                i_seen=i_seen, irq=self.irq_n(edge), nmi_pending=self.nmi_pending,
+                                decision="NMI" if nmi_vis else "IRQ" if irq_take else None))
+            if nmi_vis:
                 self.nmi_pending = None
                 yield from self._sequence(nmi=True)
-            elif self.irq_n(edge) == 0 and i_seen == 0:
+            elif irq_take:
                 yield from self._sequence(nmi=False)
 
 
