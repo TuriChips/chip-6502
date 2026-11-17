@@ -30,7 +30,7 @@ module tb_cyc6502;
       if (^{a, d_out, d_oe, rw, sync} === 1'bx && !(rw === 1'b1 && ^{a, d_oe, rw, sync} !== 1'bx)) begin errors = errors + 1; if (errors < 10) $display("FAIL C7 X/Z on an output at cycle %0d", idx); end
       if (a !== ea[idx] || rw !== er[idx] || sync !== es[idx] || d_oe !== !er[idx] || (!er[idx] && d_out !== ed[idx])) begin
         errors = errors + 1;
-        if (errors < 10) $display("FAIL cycle %0d: expected a=%h rw=%b sync=%b%s, got a=%h rw=%b sync=%b d_oe=%b d_out=%h", idx, ea[idx], er[idx], es[idx], er[idx] ? "" : $sformatf(" d=%h", ed[idx]), a, rw, sync, d_oe, d_out);
+        if (errors < 10) $display("FAIL cycle %0d: expected a=%h rw=%b sync=%b d=%h (write data, if rw=0), got a=%h rw=%b sync=%b d_oe=%b d_out=%h", idx, ea[idx], er[idx], es[idx], ed[idx], a, rw, sync, d_oe, d_out);
       end
       if (rw === 1'b0 && a < 16'h8000) mem[a] = d_out;             // RAM write (ROM above 8000 ignores writes)
       idx = idx + 1;

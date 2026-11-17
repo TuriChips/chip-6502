@@ -1,0 +1,1 @@
+As rtl-run1 (same RTL merge: #28 307b1c2, #22 ef54251, #23 7485b74, #16 13afb3b) with the neutral state dump (PHP; PHA; STX; STY; PLA; PLP) after about every third instruction: 10,069 / 10,031 / 10,053 cycles, all PASS. Mutant check: the ALU's decimal +60 changed to +66 makes all three seeds FAIL at a dump.
