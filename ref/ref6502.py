@@ -217,9 +217,9 @@ class CPU:
                 self.pc = nxt
                 return self.cyc
             tgt = (nxt + (off - 256 if off & 0x80 else off)) & 0xFFFF
-            self.rd((nxt & 0xFF00) | (tgt & 0xFF))               # T2: uncarried (disc.)
+            self.rd(nxt)                                         # T2: PC + 2 (disc.), §4.1 A.5.8 Decision (#17)
             if (tgt ^ nxt) & 0xFF00:
-                self.rd(tgt)                                      # T3: with carry (disc.)
+                self.rd((nxt & 0xFF00) | (tgt & 0xFF))           # T3: uncarried target (disc.)
             self.pc = tgt
             return self.cyc
         if op == "JMP":
@@ -388,7 +388,7 @@ def selftest():
     cy = c.step(); check(len(cy) == 5 and cy[3][0] == 0x3000 and cy[4][0] == 0x3100, f"LDA abs,X cross: {cy}")
     mem = bytearray(65536); mem[0x02F0:0x02F2] = bytes([0xD0, 0x20])                   # BNE +$20 across a page
     c = CPU(mem.__getitem__, mem.__setitem__); c.pc = 0x02F0; c.z = 0
-    cy = c.step(); check([x[0] for x in cy] == [0x02F0, 0x02F1, 0x0212, 0x0312] and c.pc == 0x0312, f"BNE cross: {cy}")
+    cy = c.step(); check([x[0] for x in cy] == [0x02F0, 0x02F1, 0x02F2, 0x0212] and c.pc == 0x0312, f"BNE cross: {cy}")
     # 3. JMP ($30FF) reads the high byte from $3000 (§6)
     mem = bytearray(65536); mem[0x0200:0x0203] = bytes([0x6C, 0xFF, 0x30]); mem[0x30FF] = 0x34; mem[0x3000] = 0x12
     c = CPU(mem.__getitem__, mem.__setitem__); c.pc = 0x0200; c.step(); check(c.pc == 0x1234, f"JMP ind wrap: {c.pc:04X}")

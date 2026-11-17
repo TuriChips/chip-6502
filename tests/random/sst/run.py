@@ -30,8 +30,7 @@ def fetch(op, cache):
     return path
 
 
-def run_test(t, dummy_from=None):
-    """dummy_from=k: from cycle k on, compare only rw and the cycle count (the #17 dummy reads)."""
+def run_test(t):
     ini, fin = t["initial"], t["final"]
     mem = {a: v for a, v in ini["ram"]}
     stray = []
@@ -48,11 +47,6 @@ def run_test(t, dummy_from=None):
     c.set_p(ini["p"])
     cyc = c.step()
     got = [[a, d, "read" if rw else "write"] for a, rw, d, _ in cyc]
-    if dummy_from is not None:
-        if len(got) != len(t["cycles"]) or any(g[2] != v[2] for g, v in zip(got, t["cycles"])):
-            return "cycle count or rw"
-        got = got[:dummy_from] + t["cycles"][dummy_from:]
-        stray = [x for x in stray if x in [g[0] for g in cyc[:dummy_from]]]
     if got != t["cycles"]:
         k = next((i for i in range(max(len(got), len(t["cycles"])))
                   if i >= len(got) or i >= len(t["cycles"]) or got[i] != t["cycles"][i]), None)
@@ -70,16 +64,6 @@ def run_test(t, dummy_from=None):
     return None
 
 
-def branch_reading_17(t):
-    """chip-6502#17: SST reads a taken branch's T2 at PC+2 and the page-cross T3 at the uncarried target;
-    spec §4.1 A.5.8 says T2 uncarried target, T3 carried target. True if the vector is exactly the SST
-    reading (so the case is the open spec question, not a model bug)."""
-    pc, tgt = t["initial"]["pc"], t["final"]["pc"]
-    nxt = (pc + 2) & 0xFFFF
-    want = [pc, (pc + 1) & 0xFFFF, nxt] + ([(nxt & 0xFF00) | (tgt & 0xFF)] if (tgt ^ nxt) & 0xFF00 else [])
-    return [c[0] for c in t["cycles"]] == want and tgt != nxt
-
-
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--ops", default=None, help="comma-separated hex opcodes (default: all 151 documented)")
@@ -88,7 +72,7 @@ def main():
     a = ap.parse_args()
     ops = sorted(int(x, 16) for x in a.ops.split(",")) if a.ops else sorted(R.OPS)
     assert not set(ops) & R.UNDOCUMENTED, "only the 151 documented opcodes (§6.0)"
-    total = bad = known = 0
+    total = bad = 0
     per_op = {}
     for op in ops:
         tests = json.load(open(fetch(op, a.cache)))[: a.n]
@@ -96,9 +80,6 @@ def main():
         for t in tests:
             total += 1
             err = run_test(t)
-            if err and R.OPS[op][0] in R.BRANCH and err.startswith("cycle ") and branch_reading_17(t):
-                if run_test(t, dummy_from=2) is None:   # all else equal: data, rw, cycle count, regs, RAM
-                    known += 1; continue
             if err:
                 nbad += 1
                 if nbad <= 3:
@@ -108,8 +89,7 @@ def main():
     for op, (n, nb) in per_op.items():
         if nb:
             print(f"  {op:02X} {R.OPS[op][0]:3} {R.OPS[op][1]:3}: {nb}/{n} differ")
-    print(f"sst: commit {COMMIT[:10]} opcodes={len(ops)} tests={total} differing={bad} "
-          f"known_spec_question_17={known} (taken-branch dummy-read addresses, chip-6502#17)")
+    print(f"sst: commit {COMMIT[:10]} opcodes={len(ops)} tests={total} differing={bad}")
     print("PASS" if bad == 0 else "FAIL")
     return 1 if bad else 0
 
