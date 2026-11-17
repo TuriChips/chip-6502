@@ -12,6 +12,9 @@ def fail(m): print("FAIL:", m); sys.exit(1)
 mode, log = sys.argv[1], open(sys.argv[2], errors="replace").read()
 if "TIMEOUT" in log: fail("the run hit its clock limit before the program stopped")
 if mode == "functional":
+    bc = re.findall(r"^bus_conflict seen (\d+) times", log, re.M)
+    if not bc: fail("no 'bus_conflict seen' line: the driver's output is not what this checker expects")
+    if int(bc[-1]) > 0: fail("bus_conflict was seen %s times: a pass with bus conflicts is not a pass (spec section 8, C7)" % bc[-1])
     m = re.findall(r"^TRAP pc=([0-9A-Fa-f]{4}) clocks=(\d+)", log, re.M)
     if not m: fail("no TRAP line: the program never trapped")
     pc, clocks = m[-1]
