@@ -51,7 +51,7 @@ All blocks are synchronous to the single rising-edge `clk`, one 6502 cycle per c
 | 6 | ADL ← ADL + 1 (8-bit, no carry: the zero-page pointer and the `JMP ($xxFF)` wrap, spec §6) |
 | 7 | PC ← {`d_in`, ADL} (JMP abs, JSR: the high byte arrives in the jump's last cycle; the 8080 lesson) |
 | 8 | PC ← {ADH, ADL} |
-| 9 | **Branch, on the incremented PC** (Zura, chip-6502#9): PC' = PC + 1 (16-bit), then PC ← {PCH', PCL' + `d_in`} (the low add is 8-bit), so the next address is {PCH', PCL' + offset}, i.e. opcode + 2 + offset's low byte. `br_sign` ← `d_in`[7]. `ab_carry` ← **page crossed** = carry out XOR `d_in`[7] (a forward offset crosses on carry 1, a backward one on carry 0), measured against PC' (so at xFE/xFF the base page is x + 1, spec §6). Control issues it in T1 only, in place of `pc_op` 1 |
+| 9 | **Branch** (Zura, chip-6502#9, #31): runs in T2, after T1's `pc_op` 1 has stepped PC past the offset, so PC = opcode + 2. **PC ← {PCH, PCL + `d_in`}** (8-bit low add; PC is not incremented here). `br_sign` ← `d_in`[7]. `ab_carry` ← **page crossed** = carry out XOR `d_in`[7] (a forward offset crosses on carry 1, a backward one on carry 0), measured against PC = opcode + 2 (so at xFE/xFF the base page is x + 1, spec §6). Control issues it with `pc_op` 0 |
 | 10 | PCH ← PCH + 1 if `br_sign` = 0, PCH − 1 if `br_sign` = 1 (control issues it only when `ab_carry` = 1) |
 | 11 | PL ← `d_in`, ADL ← ADL + 1 (8-bit, no carry: zero-page wrap). T3 of (zp,X), T2 of (zp),Y: the target's low byte is kept while ADL still points at the pointer's high byte |
 | 12 | ADH ← `d_in`, ADL ← PL (end of (zp,X): the target is now {ADH, ADL}) |
