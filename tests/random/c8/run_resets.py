@@ -123,6 +123,9 @@ def main():
     ap.add_argument("--rtl", default=os.path.join(run.ROOT, "rtl"))
     ap.add_argument("--out", default=os.path.join(run.ROOT, "build", "c8r"))
     ap.add_argument("--rstdiv", type=int, default=1500, help="a reset starts in 1 of N running cycles")
+    ap.add_argument("--timeout", type=float, default=None, help="seconds; a simulation still running then is a FAIL")
+    ap.add_argument("--extra", nargs="*", default=[], help="extra Verilog files (gate level: PDK cell models)")
+    ap.add_argument("--define", nargs="*", default=[], help="iverilog -D macros")
     a = ap.parse_args()
     progs = []
     for p in range(a.nprog):
@@ -135,9 +138,12 @@ def main():
         progs.append(mem)
     rtl = sorted(os.path.join(dp, f) for dp, _, fs in os.walk(a.rtl) for f in fs if f.endswith(".v"))
     vvp = f"{a.out}/c8r.vvp"
-    subprocess.run(["iverilog", "-g2012", "-o", vvp, *rtl, os.path.join(HERE, "tb_resets.sv")], check=True)
-    sim = subprocess.run(["vvp", "-n", vvp, f"+dir={a.out}", f"+nprog={a.nprog}", f"+nst={a.nst}", f"+seed={a.seed}",
-                          f"+rstdiv={a.rstdiv}"], capture_output=True, text=True)
+    subprocess.run(["iverilog", "-g2012", "-o", vvp, *[f"-D{m}" for m in a.define], *rtl, *a.extra, os.path.join(HERE, "tb_resets.sv")], check=True)
+    try:
+        sim = subprocess.run(["vvp", "-n", vvp, f"+dir={a.out}", f"+nprog={a.nprog}", f"+nst={a.nst}", f"+seed={a.seed}",
+                              f"+rstdiv={a.rstdiv}"], capture_output=True, text=True, timeout=a.timeout)
+    except subprocess.TimeoutExpired:
+        print(f"FAIL: simulation still running after {a.timeout:.0f} s (hang)"); return 1
     if "DONE c8 resets tb" not in sim.stdout:
         print(sim.stdout[-2000:], sim.stderr[-2000:]); print("FAIL: simulator problems"); return 1
     bad = 0
