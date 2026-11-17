@@ -69,7 +69,7 @@ Spec: docs/spec.md (v1). Status per row: **done** (test written and passing, log
 |---|---|---|---|
 | C1 | Every documented opcode in every addressing mode: registers, memory and flags per §6 | random programs of all 151 opcodes in every mode with random registers, P (incl. D) and memory, every cycle compared on the pins, and a neutral state dump (PHP; PHA; STX; STY; PLA; PLP) after about every third instruction so a wrong A, X, Y, S or flag shows at the next dump; each opcode executed >= 17 times (`tests/gen_cycles6502.py`). A mutant in the ALU's decimal path is caught | done (PASS, logs/rtl-run2) |
 | C2 | Pin timing per §4 for every addressing mode, incl. dummy cycles, page crossings and RMW double writes | `tests/gen_cycles6502.py` + `tb/tb_cyc6502.sv`: a, rw, sync, d_oe and the written data in every cycle of the three programs (random indexes: page crossings and zero-page wraps both occur) | done for instructions (PASS, logs/rtl-run1); interrupts and RESET sequences with C4/C6 |
-| C3 | RDY: stops reads at any read cycle, ignored on writes | | todo |
+| C3 | RDY: stops reads at any read cycle, ignored on writes | `tests/gen_cycles6502.py` seed 4: seed 3's program with RDY low in 1-4 clock runs landing anywhere (2,082 of 12,013 clocks): a read with RDY low repeats with the same address and SYNC, a write completes, the stop comes at the next read; every cycle compared, state dumps catch any effect on registers | done (PASS, logs/rtl-run3) |
 | C4 | Interrupts: IRQ masked by I, NMI edge, BRK, B in the pushed P, the branch delay, NMI hijacking BRK | | todo |
 | C5 | Decimal mode per §6: A, C and NMOS N/V/Z, all 256 x 256 operands and both carries | | todo |
 | C6 | Reset sequence and vectors | | todo |
