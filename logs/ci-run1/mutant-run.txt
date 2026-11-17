@@ -1,0 +1,5 @@
+PASS selftests
+PASS crosscheck-ref
+FAIL alu, see build/4state/logs/alu.log
+FAIL cycles, see build/4state/logs/cycles.log
+FAIL c7, see build/4state/logs/c7.log

@@ -1,0 +1,2 @@
+PASS asm6502 selftest: 151 documented opcodes match the spec's map, each assembles to its byte; 105 undocumented bytes not producible
+PASS mach6502 selftest: cycle counts of all 151 opcodes match spec 6.1 (page cross, store/RMW, branches), sync only on T0, worked examples
