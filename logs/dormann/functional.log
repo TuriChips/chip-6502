@@ -1,0 +1,4 @@
+commit: 83a3879e4c5f6ef8f1984da70f21894ef5137b41
+bus_conflict seen 0 times
+TRAP pc=3469 clocks=96241375
+PASS: Dormann functional test reached the success trap 3469 after 96241375 clocks
