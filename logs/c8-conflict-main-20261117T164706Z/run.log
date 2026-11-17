@@ -1,0 +1,4 @@
+RTL: main 6b4ab4f; harness 57dbd75
+faulty RTL: bus_conflict = 1 in 284 cycles, 284 of them with d_oe = rw = 1
+clean RTL:  bus_conflict = 1 in 0 cycles
+PASS conflict_check: bus_conflict rises exactly when two drivers are on
