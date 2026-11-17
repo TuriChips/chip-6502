@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Homer: fetch the 6502 acceptance programs (spec section 9 item 1) into build/dormann/. Nothing is committed.
-# 6502_functional_test: Klaus Dormann, (c) 2012-2020, GNU GPL v3 or later (header of the listing). The prebuilt binary and its listing
+# 6502_functional_test: Klaus Dormann, GNU GPL v3 or later. The prebuilt listing's header says (c) 2012-2015 (the .a65 source at the repo head says 2012-2020; same terms). The prebuilt binary and its listing
 #   come from the same repo; the listing shows it was built with decimal tests on (disable_decimal = 0), self-modifying code on,
 #   64 KiB RAM, loaded directly at 0000h, start at 0400h; the success trap is 'jmp *' at 3469h (listing line 13377).
 # 6502_decimal_test.a65: Bruce Clark's decimal mode test as published in the same repo, public domain (header). It is source only;
