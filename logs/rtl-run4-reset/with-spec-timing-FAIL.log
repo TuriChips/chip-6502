@@ -1,0 +1,12 @@
+seed 1: FAIL reset cycle 6: a=01fe, expected FFFC FAIL reset cycle 7: a=fffc, expected FFFD 
+seed 2: FAIL reset cycle 6: a=01fe, expected FFFC FAIL reset cycle 7: a=fffc, expected FFFD 
+seed 3: FAIL reset cycle 6: a=01fe, expected FFFC FAIL reset cycle 7: a=fffc, expected FFFD 
+seed 4: FAIL reset cycle 6: a=01fe, expected FFFC FAIL reset cycle 7: a=fffc, expected FFFD 
+seed r0: FAIL reset cycle 6: a=01fe, expected FFFC FAIL reset cycle 7: a=fffc, expected FFFD 
+seed r1: FAIL reset cycle 6: a=01fe, expected FFFC FAIL reset cycle 7: a=fffc, expected FFFD 
+seed r2: FAIL reset cycle 6: a=01fe, expected FFFC FAIL reset cycle 7: a=fffc, expected FFFD 
+seed r3: FAIL reset cycle 6: a=01fe, expected FFFC FAIL reset cycle 7: a=fffc, expected FFFD 
+seed r4: FAIL reset cycle 6: a=01fe, expected FFFC FAIL reset cycle 7: a=fffc, expected FFFD 
+seed r5: FAIL reset cycle 6: a=01fe, expected FFFC FAIL reset cycle 7: a=fffc, expected FFFD 
+seed r6: FAIL reset cycle 6: a=01fe, expected FFFC FAIL reset cycle 7: a=fffc, expected FFFD 
+seed r7: FAIL reset cycle 6: a=01fe, expected FFFC FAIL reset cycle 7: a=fffc, expected FFFD 

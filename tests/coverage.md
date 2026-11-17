@@ -72,7 +72,7 @@ Spec: docs/spec.md (v1). Status per row: **done** (test written and passing, log
 | C3 | RDY: stops reads at any read cycle, ignored on writes | `tests/gen_cycles6502.py` seed 4: seed 3's program with RDY low in 1-4 clock runs landing anywhere (2,082 of 12,013 clocks): a read with RDY low repeats with the same address and SYNC, a write completes, the stop comes at the next read; every cycle compared, state dumps catch any effect on registers | done (PASS, logs/rtl-run3) |
 | C4 | Interrupts: IRQ masked by I, NMI edge, BRK, B in the pushed P, the branch delay, NMI hijacking BRK | | todo |
 | C5 | Decimal mode per §6: A, C and NMOS N/V/Z, all 256 x 256 operands and both carries | | todo |
-| C6 | Reset sequence and vectors | | todo |
+| C6 | Reset sequence and vectors | `tests/gen_cycles6502.py` seeds 1-4 and `cyc_r0..r7` (reset in the middle of the run at 8 consecutive cycles, held 10 clocks; RAM keeps its writes, the program restarts from the vector; while res_n = 0 and in reset cycles 1-7 rw = 1 and d_oe = 0; vector reads in cycles 6-7; first SYNC in cycle 8; spec 5 and #29/#30). With the RTL's timing (first SYNC one cycle later, `+SYNC_CYCLE=9 +VEC_CYCLE=7`) all 12 runs PASS; with the spec's they FAIL | partial: failing on the reset-sequence length (logs/rtl-run4-reset, issue for Zura) |
 | C7 | No X/Z, no bus conflict, with mutants and the positive bus_conflict case | | todo |
 | C8 | Random programs vs the reference model | Beru | n/a |
 
