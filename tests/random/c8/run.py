@@ -4,8 +4,8 @@
 Per program: a random image (generator below), the testbench (tb.sv) runs it with random RDY / IRQ / NMI
 and dumps each cycle's pins and inputs; the model replays those inputs and must match on every cycle:
 a, rw, sync, d_oe always, d_out when d_oe = 1 (spec §4.0). Before that, the reset rules (§5): rw = 1 and
-d_oe = 0 from res_n = 0 until the first sync, the first sync exactly 7 cycles after release, and the
-vector reads at FFFC/FFFD in reset cycles 6-7. Comparison starts at the first sync (§5) with no window.
+d_oe = 0 from res_n = 0 until the first sync, the first fetch in reset cycle 8 (sync compared from there),
+the vector reads at FFFC/FFFD in reset cycles 6-7. Comparison never pauses after cycle 8 (§4.0, §5).
 A program whose execution reaches one of the 105 undocumented bytes (§6: not tested) stops being
 compared there and is counted as "stopped".
 
@@ -122,16 +122,14 @@ def compare(mem, lines):
     rel = next((i for i, l in enumerate(lines) if l[8] == "1"), None)
     if rel is None:
         return "res_n never released", st
-    first = next((i for i in range(rel, len(lines)) if lines[i][2] == "1"), None)
-    if first is None:
-        return "no sync after reset", st
-    for i in range(first):                                                    # §5: no writes until the first fetch
+    # §5 (#29): res_n is first sampled 1 at the edge ending cycle `rel`, so reset cycle 1 is rel + 1 and
+    # the first fetch, cycle 8, is rel + 8. sync isn't compared before cycle 8; rw = 1 and d_oe = 0 are.
+    first = rel + 8
+    if first >= len(lines):
+        return "run too short for the reset sequence", st
+    for i in range(first):
         if lines[i][1] != "1" or lines[i][3] != "0":
             return f"cycle {i} (reset): rw={lines[i][1]} d_oe={lines[i][3]}, want 1 / 0", st
-    # res_n is first sampled 1 at the edge ending cycle `rel`, so reset cycle 1 (Example 9.1) is rel + 1
-    # and the first fetch, cycle 8, is rel + 8.
-    if first - rel != 8:
-        return f"first sync in reset cycle {first - rel}, spec 8 (Example 9.1)", st
     sa = [int(lines[rel + k][0], 16) for k in (3, 4, 5)]
     s0 = sa[0] & 0xFF
     if sa != [0x100 | s0, 0x100 | ((s0 - 1) & 0xFF), 0x100 | ((s0 - 2) & 0xFF)]:
