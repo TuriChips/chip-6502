@@ -51,7 +51,7 @@ All blocks are synchronous to the single rising-edge `clk`, one 6502 cycle per c
 | 6 | ADL ← ADL + 1 (8-bit, no carry: the zero-page pointer and the `JMP ($xxFF)` wrap, spec §6) |
 | 7 | PC ← {`d_in`, ADL} (JMP abs, JSR: the high byte arrives in the jump's last cycle; the 8080 lesson) |
 | 8 | PC ← {ADH, ADL} |
-| 9 | **Branch, on the incremented PC** (Zura, chip-6502#9): PC' = PC + 1 (16-bit), then PC ← {PCH', PCL' + `d_in`} (the low add is 8-bit), so the next address is {PCH', PCL' + offset}, i.e. opcode + 2 + offset's low byte. `br_sign` ← `d_in`[7]. `ab_carry` ← **page crossed** = carry out XOR `d_in`[7] (a forward offset crosses on carry 1, a backward one on carry 0), measured against PC' (so at xFE/xFF the base page is x + 1, spec §6). Control issues it in T1 only, in place of `pc_op` 1 |
+| 9 | **Branch** (Zura, chip-6502#9, #31): runs in T2, after T1's `pc_op` 1 has stepped PC past the offset, so PC = opcode + 2. **PC ← {PCH, PCL + `d_in`}** (8-bit low add; PC is not incremented here). **`d_in` here is TMP**, the offset that control latched at the end of T1 (TMP ← the data bus), because in T2 the data bus carries the discarded opcode at PC + 2; the top selects it with `regs_din_tmp` = 1. `br_sign` ← `d_in`[7]. `ab_carry` ← **page crossed** = carry out XOR `d_in`[7] (a forward offset crosses on carry 1, a backward one on carry 0), measured against PC = opcode + 2 (so at xFE/xFF the base page is x + 1, spec §6). Control issues it with `pc_op` 0 |
 | 10 | PCH ← PCH + 1 if `br_sign` = 0, PCH − 1 if `br_sign` = 1 (control issues it only when `ab_carry` = 1) |
 | 11 | PL ← `d_in`, ADL ← ADL + 1 (8-bit, no carry: zero-page wrap). T3 of (zp,X), T2 of (zp),Y: the target's low byte is kept while ADL still points at the pointer's high byte |
 | 12 | ADH ← `d_in`, ADL ← PL (end of (zp,X): the target is now {ADH, ADL}) |
@@ -130,14 +130,15 @@ Datapath blocks take `reset`, **active high**, from the top (`reset` = NOT `res_
 | 17, 18 | CLI, SEI | I |
 | 19, 20 | CLD, SED | D |
 | 21 | CLV | V |
-| 22–31 | unused | none |
+| 22 | SEV: V ← 1 (the S.O. pin; added for control, chip-6502#26) | V |
+| 23–31 | unused | none |
 `a_we` = 1 is used with ADC, SBC, AND, ORA, EOR, ASL/LSR/ROL/ROR (accumulator forms, `b` = A), LD (LDA, TXA, TYA, PLA). X and Y writes (LDX, LDY, TAX, TAY, TSX, INX, INY, DEX, DEY) use `a_we` = 0, `f_we` = 1 and `x_we`/`y_we` in regs, as §2 says. The interrupt sequences set I with op 18 and `f_we` = 1.
 
 ### `m6502_regs` (Ada)
 | Port | Dir | Width | Meaning |
 |------|-----|-------|---------|
 | `clk`, `reset` | in | 1, 1 | |
-| `d_in` | in | 8 | The data bus, for the `ab_op` and `pc_op` loads and the branch add |
+| `d_in` | in | 8 | For the `ab_op` and `pc_op` loads and the branch add. The top drives it with `regs_din_tmp` ? TMP : the data bus (TMP only for `ab_op` 9, see §2) |
 | `wdata` | in | 8 | ALU `result`, the only source of X and Y (§2) |
 | `x_we`, `y_we` | in | 1, 1 | X ← `wdata`, Y ← `wdata` |
 | `ab_op` | in | 4 | §2 |
@@ -166,7 +167,7 @@ Parameter `INIT_FILE` (`$readmemh`, one byte per line, up to 65,536; empty = no 
 | `rdata` | out | 8 | Combinational: the byte at `addr`, always (a 6502 read cycle has no strobe) |
 
 ### `m6502_control` (Zura)
-Everything in §2 as outputs, plus `rw`, `sync`, `d_oe` (= NOT `rw`, spec §4.0), the RDY hold, the TMP latch, `alu_a_sel`, `alu_b_sel`, `push_b`, `d_out_sel`, and the interrupt latches per spec §6. Its port table is Zura's to write, the way the 8080's was.
+Everything in §2 as outputs, plus `regs_din_tmp` (1 bit: the top gives `m6502_regs` TMP instead of the data bus as `d_in`, for `ab_op` 9 only), `tmp` (8 bits, the TMP latch; T1 of a branch latches the offset into it, as the RMW read does), `rw`, `sync`, `d_oe` (= NOT `rw`, spec §4.0), the RDY hold, the TMP latch, `alu_a_sel`, `alu_b_sel`, `push_b`, `d_out_sel`, and the interrupt latches per spec §6. Its port table is Zura's to write, the way the 8080's was.
 
 ## 4. Who does what first (when the spec is signed off)
 1. **Ada:** `m6502_alu` and `m6502_regs` against §2–§3 here, then `m6502_mem`.
