@@ -33,8 +33,10 @@ module tb_cyc6502;
   // restarted run. Compared (spec 5, chip-6502#29): while res_n = 0 (from the 2nd clock) and in reset cycles 1-7 after release: rw = 1, d_oe = 0; cycles 6-7: a = FFFC, FFFD;
   // the first SYNC must be cycle 8. Cycle 1 is the cycle that starts at the first edge where res_n is sampled 1.
   integer rst_at = -1, rst_len = 10, rlow = 0, rcyc = 0, sync_cycle = 8, vec_cycle = 6; reg rdone = 0;   // +SYNC_CYCLE / +VEC_CYCLE: diagnostics only (the spec says 8 and 6)
+  reg seen_hi = 0;      // res_n was sampled 1 at a rising edge since the last reset: reset cycle 1 is the cycle that starts at that edge (spec 5, #30; Igris's ruling on #37)
   always @(posedge clk) begin
-    if (rst_at >= 0 && !rdone && started && res_n && idx == rst_at) begin res_n <= 0; rlow <= 1; rdone <= 1; started <= 0; end
+    if (res_n === 1'b1) seen_hi <= 1;
+    if (rst_at >= 0 && !rdone && started && res_n && idx == rst_at) begin res_n <= 0; rlow <= 1; rdone <= 1; started <= 0; seen_hi <= 0; end
     else if (!res_n && rlow > 0) begin
       rlow <= rlow + 1; if (rlow + 1 > rst_len) begin res_n <= 1; rlow <= 0; rcyc <= 0; end
     end
@@ -43,7 +45,7 @@ module tb_cyc6502;
     cyc = cyc + 1;
     if (!res_n) begin
       if (rlow >= 2 || (rst_at < 0 && cyc > 2)) if (rw !== 1'b1 || d_oe !== 1'b0) begin errors = errors + 1; if (errors < 10) $display("FAIL while res_n = 0: rw=%b d_oe=%b", rw, d_oe); end
-    end else if (!started) begin
+    end else if (!started && seen_hi) begin
       rcyc = rcyc + 1;
       if (rcyc < sync_cycle && (rw !== 1'b1 || d_oe !== 1'b0)) begin errors = errors + 1; if (errors < 10) $display("FAIL reset cycle %0d: rw=%b d_oe=%b (reads only)", rcyc, rw, d_oe); end
       if (rcyc == vec_cycle && a !== 16'hFFFC) begin errors = errors + 1; if (errors < 10) $display("FAIL reset cycle 6: a=%h, expected FFFC", a); end
