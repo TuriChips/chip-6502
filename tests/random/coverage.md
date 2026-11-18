@@ -1,6 +1,6 @@
 # 6502 C8 coverage (Beru, chip-6502#6)
 
-What C8's random programs exercise, counted by `tests/random/c8/coverage.py`. It replays a C8 run's recorded inputs through the model; the RTL's agreement on all of it is C8's own log. Latest: `logs/c8-coverage-20261117T161515Z/coverage.txt` (1,000 programs × 7,000 cycles, seed 92, 0 mismatches: 6.7 M cycles, 1.45 M instructions, 102 k IRQs, 9 k NMIs).
+What C8's random programs exercise, counted by `tests/random/c8/coverage.py`. It replays a C8 run's recorded inputs through the model; the RTL's agreement on all of it is C8's own log. Latest, on main 28bfbd6: `logs/c8-coverage-main-20261118T015517Z/coverage.txt` (1,000 programs × 7,000 cycles, seed 206, 0 mismatches; 151/151 opcodes, 61/61 behaviours).
 
 ## Exercised
 - **Opcodes:** all 151 documented (§6.0). The 105 undocumented bytes aren't tested (§6), and a program reaching one stops being compared there.
