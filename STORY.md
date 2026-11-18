@@ -12,7 +12,7 @@ The MOS 6502 was a small, cheap computer "brain" that ended up in the Apple II, 
 
 A team led by Chuck Peddle, who had worked on Motorola's 6800 chip, launched the 6502 in September 1975. It was a simplified, less expensive and faster version of that design, and it sold for $25 ([Wikipedia](https://en.wikipedia.org/wiki/MOS_Technology_6502)). Because it was so cheap, it went into many machines that people could actually afford. They include the Apple I and Apple II, the Atari 2600, the Nintendo Entertainment System, the Commodore 64 and the BBC Micro (same source).
 
-The original chip's layout was drawn by hand, with coloured pencils on large sheets of tracing paper: thousands of shapes on six drawings (same source). Ours was produced by software.
+The original chip's layout was drawn by hand, with coloured pencils on vellum paper: thousands of shapes on six drawings (same source). Ours was produced by software.
 
 ## What a chip like this actually does
 
@@ -44,7 +44,7 @@ Our own small program is the first thing we ran. It asks the chip to compute the
 FIB 01 01 02 03 05 08 0D 15 22 37 59 90 E9
 ```
 
-The real test is harder. Klaus Dormann wrote a program that tries every kind of instruction and gets stuck on purpose in a tiny loop the moment anything is wrong. If it reaches its last instruction, everything worked. We did not write it, so we could not have tuned the chip to it. On our chip it got there, after 96,241,375 steps and about a minute of computer time ([proof](logs/dormann/functional.log)).
+The real test is harder. Klaus Dormann wrote a program that tries every kind of instruction and gets stuck on purpose in a tiny loop the moment anything is wrong. If it reaches its success point, everything worked. We did not write it, so we could not have tuned the chip to it. On our chip it got there, after 96,241,375 steps and about a minute of computer time ([proof](logs/dormann/functional.log)).
 
 ## How we know it works
 
