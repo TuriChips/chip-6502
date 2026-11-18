@@ -1,0 +1,10 @@
+netlist: main's synth/sky130/m6502_sky130.v (sha256 c7398b43f689cad1, from 6a43f0f, before #43); cmd: directed.py on the netlist
+PASS nmi42-h0: NMI sequences (model) 2
+PASS nmi42-h1: NMI sequences (model) 2
+FAIL nmi42-h2: NMI sequences (model) 0 | cycle 20 after the first fetch: a rtl=4002 model=4001 | rtl 4002 1 0 0 00 | model 4001 1 0 0 -- | inputs rdy/irq/nmi 1 1 0
+FAIL nmi42-h3: NMI sequences (model) 0 | cycle 21 after the first fetch: a rtl=4002 model=4001 | rtl 4002 1 0 0 00 | model 4001 1 0 0 -- | inputs rdy/irq/nmi 1 1 0
+FAIL nmi43-f2: NMI sequences (model) 0 | cycle 38 after the first fetch: a rtl=4002 model=4001 | rtl 4002 1 0 0 00 | model 4001 1 0 0 -- | inputs rdy/irq/nmi 1 1 0
+FAIL nmi43-f3: NMI sequences (model) 0 | cycle 38 after the first fetch: a rtl=4002 model=4001 | rtl 4002 1 0 0 00 | model 4001 1 0 0 -- | inputs rdy/irq/nmi 1 1 0
+FAIL nmi43-f4: NMI sequences (model) 0 | cycle 38 after the first fetch: a rtl=4002 model=4001 | rtl 4002 1 0 0 00 | model 4001 1 0 0 -- | inputs rdy/irq/nmi 1 1 0
+FAIL nmi43-f5: NMI sequences (model) 0 | cycle 38 after the first fetch: a rtl=4002 model=4001 | rtl 4002 1 0 0 00 | model 4001 1 0 0 -- | inputs rdy/irq/nmi 1 1 0
+FAIL (6) directed C8

@@ -64,11 +64,14 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--rtl", default=os.path.join(run.ROOT, "rtl"))
     ap.add_argument("--out", default=os.path.join(run.ROOT, "build", "directed"))
+    ap.add_argument("--extra", nargs="*", default=[], help="extra Verilog files (gate level: PDK cell models)")
+    ap.add_argument("--define", nargs="*", default=[], help="iverilog -D macros")
     a = ap.parse_args()
     rtl = sorted(os.path.join(dp, f) for dp, _, fs in os.walk(a.rtl) for f in fs if f.endswith(".v"))
     vvp = f"{a.out}/d.vvp"
     os.makedirs(a.out, exist_ok=True)
-    subprocess.run(["iverilog", "-g2012", "-o", vvp, *rtl, os.path.join(HERE, "tb_directed.sv")], check=True)
+    subprocess.run(["iverilog", "-g2012", "-o", vvp, *[f"-D{m}" for m in a.define], *rtl, *a.extra,
+                    os.path.join(HERE, "tb_directed.sv")], check=True)
     mem = image()
     bad = 0
     for name, nmi, rdy in cases():

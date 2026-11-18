@@ -1,0 +1,30 @@
+netlist: synth/sky130/m6502_sky130.v from PR #55 (leo/synth-rerun 7756ae0, synthesized from main 7e2124f), sha256 bd6ff279250eba98; harness 05df9cf
+cmd: tests/random/gl_sky130.sh 500 7000 1
+compared: 3348491 cycles, 722585 instructions (1445 per program), IRQ 54066, NMI 4410, RDY-held reads 295506, stopped at an undocumented byte: 28
+note (not a spec check): reset cycles 3-5 not at S, S-1, S-2 in 0 programs
+c8: seed=1 programs=500 cycles=7000 mismatching_programs=0
+PASS
+compared: 1096210 cycles, 238484 instructions, resets 751, model writes undone at a reset: 392
+stopped early: 17 at an undocumented byte, 0 with the reset vector or preamble overwritten before a reset
+c8 resets: seed=1001 programs=101 cycles=12000 mismatching_programs=0
+PASS
+PASS nmi42-h0: NMI sequences (model) 2
+PASS nmi42-h1: NMI sequences (model) 2
+PASS nmi42-h2: NMI sequences (model) 2
+PASS nmi42-h3: NMI sequences (model) 2
+PASS nmi43-f2: NMI sequences (model) 2
+PASS nmi43-f3: NMI sequences (model) 2
+PASS nmi43-f4: NMI sequences (model) 2
+PASS nmi43-f5: NMI sequences (model) 2
+PASS directed C8
+PASS gate-level sky130 C8
+
+real	18m4.816s
+user	17m52.084s
+sys	0m2.151s
+
+cmd: gl_def_check.py (DEF from PR #55)
+netlist: 2058 cells, 2072 nets with 2+ connections, 41 port bits
+DEF: 2513 components (455 tap/fill), 2072 signal nets with 2+ connections, 41 pins
+PASS gl_def_check: DEF matches the netlist
+== END
