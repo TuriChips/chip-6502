@@ -1,0 +1,5 @@
+commit: 28bfbd62f5a4a854e32a0f0c146ee1808119e4ff
+0
+bus_conflict seen 0 times
+TRAP pc=0253 clocks=53954357
+PASS: Clark decimal test ran to its end (spin at 0253) with ERROR = 0 after 53954357 clocks
