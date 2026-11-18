@@ -31,6 +31,23 @@ Sources for §10 (bitsavers, fetched to a scratch dir, never committed):
 | `nmi_n` | in | 1 | Non-maskable interrupt, edge-sensitive (falling edge) |
 | `so_n` | in | 1 | Set Overflow: "sets the overflow flag on a negative transition", "should not be used in normal applications" (p.44). *Decision*: held at 1 in C8; one directed C-test drives a falling edge at an instruction boundary and checks V = 1 afterwards. The exact cycle of the V update is [check] |
 
+
+**Package pinout** (informational, not compared: the RTL has ports, not package pins). Hardware Manual **Figure 1.15, "MCS6502 Pinout Designation"**, printed page 42 (PDF p.55), read from the page image. 40-pin DIP:
+
+| Pin | Signal | Pin | Signal |
+|-----|--------|-----|--------|
+| 1 | VSS | 40 | RES (`res_n`) |
+| 2 | RDY (`rdy`) | 39 | φ2 (OUT) |
+| 3 | φ1 (OUT) | 38 | S.O. (`so_n`) |
+| 4 | IRQ (`irq_n`) | 37 | φ0 (IN) (`clk`) |
+| 5 | N.C. | 36 | N.C. |
+| 6 | NMI (`nmi_n`) | 35 | N.C. |
+| 7 | SYNC (`sync`) | 34 | R/W (`rw`) |
+| 8 | VCC | 33–26 | DB0–DB7 (`d_in`/`d_out`; pin 33 = DB0, 26 = DB7) |
+| 9–20 | AB0–AB11 (`a[0]`–`a[11]`) | 25–22 | AB15–AB12 (pin 25 = AB15, 22 = AB12) |
+| | | 21 | VSS |
+
+The website's chip drawing uses this order (turichips.github.io#30). φ1/φ2 outputs are clock drivers for the system and aren't modelled (one clock, §3).
 ## 3. Programmer's model
 | Name | Width | Reset value | Notes |
 |------|-------|-------------|-------|
