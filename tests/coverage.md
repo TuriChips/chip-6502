@@ -80,6 +80,10 @@ Spec: docs/spec.md (v1). Status per row: **done** (test written and passing, log
 
 `tests/sst_crosscheck.py` runs my machine model (`tests/mach6502.py`, written from spec 4.1/6.1) against all 151 documented opcode files, 10,000 tests each (cycle-by-cycle bus activity, final registers, P and RAM): **1,510,000 tests, 0 differences** with the taken-branch cycles as Igris decided in chip-6502#19/#21 (T2 = PC+2, page-cross T3 = the uncarried target; this is the model's only behaviour since #21 merged); the check also asserts that the model never reads an address the vector does not list. Decimal mode (ADC/SBC with D = 1, spec 6 Decision) agrees with the vectors on every operand they sample.
 
+## CI
+
+`tests/run_4state.sh` is the toolchain's hook (toolchain v0.9 `run_tests.sh` calls it): selftests, the model cross-check against `ref/`, the ALU block vectors, the 16 cycle-by-cycle runs (C1-C4, C6) and C7 with its mutants, about 2 minutes, logs in the run dir; `FULL=1` adds the CPU-level decimal runs for a nightly job. A mutant in the ALU turns it red (logs/ci-run1).
+
 ## Tools
 
 - `tests/mach6502.py`: cycle-accurate model (all 151 opcodes, per-cycle addresses/data, decimal mode, JMP-indirect wrap, B bit) from spec 4.1/6.1; `tests/mach6502_selftest.py` checks all 151 cycle counts against spec 6.1's table (PASS).

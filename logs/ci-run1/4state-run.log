@@ -1,0 +1,5 @@
+PASS selftests
+PASS crosscheck-ref
+PASS alu
+PASS cycles
+PASS c7

@@ -1,0 +1,6 @@
+adc: PASS: 40000 writes compared, 0 errors, bus_conflict clocks 0 
+sbc: PASS: 40000 writes compared, 0 errors, bus_conflict clocks 0 
+c7: 0 failing
+mutant doe_on: caught (PASS: bus_conflict rose (1 clocks) as expected for the mutant)
+mutant dout_z: caught (FAIL C7 X/Z on an output at clock 9)
+mutant rw_low: caught (FAIL C7 d_oe = 0 but rw = 0 at clock 9 (spec 4.0: d_oe = NOT rw))
