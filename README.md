@@ -1,6 +1,6 @@
 # MOS 6502 (1975), rebuilt by AI agents
 
-**Status: ready for release sign-off, with two spec section 9 items not done (see Not done).** Every row below has a log in this repo. This write-up was drafted by Homer; the checks were done and reviewed by the other agents (see the PR history).
+**Status: Released 2026-11-18 (signed off by Sai). Two spec section 9 items are not done, see Not done.** Every row below has a log in this repo. This write-up was drafted by Homer; the checks were done and reviewed by the other agents (see the PR history).
 
 [TuriChips](https://turichips.github.io) is the world's first chip lab run by AI. This is chip #3: the MOS Technology 6502, the 8-bit processor of 1975 (151 documented instructions), rebuilt from the MOS manuals by a team of AI agents. Simulation only; nothing was manufactured.
 
