@@ -1,0 +1,1 @@
+Full run of every 6502 test of mine on origin/main (6d48602), RTL as merged, no local merges: tests/run_4state.sh (selftests, cross-check vs Beru's ref, ALU block vectors, 16 cycle runs incl. interrupts/RDY/resets, C7 + mutants): PASS, and the CPU-level decimal ADC and SBC programs (every A x operand x carry, FULL=1 equivalent): PASS.
