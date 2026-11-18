@@ -1,0 +1,82 @@
+RTL and harness: main 28bfbd6 (detached worktree, untouched during the run)
+== chunk seed=201
+compared: 3354593 cycles, 736512 instructions (1473 per program), IRQ 46316, NMI 4520, RDY-held reads 297715, stopped at an undocumented byte: 33
+c8: seed=201 programs=500 cycles=7000 mismatching_programs=0
+PASS
+== chunk seed=202
+compared: 3378891 cycles, 734880 instructions (1469 per program), IRQ 50080, NMI 4414, RDY-held reads 299362, stopped at an undocumented byte: 23
+c8: seed=202 programs=500 cycles=7000 mismatching_programs=0
+PASS
+== chunk seed=203
+compared: 3286938 cycles, 699221 instructions (1398 per program), IRQ 49344, NMI 4280, RDY-held reads 290984, stopped at an undocumented byte: 43
+c8: seed=203 programs=500 cycles=7000 mismatching_programs=0
+PASS
+== chunk seed=204
+compared: 3395072 cycles, 722298 instructions (1444 per program), IRQ 52907, NMI 4493, RDY-held reads 300283, stopped at an undocumented byte: 19
+c8: seed=204 programs=500 cycles=7000 mismatching_programs=0
+PASS
+== chunk seed=205
+compared: 3410934 cycles, 729014 instructions (1458 per program), IRQ 52962, NMI 4498, RDY-held reads 302613, stopped at an undocumented byte: 17
+c8: seed=205 programs=500 cycles=7000 mismatching_programs=0
+PASS
+== chunk seed=206
+compared: 3357340 cycles, 724256 instructions (1448 per program), IRQ 48974, NMI 4421, RDY-held reads 299107, stopped at an undocumented byte: 26
+c8: seed=206 programs=500 cycles=7000 mismatching_programs=0
+PASS
+== chunk seed=207
+compared: 3370569 cycles, 727862 instructions (1455 per program), IRQ 52040, NMI 4521, RDY-held reads 298863, stopped at an undocumented byte: 27
+c8: seed=207 programs=500 cycles=7000 mismatching_programs=0
+PASS
+== chunk seed=208
+compared: 3325704 cycles, 703195 instructions (1406 per program), IRQ 52490, NMI 4255, RDY-held reads 293741, stopped at an undocumented byte: 35
+c8: seed=208 programs=500 cycles=7000 mismatching_programs=0
+PASS
+== chunk seed=209
+compared: 3351973 cycles, 720600 instructions (1441 per program), IRQ 50191, NMI 4437, RDY-held reads 295996, stopped at an undocumented byte: 30
+c8: seed=209 programs=500 cycles=7000 mismatching_programs=0
+PASS
+== chunk seed=210
+compared: 3402907 cycles, 735116 instructions (1470 per program), IRQ 48567, NMI 4466, RDY-held reads 300180, stopped at an undocumented byte: 20
+c8: seed=210 programs=500 cycles=7000 mismatching_programs=0
+PASS
+== chunk seed=211
+compared: 3332954 cycles, 709982 instructions (1419 per program), IRQ 51115, NMI 4295, RDY-held reads 294806, stopped at an undocumented byte: 31
+c8: seed=211 programs=500 cycles=7000 mismatching_programs=0
+PASS
+== chunk seed=212
+compared: 3382584 cycles, 727072 instructions (1454 per program), IRQ 51110, NMI 4437, RDY-held reads 300460, stopped at an undocumented byte: 25
+c8: seed=212 programs=500 cycles=7000 mismatching_programs=0
+PASS
+== chunk seed=213
+compared: 3364152 cycles, 732746 instructions (1465 per program), IRQ 47838, NMI 4431, RDY-held reads 298164, stopped at an undocumented byte: 30
+c8: seed=213 programs=500 cycles=7000 mismatching_programs=0
+PASS
+== chunk seed=214
+compared: 3389466 cycles, 721157 instructions (1442 per program), IRQ 53382, NMI 4479, RDY-held reads 299388, stopped at an undocumented byte: 24
+c8: seed=214 programs=500 cycles=7000 mismatching_programs=0
+PASS
+== chunk seed=215
+compared: 3345387 cycles, 723535 instructions (1447 per program), IRQ 51212, NMI 4451, RDY-held reads 296886, stopped at an undocumented byte: 29
+c8: seed=215 programs=500 cycles=7000 mismatching_programs=0
+PASS
+== chunk seed=216
+compared: 3353242 cycles, 725426 instructions (1450 per program), IRQ 54752, NMI 4420, RDY-held reads 297096, stopped at an undocumented byte: 35
+c8: seed=216 programs=500 cycles=7000 mismatching_programs=0
+PASS
+== chunk seed=217
+compared: 3356261 cycles, 725760 instructions (1451 per program), IRQ 50267, NMI 4415, RDY-held reads 298391, stopped at an undocumented byte: 32
+c8: seed=217 programs=500 cycles=7000 mismatching_programs=0
+PASS
+== chunk seed=218
+compared: 3363130 cycles, 720622 instructions (1441 per program), IRQ 49805, NMI 4374, RDY-held reads 298740, stopped at an undocumented byte: 28
+c8: seed=218 programs=500 cycles=7000 mismatching_programs=0
+PASS
+== chunk seed=219
+compared: 3337267 cycles, 722023 instructions (1444 per program), IRQ 51046, NMI 4387, RDY-held reads 296396, stopped at an undocumented byte: 40
+c8: seed=219 programs=500 cycles=7000 mismatching_programs=0
+PASS
+== chunk seed=220
+compared: 3366698 cycles, 720307 instructions (1440 per program), IRQ 50236, NMI 4495, RDY-held reads 298490, stopped at an undocumented byte: 28
+c8: seed=220 programs=500 cycles=7000 mismatching_programs=0
+PASS
+== END

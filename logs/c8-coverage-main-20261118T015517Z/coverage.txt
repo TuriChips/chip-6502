@@ -1,0 +1,66 @@
+RTL and harness: main 28bfbd6
+compared: 6709811 cycles, 1438128 instructions (1438 per program), IRQ 98649, NMI 8733, RDY-held reads 596406, stopped at an undocumented byte: 60
+c8: seed=206 programs=1000 cycles=7000 mismatching_programs=0
+opcodes executed: 151/151; never: none
+      28236  read abx page cross
+      26096  read abx no cross
+      28663  read aby page cross
+      25996  read aby no cross
+      22357  read izy page cross
+      23356  read izy no cross
+       6691  store abx (dummy read always)
+       6161  store aby (dummy read always)
+       6889  store izy (dummy read always)
+      51662  RMW zp (double write)
+      32943  RMW zpx (double write)
+      39959  RMW abs (double write)
+      37476  RMW abx (double write)
+       2655  BPL not taken
+      14835  BPL taken, same page
+       1327  BPL taken, page cross
+       4412  BMI not taken
+      15988  BMI taken, same page
+        659  BMI taken, page cross
+       1321  BVC not taken
+      29032  BVC taken, same page
+       2001  BVC taken, page cross
+       4900  BVS not taken
+       5424  BVS taken, same page
+        425  BVS taken, page cross
+       3287  BCC not taken
+       9175  BCC taken, same page
+        528  BCC taken, page cross
+       3121  BCS not taken
+      16738  BCS taken, same page
+        629  BCS taken, page cross
+        322  BNE not taken
+      41136  BNE taken, same page
+       2946  BNE taken, page cross
+       5503  BEQ not taken
+       1086  BEQ taken, same page
+         30  BEQ taken, page cross
+        431  JMP (ind) at $xxFF (wrap)
+        877  JMP (ind) no wrap
+      26316  ADC decimal (D = 1)
+      27112  SBC decimal (D = 1)
+      31579  ADC binary
+      29125  SBC binary
+       1602  BRK
+      98649  IRQ sequence
+       8733  NMI sequence
+     155099  RDY hold on an opcode fetch (sync)
+     382457  RDY hold on a non-fetch read
+      77009  RDY low during a write (ignored)
+       1176  CLI 1->0 with irq_n low: not taken right after (old I)
+         88  PLP 1->0 with irq_n low: not taken right after (old I)
+       1188  IRQ one instruction after CLI/PLP cleared I (old-I latency)
+        179  SEI 0->1 with irq_n low: one IRQ right after (old I)
+          9  PLP 0->1 with irq_n low: one IRQ right after (old I)
+      88788  RTI pulling I = 0 with irq_n low: IRQ right after (new I)
+          2  RTI pulling I = 1 with irq_n low: no IRQ (new I)
+        660  NMI deferred by a taken no-cross branch's early poll (branch delay)
+       2311  NMI detected at the poll edge itself: deferred to the next instruction
+        915  NMI and IRQ at the same poll: NMI wins
+         34  NMI pending while a sequence runs (taken after the first handler instruction)
+      69419  poll cycle repeated by RDY (poll at its last repetition)
+behaviours listed: 61, not exercised: 0

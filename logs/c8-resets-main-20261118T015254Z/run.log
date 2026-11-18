@@ -1,0 +1,5 @@
+RTL and harness: main 28bfbd6; cmd: run_resets.py --nprog 200 --nst 12000 --seed 205
+compared: 2184449 cycles, 467904 instructions, resets 1394, model writes undone at a reset: 683
+stopped early: 31 at an undocumented byte, 2 with the reset vector or preamble overwritten before a reset
+c8 resets: seed=205 programs=200 cycles=12000 mismatching_programs=0
+PASS
