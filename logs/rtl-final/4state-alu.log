@@ -1,0 +1,4 @@
+wrote 991232 vectors to build/alu_vectors.hex
+WARNING: tests/alu/tb_alu.sv:17: $readmemh(build/alu_vectors.hex): Not enough words in the file for the requested range [0:2100000].
+PASS: 991232 vectors, 0 mismatches
+tests/alu/tb_alu.sv:34: $finish called at 40640512000 (1ps)
