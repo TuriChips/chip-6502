@@ -1,0 +1,1 @@
+m6502_alu from PR #16 (head 05b4dae), vectors from tests/alu/gen_vectors.py (model from the spec), tb tests/alu/tb_alu.sv: 991,232 vectors, 0 mismatches. A mutant (decimal +60 changed to +66) gives 29,204 mismatches in the first 100,000.

@@ -94,20 +94,20 @@ Removed 0 unused modules.
 Cleaned up 0 empty switches.
 
 9.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
-Marked 1 switch rules as full_case in process $proc$rtl/datapath/m6502_regs.v:55$173 in module m6502_regs.
-Marked 1 switch rules as full_case in process $proc$rtl/datapath/m6502_regs.v:35$164 in module m6502_regs.
-Marked 2 switch rules as full_case in process $proc$rtl/datapath/m6502_alu.v:124$161 in module m6502_alu.
-Marked 5 switch rules as full_case in process $proc$rtl/datapath/m6502_alu.v:42$99 in module m6502_alu.
-Marked 2 switch rules as full_case in process $proc$rtl/control/m6502_timing.v:31$93 in module m6502_timing.
-Marked 1 switch rules as full_case in process $proc$rtl/control/m6502_plan.v:30$85 in module m6502_plan.
-Marked 1 switch rules as full_case in process $proc$rtl/control/m6502_decode.v:21$84 in module m6502_decode.
-Marked 6 switch rules as full_case in process $proc$rtl/control/m6502_control.v:139$68 in module m6502_control.
-Marked 9 switch rules as full_case in process $proc$rtl/control/m6502_control.v:104$47 in module m6502_control.
-Marked 1 switch rules as full_case in process $proc$rtl/control/m6502_control.v:67$32 in module m6502_control.
+Marked 1 switch rules as full_case in process $proc$rtl/datapath/m6502_regs.v:55$180 in module m6502_regs.
+Marked 1 switch rules as full_case in process $proc$rtl/datapath/m6502_regs.v:35$171 in module m6502_regs.
+Marked 2 switch rules as full_case in process $proc$rtl/datapath/m6502_alu.v:124$168 in module m6502_alu.
+Marked 5 switch rules as full_case in process $proc$rtl/datapath/m6502_alu.v:42$106 in module m6502_alu.
+Marked 2 switch rules as full_case in process $proc$rtl/control/m6502_timing.v:31$100 in module m6502_timing.
+Marked 1 switch rules as full_case in process $proc$rtl/control/m6502_plan.v:30$92 in module m6502_plan.
+Marked 1 switch rules as full_case in process $proc$rtl/control/m6502_decode.v:21$91 in module m6502_decode.
+Marked 7 switch rules as full_case in process $proc$rtl/control/m6502_control.v:147$69 in module m6502_control.
+Marked 9 switch rules as full_case in process $proc$rtl/control/m6502_control.v:108$48 in module m6502_control.
+Marked 1 switch rules as full_case in process $proc$rtl/control/m6502_control.v:70$32 in module m6502_control.
 Removed a total of 0 dead cases.
 
 9.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
-Removed 3 redundant assignments.
+Removed 5 redundant assignments.
 Promoted 69 assignments to connections.
 
 9.4. Executing PROC_INIT pass (extract init attributes).
@@ -119,7 +119,7 @@ Converted 1 switch.
 <suppressed ~49 debug messages>
 
 9.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
-Creating decoders for process `\m6502_regs.$proc$rtl/datapath/m6502_regs.v:55$173'.
+Creating decoders for process `\m6502_regs.$proc$rtl/datapath/m6502_regs.v:55$180'.
      1/10: $0\r_pc[15:0] [15:8]
      2/10: $0\r_pc[15:0] [7:0]
      3/10: $0\carry_q[0:0]
@@ -130,9 +130,9 @@ Creating decoders for process `\m6502_regs.$proc$rtl/datapath/m6502_regs.v:55$17
      8/10: $0\y[7:0]
      9/10: $0\x[7:0]
     10/10: $0\s[7:0]
-Creating decoders for process `\m6502_regs.$proc$rtl/datapath/m6502_regs.v:35$164'.
+Creating decoders for process `\m6502_regs.$proc$rtl/datapath/m6502_regs.v:35$171'.
      1/1: $1\addr[15:0]
-Creating decoders for process `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:124$161'.
+Creating decoders for process `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:124$168'.
      1/7: $0\fc[0:0]
      2/7: $0\fz[0:0]
      3/7: $0\fi[0:0]
@@ -140,7 +140,7 @@ Creating decoders for process `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:124$161
      5/7: $0\fv[0:0]
      6/7: $0\fn[0:0]
      7/7: $0\a[7:0]
-Creating decoders for process `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:42$99'.
+Creating decoders for process `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:42$106'.
      1/46: $3\dt[9:0]
      2/46: $4\res[7:0]
      3/46: $2\dt[9:0]
@@ -187,10 +187,10 @@ Creating decoders for process `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:42$99'.
     44/46: $1\u_d[0:0]
     45/46: $1\n_i[0:0]
     46/46: $1\n_d[0:0]
-Creating decoders for process `\m6502_timing.$proc$rtl/control/m6502_timing.v:31$93'.
+Creating decoders for process `\m6502_timing.$proc$rtl/control/m6502_timing.v:31$100'.
      1/2: $0\rs_r[3:0]
      2/2: $0\t_r[2:0]
-Creating decoders for process `\m6502_plan.$proc$rtl/control/m6502_plan.v:30$85'.
+Creating decoders for process `\m6502_plan.$proc$rtl/control/m6502_plan.v:30$92'.
      1/16: $1\dsrc[0:0]
      2/16: $1\sei[0:0]
      3/16: $1\pushb[0:0]
@@ -207,23 +207,25 @@ Creating decoders for process `\m6502_plan.$proc$rtl/control/m6502_plan.v:30$85'
     14/16: $1\addr[2:0]
     15/16: $1\pc[1:0]
     16/16: $1\vec[2:0]
-Creating decoders for process `\m6502_decode.$proc$rtl/control/m6502_decode.v:21$84'.
+Creating decoders for process `\m6502_decode.$proc$rtl/control/m6502_decode.v:21$91'.
      1/1: { $1\src[1:0] $1\ywe[0:0] $1\xwe[0:0] $1\fwe[0:0] $1\awe[0:0] $1\bsel[2:0] $1\asel[1:0] $1\aop[4:0] $1\cls[1:0] $1\mode[4:0] $1\ok[0:0] }
-Creating decoders for process `\m6502_control.$proc$rtl/control/m6502_control.v:139$68'.
-     1/13: $0\so_q[0:0]
-     2/13: $0\nmi_det_q[0:0]
-     3/13: $0\nmi_q[0:0]
-     4/13: $0\s3[1:0]
-     5/13: $0\s2[1:0]
-     6/13: $0\s1[1:0]
-     7/13: $0\br3[0:0]
-     8/13: $0\so_latch[0:0]
-     9/13: $0\nmi_latch[0:0]
-    10/13: $0\intnmi[0:0]
-    11/13: $0\intseq[0:0]
-    12/13: $0\tmp_r[7:0]
-    13/13: $0\ir[7:0]
-Creating decoders for process `\m6502_control.$proc$rtl/control/m6502_control.v:104$47'.
+Creating decoders for process `\m6502_control.$proc$rtl/control/m6502_control.v:147$69'.
+     1/15: $0\a3[0:0]
+     2/15: $0\a2[0:0]
+     3/15: $0\a1[0:0]
+     4/15: $0\so_q[0:0]
+     5/15: $0\nmi_q[0:0]
+     6/15: $0\s3[1:0]
+     7/15: $0\s2[1:0]
+     8/15: $0\s1[1:0]
+     9/15: $0\nmi_pend[0:0]
+    10/15: $0\br3[0:0]
+    11/15: $0\so_latch[0:0]
+    12/15: $0\intnmi[0:0]
+    13/15: $0\intseq[0:0]
+    14/15: $0\tmp_r[7:0]
+    15/15: $0\ir[7:0]
+Creating decoders for process `\m6502_control.$proc$rtl/control/m6502_control.v:108$48'.
      1/54: $6\alu_op[4:0]
      2/54: $4\y_we[0:0]
      3/54: $4\x_we[0:0]
@@ -278,167 +280,171 @@ Creating decoders for process `\m6502_control.$proc$rtl/control/m6502_control.v:
     52/54: $1\pc_op[1:0]
     53/54: $1\d_out_sel[2:0]
     54/54: $1\alu_b_sel[2:0]
-Creating decoders for process `\m6502_control.$proc$rtl/control/m6502_control.v:67$32'.
+Creating decoders for process `\m6502_control.$proc$rtl/control/m6502_control.v:70$32'.
      1/1: $1\flag_v[0:0]
 
 9.8. Executing PROC_DLATCH pass (convert process syncs to latches).
-No latch inferred for signal `\m6502_regs.\addr' from process `\m6502_regs.$proc$rtl/datapath/m6502_regs.v:35$164'.
-No latch inferred for signal `\m6502_alu.\t' from process `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:42$99'.
-No latch inferred for signal `\m6502_alu.\res' from process `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:42$99'.
-No latch inferred for signal `\m6502_alu.\n_n' from process `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:42$99'.
-No latch inferred for signal `\m6502_alu.\n_v' from process `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:42$99'.
-No latch inferred for signal `\m6502_alu.\n_d' from process `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:42$99'.
-No latch inferred for signal `\m6502_alu.\n_i' from process `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:42$99'.
-No latch inferred for signal `\m6502_alu.\n_z' from process `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:42$99'.
-No latch inferred for signal `\m6502_alu.\n_c' from process `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:42$99'.
-No latch inferred for signal `\m6502_alu.\u_n' from process `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:42$99'.
-No latch inferred for signal `\m6502_alu.\u_v' from process `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:42$99'.
-No latch inferred for signal `\m6502_alu.\u_d' from process `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:42$99'.
-No latch inferred for signal `\m6502_alu.\u_i' from process `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:42$99'.
-No latch inferred for signal `\m6502_alu.\u_z' from process `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:42$99'.
-No latch inferred for signal `\m6502_alu.\u_c' from process `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:42$99'.
-No latch inferred for signal `\m6502_alu.\wr_a' from process `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:42$99'.
-No latch inferred for signal `\m6502_alu.\bb' from process `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:42$99'.
-No latch inferred for signal `\m6502_alu.\lo5' from process `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:42$99'.
-No latch inferred for signal `\m6502_alu.\hc' from process `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:42$99'.
-No latch inferred for signal `\m6502_alu.\lo' from process `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:42$99'.
-No latch inferred for signal `\m6502_alu.\x' from process `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:42$99'.
-No latch inferred for signal `\m6502_alu.\y' from process `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:42$99'.
-No latch inferred for signal `\m6502_alu.\t9' from process `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:42$99'.
-No latch inferred for signal `\m6502_alu.\t2' from process `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:42$99'.
-No latch inferred for signal `\m6502_alu.\dlo' from process `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:42$99'.
-No latch inferred for signal `\m6502_alu.\dt' from process `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:42$99'.
-No latch inferred for signal `\m6502_alu.\hb' from process `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:42$99'.
-No latch inferred for signal `\m6502_plan.\pc' from process `\m6502_plan.$proc$rtl/control/m6502_plan.v:30$85'.
-No latch inferred for signal `\m6502_plan.\addr' from process `\m6502_plan.$proc$rtl/control/m6502_plan.v:30$85'.
-No latch inferred for signal `\m6502_plan.\vec' from process `\m6502_plan.$proc$rtl/control/m6502_plan.v:30$85'.
-No latch inferred for signal `\m6502_plan.\ab' from process `\m6502_plan.$proc$rtl/control/m6502_plan.v:30$85'.
-No latch inferred for signal `\m6502_plan.\s' from process `\m6502_plan.$proc$rtl/control/m6502_plan.v:30$85'.
-No latch inferred for signal `\m6502_plan.\dout' from process `\m6502_plan.$proc$rtl/control/m6502_plan.v:30$85'.
-No latch inferred for signal `\m6502_plan.\wr' from process `\m6502_plan.$proc$rtl/control/m6502_plan.v:30$85'.
-No latch inferred for signal `\m6502_plan.\last' from process `\m6502_plan.$proc$rtl/control/m6502_plan.v:30$85'.
-No latch inferred for signal `\m6502_plan.\ex' from process `\m6502_plan.$proc$rtl/control/m6502_plan.v:30$85'.
-No latch inferred for signal `\m6502_plan.\tmpl' from process `\m6502_plan.$proc$rtl/control/m6502_plan.v:30$85'.
-No latch inferred for signal `\m6502_plan.\tmpb' from process `\m6502_plan.$proc$rtl/control/m6502_plan.v:30$85'.
-No latch inferred for signal `\m6502_plan.\dint' from process `\m6502_plan.$proc$rtl/control/m6502_plan.v:30$85'.
-No latch inferred for signal `\m6502_plan.\pull' from process `\m6502_plan.$proc$rtl/control/m6502_plan.v:30$85'.
-No latch inferred for signal `\m6502_plan.\pushb' from process `\m6502_plan.$proc$rtl/control/m6502_plan.v:30$85'.
-No latch inferred for signal `\m6502_plan.\dsrc' from process `\m6502_plan.$proc$rtl/control/m6502_plan.v:30$85'.
-No latch inferred for signal `\m6502_plan.\sei' from process `\m6502_plan.$proc$rtl/control/m6502_plan.v:30$85'.
-No latch inferred for signal `\m6502_decode.\src' from process `\m6502_decode.$proc$rtl/control/m6502_decode.v:21$84'.
-No latch inferred for signal `\m6502_decode.\mode' from process `\m6502_decode.$proc$rtl/control/m6502_decode.v:21$84'.
-No latch inferred for signal `\m6502_decode.\aop' from process `\m6502_decode.$proc$rtl/control/m6502_decode.v:21$84'.
-No latch inferred for signal `\m6502_decode.\cls' from process `\m6502_decode.$proc$rtl/control/m6502_decode.v:21$84'.
-No latch inferred for signal `\m6502_decode.\asel' from process `\m6502_decode.$proc$rtl/control/m6502_decode.v:21$84'.
-No latch inferred for signal `\m6502_decode.\bsel' from process `\m6502_decode.$proc$rtl/control/m6502_decode.v:21$84'.
-No latch inferred for signal `\m6502_decode.\awe' from process `\m6502_decode.$proc$rtl/control/m6502_decode.v:21$84'.
-No latch inferred for signal `\m6502_decode.\fwe' from process `\m6502_decode.$proc$rtl/control/m6502_decode.v:21$84'.
-No latch inferred for signal `\m6502_decode.\xwe' from process `\m6502_decode.$proc$rtl/control/m6502_decode.v:21$84'.
-No latch inferred for signal `\m6502_decode.\ywe' from process `\m6502_decode.$proc$rtl/control/m6502_decode.v:21$84'.
-No latch inferred for signal `\m6502_decode.\ok' from process `\m6502_decode.$proc$rtl/control/m6502_decode.v:21$84'.
-No latch inferred for signal `\m6502_control.\addr_sel' from process `\m6502_control.$proc$rtl/control/m6502_control.v:104$47'.
-No latch inferred for signal `\m6502_control.\vec_sel' from process `\m6502_control.$proc$rtl/control/m6502_control.v:104$47'.
-No latch inferred for signal `\m6502_control.\alu_b_sel' from process `\m6502_control.$proc$rtl/control/m6502_control.v:104$47'.
-No latch inferred for signal `\m6502_control.\d_out_sel' from process `\m6502_control.$proc$rtl/control/m6502_control.v:104$47'.
-No latch inferred for signal `\m6502_control.\ab_op' from process `\m6502_control.$proc$rtl/control/m6502_control.v:104$47'.
-No latch inferred for signal `\m6502_control.\pc_op' from process `\m6502_control.$proc$rtl/control/m6502_control.v:104$47'.
-No latch inferred for signal `\m6502_control.\s_op' from process `\m6502_control.$proc$rtl/control/m6502_control.v:104$47'.
-No latch inferred for signal `\m6502_control.\alu_a_sel' from process `\m6502_control.$proc$rtl/control/m6502_control.v:104$47'.
-No latch inferred for signal `\m6502_control.\alu_op' from process `\m6502_control.$proc$rtl/control/m6502_control.v:104$47'.
-No latch inferred for signal `\m6502_control.\a_we' from process `\m6502_control.$proc$rtl/control/m6502_control.v:104$47'.
-No latch inferred for signal `\m6502_control.\f_we' from process `\m6502_control.$proc$rtl/control/m6502_control.v:104$47'.
-No latch inferred for signal `\m6502_control.\pull_p' from process `\m6502_control.$proc$rtl/control/m6502_control.v:104$47'.
-No latch inferred for signal `\m6502_control.\x_we' from process `\m6502_control.$proc$rtl/control/m6502_control.v:104$47'.
-No latch inferred for signal `\m6502_control.\y_we' from process `\m6502_control.$proc$rtl/control/m6502_control.v:104$47'.
-No latch inferred for signal `\m6502_control.\flag_v' from process `\m6502_control.$proc$rtl/control/m6502_control.v:67$32'.
+No latch inferred for signal `\m6502_regs.\addr' from process `\m6502_regs.$proc$rtl/datapath/m6502_regs.v:35$171'.
+No latch inferred for signal `\m6502_alu.\t' from process `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:42$106'.
+No latch inferred for signal `\m6502_alu.\res' from process `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:42$106'.
+No latch inferred for signal `\m6502_alu.\n_n' from process `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:42$106'.
+No latch inferred for signal `\m6502_alu.\n_v' from process `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:42$106'.
+No latch inferred for signal `\m6502_alu.\n_d' from process `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:42$106'.
+No latch inferred for signal `\m6502_alu.\n_i' from process `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:42$106'.
+No latch inferred for signal `\m6502_alu.\n_z' from process `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:42$106'.
+No latch inferred for signal `\m6502_alu.\n_c' from process `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:42$106'.
+No latch inferred for signal `\m6502_alu.\u_n' from process `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:42$106'.
+No latch inferred for signal `\m6502_alu.\u_v' from process `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:42$106'.
+No latch inferred for signal `\m6502_alu.\u_d' from process `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:42$106'.
+No latch inferred for signal `\m6502_alu.\u_i' from process `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:42$106'.
+No latch inferred for signal `\m6502_alu.\u_z' from process `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:42$106'.
+No latch inferred for signal `\m6502_alu.\u_c' from process `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:42$106'.
+No latch inferred for signal `\m6502_alu.\wr_a' from process `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:42$106'.
+No latch inferred for signal `\m6502_alu.\bb' from process `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:42$106'.
+No latch inferred for signal `\m6502_alu.\lo5' from process `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:42$106'.
+No latch inferred for signal `\m6502_alu.\hc' from process `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:42$106'.
+No latch inferred for signal `\m6502_alu.\lo' from process `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:42$106'.
+No latch inferred for signal `\m6502_alu.\x' from process `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:42$106'.
+No latch inferred for signal `\m6502_alu.\y' from process `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:42$106'.
+No latch inferred for signal `\m6502_alu.\t9' from process `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:42$106'.
+No latch inferred for signal `\m6502_alu.\t2' from process `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:42$106'.
+No latch inferred for signal `\m6502_alu.\dlo' from process `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:42$106'.
+No latch inferred for signal `\m6502_alu.\dt' from process `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:42$106'.
+No latch inferred for signal `\m6502_alu.\hb' from process `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:42$106'.
+No latch inferred for signal `\m6502_plan.\pc' from process `\m6502_plan.$proc$rtl/control/m6502_plan.v:30$92'.
+No latch inferred for signal `\m6502_plan.\addr' from process `\m6502_plan.$proc$rtl/control/m6502_plan.v:30$92'.
+No latch inferred for signal `\m6502_plan.\vec' from process `\m6502_plan.$proc$rtl/control/m6502_plan.v:30$92'.
+No latch inferred for signal `\m6502_plan.\ab' from process `\m6502_plan.$proc$rtl/control/m6502_plan.v:30$92'.
+No latch inferred for signal `\m6502_plan.\s' from process `\m6502_plan.$proc$rtl/control/m6502_plan.v:30$92'.
+No latch inferred for signal `\m6502_plan.\dout' from process `\m6502_plan.$proc$rtl/control/m6502_plan.v:30$92'.
+No latch inferred for signal `\m6502_plan.\wr' from process `\m6502_plan.$proc$rtl/control/m6502_plan.v:30$92'.
+No latch inferred for signal `\m6502_plan.\last' from process `\m6502_plan.$proc$rtl/control/m6502_plan.v:30$92'.
+No latch inferred for signal `\m6502_plan.\ex' from process `\m6502_plan.$proc$rtl/control/m6502_plan.v:30$92'.
+No latch inferred for signal `\m6502_plan.\tmpl' from process `\m6502_plan.$proc$rtl/control/m6502_plan.v:30$92'.
+No latch inferred for signal `\m6502_plan.\tmpb' from process `\m6502_plan.$proc$rtl/control/m6502_plan.v:30$92'.
+No latch inferred for signal `\m6502_plan.\dint' from process `\m6502_plan.$proc$rtl/control/m6502_plan.v:30$92'.
+No latch inferred for signal `\m6502_plan.\pull' from process `\m6502_plan.$proc$rtl/control/m6502_plan.v:30$92'.
+No latch inferred for signal `\m6502_plan.\pushb' from process `\m6502_plan.$proc$rtl/control/m6502_plan.v:30$92'.
+No latch inferred for signal `\m6502_plan.\dsrc' from process `\m6502_plan.$proc$rtl/control/m6502_plan.v:30$92'.
+No latch inferred for signal `\m6502_plan.\sei' from process `\m6502_plan.$proc$rtl/control/m6502_plan.v:30$92'.
+No latch inferred for signal `\m6502_decode.\src' from process `\m6502_decode.$proc$rtl/control/m6502_decode.v:21$91'.
+No latch inferred for signal `\m6502_decode.\mode' from process `\m6502_decode.$proc$rtl/control/m6502_decode.v:21$91'.
+No latch inferred for signal `\m6502_decode.\aop' from process `\m6502_decode.$proc$rtl/control/m6502_decode.v:21$91'.
+No latch inferred for signal `\m6502_decode.\cls' from process `\m6502_decode.$proc$rtl/control/m6502_decode.v:21$91'.
+No latch inferred for signal `\m6502_decode.\asel' from process `\m6502_decode.$proc$rtl/control/m6502_decode.v:21$91'.
+No latch inferred for signal `\m6502_decode.\bsel' from process `\m6502_decode.$proc$rtl/control/m6502_decode.v:21$91'.
+No latch inferred for signal `\m6502_decode.\awe' from process `\m6502_decode.$proc$rtl/control/m6502_decode.v:21$91'.
+No latch inferred for signal `\m6502_decode.\fwe' from process `\m6502_decode.$proc$rtl/control/m6502_decode.v:21$91'.
+No latch inferred for signal `\m6502_decode.\xwe' from process `\m6502_decode.$proc$rtl/control/m6502_decode.v:21$91'.
+No latch inferred for signal `\m6502_decode.\ywe' from process `\m6502_decode.$proc$rtl/control/m6502_decode.v:21$91'.
+No latch inferred for signal `\m6502_decode.\ok' from process `\m6502_decode.$proc$rtl/control/m6502_decode.v:21$91'.
+No latch inferred for signal `\m6502_control.\addr_sel' from process `\m6502_control.$proc$rtl/control/m6502_control.v:108$48'.
+No latch inferred for signal `\m6502_control.\vec_sel' from process `\m6502_control.$proc$rtl/control/m6502_control.v:108$48'.
+No latch inferred for signal `\m6502_control.\alu_b_sel' from process `\m6502_control.$proc$rtl/control/m6502_control.v:108$48'.
+No latch inferred for signal `\m6502_control.\d_out_sel' from process `\m6502_control.$proc$rtl/control/m6502_control.v:108$48'.
+No latch inferred for signal `\m6502_control.\ab_op' from process `\m6502_control.$proc$rtl/control/m6502_control.v:108$48'.
+No latch inferred for signal `\m6502_control.\pc_op' from process `\m6502_control.$proc$rtl/control/m6502_control.v:108$48'.
+No latch inferred for signal `\m6502_control.\s_op' from process `\m6502_control.$proc$rtl/control/m6502_control.v:108$48'.
+No latch inferred for signal `\m6502_control.\alu_a_sel' from process `\m6502_control.$proc$rtl/control/m6502_control.v:108$48'.
+No latch inferred for signal `\m6502_control.\alu_op' from process `\m6502_control.$proc$rtl/control/m6502_control.v:108$48'.
+No latch inferred for signal `\m6502_control.\a_we' from process `\m6502_control.$proc$rtl/control/m6502_control.v:108$48'.
+No latch inferred for signal `\m6502_control.\f_we' from process `\m6502_control.$proc$rtl/control/m6502_control.v:108$48'.
+No latch inferred for signal `\m6502_control.\pull_p' from process `\m6502_control.$proc$rtl/control/m6502_control.v:108$48'.
+No latch inferred for signal `\m6502_control.\x_we' from process `\m6502_control.$proc$rtl/control/m6502_control.v:108$48'.
+No latch inferred for signal `\m6502_control.\y_we' from process `\m6502_control.$proc$rtl/control/m6502_control.v:108$48'.
+No latch inferred for signal `\m6502_control.\flag_v' from process `\m6502_control.$proc$rtl/control/m6502_control.v:70$32'.
 
 9.9. Executing PROC_DFF pass (convert process syncs to FFs).
-Creating register for signal `\m6502_regs.\s' using process `\m6502_regs.$proc$rtl/datapath/m6502_regs.v:55$173'.
-  created $dff cell `$procdff$2652' with positive edge clock.
-Creating register for signal `\m6502_regs.\x' using process `\m6502_regs.$proc$rtl/datapath/m6502_regs.v:55$173'.
-  created $dff cell `$procdff$2653' with positive edge clock.
-Creating register for signal `\m6502_regs.\y' using process `\m6502_regs.$proc$rtl/datapath/m6502_regs.v:55$173'.
-  created $dff cell `$procdff$2654' with positive edge clock.
-Creating register for signal `\m6502_regs.\r_pc' using process `\m6502_regs.$proc$rtl/datapath/m6502_regs.v:55$173'.
-  created $dff cell `$procdff$2655' with positive edge clock.
-Creating register for signal `\m6502_regs.\adl' using process `\m6502_regs.$proc$rtl/datapath/m6502_regs.v:55$173'.
-  created $dff cell `$procdff$2656' with positive edge clock.
-Creating register for signal `\m6502_regs.\adh' using process `\m6502_regs.$proc$rtl/datapath/m6502_regs.v:55$173'.
-  created $dff cell `$procdff$2657' with positive edge clock.
-Creating register for signal `\m6502_regs.\pl' using process `\m6502_regs.$proc$rtl/datapath/m6502_regs.v:55$173'.
-  created $dff cell `$procdff$2658' with positive edge clock.
-Creating register for signal `\m6502_regs.\carry_q' using process `\m6502_regs.$proc$rtl/datapath/m6502_regs.v:55$173'.
-  created $dff cell `$procdff$2659' with positive edge clock.
-Creating register for signal `\m6502_regs.\br_sign' using process `\m6502_regs.$proc$rtl/datapath/m6502_regs.v:55$173'.
-  created $dff cell `$procdff$2660' with positive edge clock.
-Creating register for signal `\m6502_alu.\a' using process `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:124$161'.
-  created $dff cell `$procdff$2661' with positive edge clock.
-Creating register for signal `\m6502_alu.\fn' using process `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:124$161'.
-  created $dff cell `$procdff$2662' with positive edge clock.
-Creating register for signal `\m6502_alu.\fv' using process `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:124$161'.
-  created $dff cell `$procdff$2663' with positive edge clock.
-Creating register for signal `\m6502_alu.\fd' using process `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:124$161'.
-  created $dff cell `$procdff$2664' with positive edge clock.
-Creating register for signal `\m6502_alu.\fi' using process `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:124$161'.
-  created $dff cell `$procdff$2665' with positive edge clock.
-Creating register for signal `\m6502_alu.\fz' using process `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:124$161'.
-  created $dff cell `$procdff$2666' with positive edge clock.
-Creating register for signal `\m6502_alu.\fc' using process `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:124$161'.
-  created $dff cell `$procdff$2667' with positive edge clock.
-Creating register for signal `\m6502_timing.\t_r' using process `\m6502_timing.$proc$rtl/control/m6502_timing.v:31$93'.
-  created $dff cell `$procdff$2668' with positive edge clock.
-Creating register for signal `\m6502_timing.\rs_r' using process `\m6502_timing.$proc$rtl/control/m6502_timing.v:31$93'.
-  created $dff cell `$procdff$2669' with positive edge clock.
-Creating register for signal `\m6502_control.\ir' using process `\m6502_control.$proc$rtl/control/m6502_control.v:139$68'.
-  created $dff cell `$procdff$2670' with positive edge clock.
-Creating register for signal `\m6502_control.\tmp_r' using process `\m6502_control.$proc$rtl/control/m6502_control.v:139$68'.
-  created $dff cell `$procdff$2671' with positive edge clock.
-Creating register for signal `\m6502_control.\intseq' using process `\m6502_control.$proc$rtl/control/m6502_control.v:139$68'.
-  created $dff cell `$procdff$2672' with positive edge clock.
-Creating register for signal `\m6502_control.\intnmi' using process `\m6502_control.$proc$rtl/control/m6502_control.v:139$68'.
-  created $dff cell `$procdff$2673' with positive edge clock.
-Creating register for signal `\m6502_control.\nmi_latch' using process `\m6502_control.$proc$rtl/control/m6502_control.v:139$68'.
-  created $dff cell `$procdff$2674' with positive edge clock.
-Creating register for signal `\m6502_control.\nmi_q' using process `\m6502_control.$proc$rtl/control/m6502_control.v:139$68'.
-  created $dff cell `$procdff$2675' with positive edge clock.
-Creating register for signal `\m6502_control.\nmi_det_q' using process `\m6502_control.$proc$rtl/control/m6502_control.v:139$68'.
-  created $dff cell `$procdff$2676' with positive edge clock.
-Creating register for signal `\m6502_control.\so_q' using process `\m6502_control.$proc$rtl/control/m6502_control.v:139$68'.
-  created $dff cell `$procdff$2677' with positive edge clock.
-Creating register for signal `\m6502_control.\so_latch' using process `\m6502_control.$proc$rtl/control/m6502_control.v:139$68'.
-  created $dff cell `$procdff$2678' with positive edge clock.
-Creating register for signal `\m6502_control.\br3' using process `\m6502_control.$proc$rtl/control/m6502_control.v:139$68'.
-  created $dff cell `$procdff$2679' with positive edge clock.
-Creating register for signal `\m6502_control.\s1' using process `\m6502_control.$proc$rtl/control/m6502_control.v:139$68'.
-  created $dff cell `$procdff$2680' with positive edge clock.
-Creating register for signal `\m6502_control.\s2' using process `\m6502_control.$proc$rtl/control/m6502_control.v:139$68'.
-  created $dff cell `$procdff$2681' with positive edge clock.
-Creating register for signal `\m6502_control.\s3' using process `\m6502_control.$proc$rtl/control/m6502_control.v:139$68'.
-  created $dff cell `$procdff$2682' with positive edge clock.
+Creating register for signal `\m6502_regs.\s' using process `\m6502_regs.$proc$rtl/datapath/m6502_regs.v:55$180'.
+  created $dff cell `$procdff$2693' with positive edge clock.
+Creating register for signal `\m6502_regs.\x' using process `\m6502_regs.$proc$rtl/datapath/m6502_regs.v:55$180'.
+  created $dff cell `$procdff$2694' with positive edge clock.
+Creating register for signal `\m6502_regs.\y' using process `\m6502_regs.$proc$rtl/datapath/m6502_regs.v:55$180'.
+  created $dff cell `$procdff$2695' with positive edge clock.
+Creating register for signal `\m6502_regs.\r_pc' using process `\m6502_regs.$proc$rtl/datapath/m6502_regs.v:55$180'.
+  created $dff cell `$procdff$2696' with positive edge clock.
+Creating register for signal `\m6502_regs.\adl' using process `\m6502_regs.$proc$rtl/datapath/m6502_regs.v:55$180'.
+  created $dff cell `$procdff$2697' with positive edge clock.
+Creating register for signal `\m6502_regs.\adh' using process `\m6502_regs.$proc$rtl/datapath/m6502_regs.v:55$180'.
+  created $dff cell `$procdff$2698' with positive edge clock.
+Creating register for signal `\m6502_regs.\pl' using process `\m6502_regs.$proc$rtl/datapath/m6502_regs.v:55$180'.
+  created $dff cell `$procdff$2699' with positive edge clock.
+Creating register for signal `\m6502_regs.\carry_q' using process `\m6502_regs.$proc$rtl/datapath/m6502_regs.v:55$180'.
+  created $dff cell `$procdff$2700' with positive edge clock.
+Creating register for signal `\m6502_regs.\br_sign' using process `\m6502_regs.$proc$rtl/datapath/m6502_regs.v:55$180'.
+  created $dff cell `$procdff$2701' with positive edge clock.
+Creating register for signal `\m6502_alu.\a' using process `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:124$168'.
+  created $dff cell `$procdff$2702' with positive edge clock.
+Creating register for signal `\m6502_alu.\fn' using process `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:124$168'.
+  created $dff cell `$procdff$2703' with positive edge clock.
+Creating register for signal `\m6502_alu.\fv' using process `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:124$168'.
+  created $dff cell `$procdff$2704' with positive edge clock.
+Creating register for signal `\m6502_alu.\fd' using process `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:124$168'.
+  created $dff cell `$procdff$2705' with positive edge clock.
+Creating register for signal `\m6502_alu.\fi' using process `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:124$168'.
+  created $dff cell `$procdff$2706' with positive edge clock.
+Creating register for signal `\m6502_alu.\fz' using process `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:124$168'.
+  created $dff cell `$procdff$2707' with positive edge clock.
+Creating register for signal `\m6502_alu.\fc' using process `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:124$168'.
+  created $dff cell `$procdff$2708' with positive edge clock.
+Creating register for signal `\m6502_timing.\t_r' using process `\m6502_timing.$proc$rtl/control/m6502_timing.v:31$100'.
+  created $dff cell `$procdff$2709' with positive edge clock.
+Creating register for signal `\m6502_timing.\rs_r' using process `\m6502_timing.$proc$rtl/control/m6502_timing.v:31$100'.
+  created $dff cell `$procdff$2710' with positive edge clock.
+Creating register for signal `\m6502_control.\ir' using process `\m6502_control.$proc$rtl/control/m6502_control.v:147$69'.
+  created $dff cell `$procdff$2711' with positive edge clock.
+Creating register for signal `\m6502_control.\tmp_r' using process `\m6502_control.$proc$rtl/control/m6502_control.v:147$69'.
+  created $dff cell `$procdff$2712' with positive edge clock.
+Creating register for signal `\m6502_control.\intseq' using process `\m6502_control.$proc$rtl/control/m6502_control.v:147$69'.
+  created $dff cell `$procdff$2713' with positive edge clock.
+Creating register for signal `\m6502_control.\intnmi' using process `\m6502_control.$proc$rtl/control/m6502_control.v:147$69'.
+  created $dff cell `$procdff$2714' with positive edge clock.
+Creating register for signal `\m6502_control.\nmi_q' using process `\m6502_control.$proc$rtl/control/m6502_control.v:147$69'.
+  created $dff cell `$procdff$2715' with positive edge clock.
+Creating register for signal `\m6502_control.\so_q' using process `\m6502_control.$proc$rtl/control/m6502_control.v:147$69'.
+  created $dff cell `$procdff$2716' with positive edge clock.
+Creating register for signal `\m6502_control.\so_latch' using process `\m6502_control.$proc$rtl/control/m6502_control.v:147$69'.
+  created $dff cell `$procdff$2717' with positive edge clock.
+Creating register for signal `\m6502_control.\br3' using process `\m6502_control.$proc$rtl/control/m6502_control.v:147$69'.
+  created $dff cell `$procdff$2718' with positive edge clock.
+Creating register for signal `\m6502_control.\nmi_pend' using process `\m6502_control.$proc$rtl/control/m6502_control.v:147$69'.
+  created $dff cell `$procdff$2719' with positive edge clock.
+Creating register for signal `\m6502_control.\s1' using process `\m6502_control.$proc$rtl/control/m6502_control.v:147$69'.
+  created $dff cell `$procdff$2720' with positive edge clock.
+Creating register for signal `\m6502_control.\s2' using process `\m6502_control.$proc$rtl/control/m6502_control.v:147$69'.
+  created $dff cell `$procdff$2721' with positive edge clock.
+Creating register for signal `\m6502_control.\s3' using process `\m6502_control.$proc$rtl/control/m6502_control.v:147$69'.
+  created $dff cell `$procdff$2722' with positive edge clock.
+Creating register for signal `\m6502_control.\a1' using process `\m6502_control.$proc$rtl/control/m6502_control.v:147$69'.
+  created $dff cell `$procdff$2723' with positive edge clock.
+Creating register for signal `\m6502_control.\a2' using process `\m6502_control.$proc$rtl/control/m6502_control.v:147$69'.
+  created $dff cell `$procdff$2724' with positive edge clock.
+Creating register for signal `\m6502_control.\a3' using process `\m6502_control.$proc$rtl/control/m6502_control.v:147$69'.
+  created $dff cell `$procdff$2725' with positive edge clock.
 
 9.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
 
 9.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
-Found and cleaned up 7 empty switches in `\m6502_regs.$proc$rtl/datapath/m6502_regs.v:55$173'.
-Removing empty process `m6502_regs.$proc$rtl/datapath/m6502_regs.v:55$173'.
-Found and cleaned up 1 empty switch in `\m6502_regs.$proc$rtl/datapath/m6502_regs.v:35$164'.
-Removing empty process `m6502_regs.$proc$rtl/datapath/m6502_regs.v:35$164'.
-Found and cleaned up 10 empty switches in `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:124$161'.
-Removing empty process `m6502_alu.$proc$rtl/datapath/m6502_alu.v:124$161'.
-Found and cleaned up 5 empty switches in `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:42$99'.
-Removing empty process `m6502_alu.$proc$rtl/datapath/m6502_alu.v:42$99'.
-Found and cleaned up 3 empty switches in `\m6502_timing.$proc$rtl/control/m6502_timing.v:31$93'.
-Removing empty process `m6502_timing.$proc$rtl/control/m6502_timing.v:31$93'.
-Found and cleaned up 1 empty switch in `\m6502_plan.$proc$rtl/control/m6502_plan.v:30$85'.
-Removing empty process `m6502_plan.$proc$rtl/control/m6502_plan.v:30$85'.
-Found and cleaned up 1 empty switch in `\m6502_decode.$proc$rtl/control/m6502_decode.v:21$84'.
-Removing empty process `m6502_decode.$proc$rtl/control/m6502_decode.v:21$84'.
-Found and cleaned up 12 empty switches in `\m6502_control.$proc$rtl/control/m6502_control.v:139$68'.
-Removing empty process `m6502_control.$proc$rtl/control/m6502_control.v:139$68'.
-Found and cleaned up 9 empty switches in `\m6502_control.$proc$rtl/control/m6502_control.v:104$47'.
-Removing empty process `m6502_control.$proc$rtl/control/m6502_control.v:104$47'.
-Found and cleaned up 1 empty switch in `\m6502_control.$proc$rtl/control/m6502_control.v:67$32'.
-Removing empty process `m6502_control.$proc$rtl/control/m6502_control.v:67$32'.
+Found and cleaned up 7 empty switches in `\m6502_regs.$proc$rtl/datapath/m6502_regs.v:55$180'.
+Removing empty process `m6502_regs.$proc$rtl/datapath/m6502_regs.v:55$180'.
+Found and cleaned up 1 empty switch in `\m6502_regs.$proc$rtl/datapath/m6502_regs.v:35$171'.
+Removing empty process `m6502_regs.$proc$rtl/datapath/m6502_regs.v:35$171'.
+Found and cleaned up 10 empty switches in `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:124$168'.
+Removing empty process `m6502_alu.$proc$rtl/datapath/m6502_alu.v:124$168'.
+Found and cleaned up 5 empty switches in `\m6502_alu.$proc$rtl/datapath/m6502_alu.v:42$106'.
+Removing empty process `m6502_alu.$proc$rtl/datapath/m6502_alu.v:42$106'.
+Found and cleaned up 3 empty switches in `\m6502_timing.$proc$rtl/control/m6502_timing.v:31$100'.
+Removing empty process `m6502_timing.$proc$rtl/control/m6502_timing.v:31$100'.
+Found and cleaned up 1 empty switch in `\m6502_plan.$proc$rtl/control/m6502_plan.v:30$92'.
+Removing empty process `m6502_plan.$proc$rtl/control/m6502_plan.v:30$92'.
+Found and cleaned up 1 empty switch in `\m6502_decode.$proc$rtl/control/m6502_decode.v:21$91'.
+Removing empty process `m6502_decode.$proc$rtl/control/m6502_decode.v:21$91'.
+Found and cleaned up 12 empty switches in `\m6502_control.$proc$rtl/control/m6502_control.v:147$69'.
+Removing empty process `m6502_control.$proc$rtl/control/m6502_control.v:147$69'.
+Found and cleaned up 9 empty switches in `\m6502_control.$proc$rtl/control/m6502_control.v:108$48'.
+Removing empty process `m6502_control.$proc$rtl/control/m6502_control.v:108$48'.
+Found and cleaned up 1 empty switch in `\m6502_control.$proc$rtl/control/m6502_control.v:70$32'.
+Removing empty process `m6502_control.$proc$rtl/control/m6502_control.v:70$32'.
 Cleaned up 50 empty switches.
 
 9.12. Executing OPT_EXPR pass (perform const folding).
@@ -451,7 +457,7 @@ Optimizing module m6502_timing.
 Optimizing module m6502_plan.
 Optimizing module m6502_decode.
 Optimizing module m6502_control.
-<suppressed ~84 debug messages>
+<suppressed ~102 debug messages>
 Optimizing module m6502.
 <suppressed ~1 debug messages>
 
@@ -472,185 +478,185 @@ Optimizing module m6502.
 
 11.2. Executing OPT_MERGE pass (detect identical cells).
 Finding identical cells in module `\m6502'.
-<suppressed ~1206 debug messages>
-Removed a total of 402 cells.
+<suppressed ~1215 debug messages>
+Removed a total of 405 cells.
 
 11.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
 Running muxtree optimizer on module \m6502..
   Creating internal representation of mux trees.
   Evaluating internal representation of mux trees.
-      Replacing known input bits on port A of cell $flatten\u_alu.$procmux$391: $flatten\u_alu.$sub$rtl/datapath/m6502_alu.v:83$138_Y -> { 1'0 $flatten\u_alu.$sub$rtl/datapath/m6502_alu.v:83$138_Y [8:0] }
+      Replacing known input bits on port A of cell $flatten\u_alu.$procmux$398: $flatten\u_alu.$sub$rtl/datapath/m6502_alu.v:83$145_Y -> { 1'0 $flatten\u_alu.$sub$rtl/datapath/m6502_alu.v:83$145_Y [8:0] }
   Analyzing evaluation results.
-    dead port 1/2 on $mux $flatten\u_control.$procmux$2378.
-    dead port 2/2 on $mux $flatten\u_control.$procmux$2381.
-    dead port 1/2 on $mux $flatten\u_control.$procmux$2387.
-    dead port 2/2 on $mux $flatten\u_control.$procmux$2390.
-    dead port 1/2 on $mux $flatten\u_control.$procmux$2396.
-    dead port 2/2 on $mux $flatten\u_control.$procmux$2399.
-    dead port 1/2 on $mux $flatten\u_control.$procmux$2405.
-    dead port 2/2 on $mux $flatten\u_control.$procmux$2408.
-    dead port 1/2 on $mux $flatten\u_control.$procmux$2414.
-    dead port 2/2 on $mux $flatten\u_control.$procmux$2417.
-    dead port 1/2 on $mux $flatten\u_control.$procmux$2423.
-    dead port 2/2 on $mux $flatten\u_control.$procmux$2426.
-    dead port 1/2 on $mux $flatten\u_control.$procmux$2432.
-    dead port 2/2 on $mux $flatten\u_control.$procmux$2435.
-    dead port 1/2 on $mux $flatten\u_control.$procmux$2441.
-    dead port 2/2 on $mux $flatten\u_control.$procmux$2444.
-    dead port 1/2 on $mux $flatten\u_control.$procmux$2450.
-    dead port 2/2 on $mux $flatten\u_control.$procmux$2453.
-    dead port 1/2 on $mux $flatten\u_control.$procmux$2459.
-    dead port 2/2 on $mux $flatten\u_control.$procmux$2462.
-    dead port 1/2 on $mux $flatten\u_control.$procmux$2468.
-    dead port 2/2 on $mux $flatten\u_control.$procmux$2471.
-    dead port 2/2 on $mux $flatten\u_control.$procmux$2477.
-    dead port 2/2 on $mux $flatten\u_control.$procmux$2480.
-    dead port 2/2 on $mux $flatten\u_control.$procmux$2486.
-    dead port 2/2 on $mux $flatten\u_control.$procmux$2489.
-    dead port 2/2 on $mux $flatten\u_control.$procmux$2495.
-    dead port 2/2 on $mux $flatten\u_control.$procmux$2501.
-    dead port 2/2 on $mux $flatten\u_control.$procmux$2507.
-    dead port 2/2 on $mux $flatten\u_control.$procmux$2513.
-    dead port 2/2 on $mux $flatten\u_control.$procmux$2519.
-    dead port 2/2 on $mux $flatten\u_control.$procmux$2525.
-    dead port 2/2 on $mux $flatten\u_control.$procmux$2531.
-    dead port 2/2 on $mux $flatten\u_control.$procmux$2537.
-    dead port 2/2 on $mux $flatten\u_control.$procmux$2543.
-    dead port 2/2 on $mux $flatten\u_control.$procmux$2549.
-    dead port 2/2 on $mux $flatten\u_control.$procmux$2555.
-    dead port 2/2 on $mux $flatten\u_control.$procmux$2561.
-    dead port 2/2 on $mux $flatten\u_control.$procmux$2567.
-    dead port 2/2 on $mux $flatten\u_control.$procmux$2573.
-    dead port 1/2 on $mux $flatten\u_control.$procmux$2581.
-    dead port 1/2 on $mux $flatten\u_control.$procmux$2589.
-    dead port 1/2 on $mux $flatten\u_control.$procmux$2596.
-    dead port 1/2 on $mux $flatten\u_control.$procmux$2603.
-    dead port 2/2 on $mux $flatten\u_alu.$procmux$393.
-    dead port 2/2 on $mux $flatten\u_alu.$procmux$395.
-    dead port 2/2 on $mux $flatten\u_alu.$procmux$421.
-    dead port 1/2 on $mux $flatten\u_alu.$procmux$445.
-    dead port 2/2 on $mux $flatten\u_alu.$procmux$445.
-    dead port 1/2 on $mux $flatten\u_alu.$procmux$447.
-    dead port 2/2 on $mux $flatten\u_alu.$procmux$447.
-    dead port 1/2 on $mux $flatten\u_alu.$procmux$471.
-    dead port 2/2 on $mux $flatten\u_alu.$procmux$471.
-    dead port 1/2 on $mux $flatten\u_alu.$procmux$473.
-    dead port 2/2 on $mux $flatten\u_alu.$procmux$473.
-    dead port 1/2 on $mux $flatten\u_alu.$procmux$497.
-    dead port 2/2 on $mux $flatten\u_alu.$procmux$497.
-    dead port 1/2 on $mux $flatten\u_alu.$procmux$499.
-    dead port 2/2 on $mux $flatten\u_alu.$procmux$499.
-    dead port 1/2 on $mux $flatten\u_alu.$procmux$523.
-    dead port 2/2 on $mux $flatten\u_alu.$procmux$523.
-    dead port 1/2 on $mux $flatten\u_alu.$procmux$525.
-    dead port 2/2 on $mux $flatten\u_alu.$procmux$525.
-    dead port 2/2 on $mux $flatten\u_alu.$procmux$553.
-    dead port 2/2 on $mux $flatten\u_alu.$procmux$555.
-    dead port 2/2 on $mux $flatten\u_alu.$procmux$583.
-    dead port 2/2 on $mux $flatten\u_alu.$procmux$585.
-    dead port 1/2 on $mux $flatten\u_alu.$procmux$611.
-    dead port 2/2 on $mux $flatten\u_alu.$procmux$611.
-    dead port 1/2 on $mux $flatten\u_alu.$procmux$613.
-    dead port 2/2 on $mux $flatten\u_alu.$procmux$613.
-    dead port 1/2 on $mux $flatten\u_alu.$procmux$615.
-    dead port 2/2 on $mux $flatten\u_alu.$procmux$615.
-    dead port 1/2 on $mux $flatten\u_alu.$procmux$640.
-    dead port 2/2 on $mux $flatten\u_alu.$procmux$640.
-    dead port 1/2 on $mux $flatten\u_alu.$procmux$642.
-    dead port 2/2 on $mux $flatten\u_alu.$procmux$642.
-    dead port 2/2 on $mux $flatten\u_alu.$procmux$669.
-    dead port 2/2 on $mux $flatten\u_alu.$procmux$696.
-    dead port 2/2 on $mux $flatten\u_alu.$procmux$723.
-    dead port 2/2 on $mux $flatten\u_alu.$procmux$750.
-    dead port 1/2 on $mux $flatten\u_alu.$procmux$775.
-    dead port 2/2 on $mux $flatten\u_alu.$procmux$775.
-    dead port 1/2 on $mux $flatten\u_alu.$procmux$777.
-    dead port 2/2 on $mux $flatten\u_alu.$procmux$777.
-    dead port 1/2 on $mux $flatten\u_alu.$procmux$802.
-    dead port 2/2 on $mux $flatten\u_alu.$procmux$802.
-    dead port 1/2 on $mux $flatten\u_alu.$procmux$804.
-    dead port 2/2 on $mux $flatten\u_alu.$procmux$804.
-    dead port 1/2 on $mux $flatten\u_alu.$procmux$829.
-    dead port 2/2 on $mux $flatten\u_alu.$procmux$829.
-    dead port 1/2 on $mux $flatten\u_alu.$procmux$831.
-    dead port 2/2 on $mux $flatten\u_alu.$procmux$831.
-    dead port 1/2 on $mux $flatten\u_alu.$procmux$856.
-    dead port 2/2 on $mux $flatten\u_alu.$procmux$856.
-    dead port 1/2 on $mux $flatten\u_alu.$procmux$858.
-    dead port 2/2 on $mux $flatten\u_alu.$procmux$858.
-    dead port 1/2 on $mux $flatten\u_alu.$procmux$883.
-    dead port 2/2 on $mux $flatten\u_alu.$procmux$883.
-    dead port 1/2 on $mux $flatten\u_alu.$procmux$885.
-    dead port 2/2 on $mux $flatten\u_alu.$procmux$885.
-    dead port 1/2 on $mux $flatten\u_alu.$procmux$910.
-    dead port 2/2 on $mux $flatten\u_alu.$procmux$910.
-    dead port 1/2 on $mux $flatten\u_alu.$procmux$912.
-    dead port 2/2 on $mux $flatten\u_alu.$procmux$912.
-    dead port 1/2 on $mux $flatten\u_alu.$procmux$1008.
-    dead port 2/2 on $mux $flatten\u_alu.$procmux$1008.
-    dead port 1/2 on $mux $flatten\u_alu.$procmux$1032.
-    dead port 2/2 on $mux $flatten\u_alu.$procmux$1032.
-    dead port 1/2 on $mux $flatten\u_alu.$procmux$1056.
-    dead port 2/2 on $mux $flatten\u_alu.$procmux$1056.
-    dead port 1/2 on $mux $flatten\u_alu.$procmux$1080.
-    dead port 2/2 on $mux $flatten\u_alu.$procmux$1080.
-    dead port 1/3 on $pmux $flatten\u_alu.$procmux$1103.
-    dead port 2/3 on $pmux $flatten\u_alu.$procmux$1103.
-    dead port 3/3 on $pmux $flatten\u_alu.$procmux$1103.
-    dead port 1/2 on $mux $flatten\u_alu.$procmux$1128.
-    dead port 2/2 on $mux $flatten\u_alu.$procmux$1128.
-    dead port 1/2 on $mux $flatten\u_alu.$procmux$1152.
-    dead port 2/2 on $mux $flatten\u_alu.$procmux$1152.
-    dead port 1/4 on $pmux $flatten\u_alu.$procmux$1267.
-    dead port 2/4 on $pmux $flatten\u_alu.$procmux$1267.
-    dead port 3/4 on $pmux $flatten\u_alu.$procmux$1267.
-    dead port 4/4 on $pmux $flatten\u_alu.$procmux$1267.
-    dead port 1/2 on $mux $flatten\u_alu.$procmux$1292.
-    dead port 2/2 on $mux $flatten\u_alu.$procmux$1292.
-    dead port 1/2 on $mux $flatten\u_alu.$procmux$1315.
-    dead port 2/2 on $mux $flatten\u_alu.$procmux$1315.
-    dead port 1/2 on $mux $flatten\u_alu.$procmux$1338.
-    dead port 2/2 on $mux $flatten\u_alu.$procmux$1338.
-    dead port 1/2 on $mux $flatten\u_alu.$procmux$1361.
-    dead port 2/2 on $mux $flatten\u_alu.$procmux$1361.
+    dead port 1/2 on $mux $flatten\u_control.$procmux$2419.
+    dead port 2/2 on $mux $flatten\u_control.$procmux$2422.
+    dead port 1/2 on $mux $flatten\u_control.$procmux$2428.
+    dead port 2/2 on $mux $flatten\u_control.$procmux$2431.
+    dead port 1/2 on $mux $flatten\u_control.$procmux$2437.
+    dead port 2/2 on $mux $flatten\u_control.$procmux$2440.
+    dead port 1/2 on $mux $flatten\u_control.$procmux$2446.
+    dead port 2/2 on $mux $flatten\u_control.$procmux$2449.
+    dead port 1/2 on $mux $flatten\u_control.$procmux$2455.
+    dead port 2/2 on $mux $flatten\u_control.$procmux$2458.
+    dead port 1/2 on $mux $flatten\u_control.$procmux$2464.
+    dead port 2/2 on $mux $flatten\u_control.$procmux$2467.
+    dead port 1/2 on $mux $flatten\u_control.$procmux$2473.
+    dead port 2/2 on $mux $flatten\u_control.$procmux$2476.
+    dead port 1/2 on $mux $flatten\u_control.$procmux$2482.
+    dead port 2/2 on $mux $flatten\u_control.$procmux$2485.
+    dead port 1/2 on $mux $flatten\u_control.$procmux$2491.
+    dead port 2/2 on $mux $flatten\u_control.$procmux$2494.
+    dead port 1/2 on $mux $flatten\u_control.$procmux$2500.
+    dead port 2/2 on $mux $flatten\u_control.$procmux$2503.
+    dead port 1/2 on $mux $flatten\u_control.$procmux$2509.
+    dead port 2/2 on $mux $flatten\u_control.$procmux$2512.
+    dead port 2/2 on $mux $flatten\u_control.$procmux$2518.
+    dead port 2/2 on $mux $flatten\u_control.$procmux$2521.
+    dead port 2/2 on $mux $flatten\u_control.$procmux$2527.
+    dead port 2/2 on $mux $flatten\u_control.$procmux$2530.
+    dead port 2/2 on $mux $flatten\u_control.$procmux$2536.
+    dead port 2/2 on $mux $flatten\u_control.$procmux$2542.
+    dead port 2/2 on $mux $flatten\u_control.$procmux$2548.
+    dead port 2/2 on $mux $flatten\u_control.$procmux$2554.
+    dead port 2/2 on $mux $flatten\u_control.$procmux$2560.
+    dead port 2/2 on $mux $flatten\u_control.$procmux$2566.
+    dead port 2/2 on $mux $flatten\u_control.$procmux$2572.
+    dead port 2/2 on $mux $flatten\u_control.$procmux$2578.
+    dead port 2/2 on $mux $flatten\u_control.$procmux$2584.
+    dead port 2/2 on $mux $flatten\u_control.$procmux$2590.
+    dead port 2/2 on $mux $flatten\u_control.$procmux$2596.
+    dead port 2/2 on $mux $flatten\u_control.$procmux$2602.
+    dead port 2/2 on $mux $flatten\u_control.$procmux$2608.
+    dead port 2/2 on $mux $flatten\u_control.$procmux$2614.
+    dead port 1/2 on $mux $flatten\u_control.$procmux$2622.
+    dead port 1/2 on $mux $flatten\u_control.$procmux$2630.
+    dead port 1/2 on $mux $flatten\u_control.$procmux$2637.
+    dead port 1/2 on $mux $flatten\u_control.$procmux$2644.
+    dead port 2/2 on $mux $flatten\u_alu.$procmux$400.
+    dead port 2/2 on $mux $flatten\u_alu.$procmux$402.
+    dead port 2/2 on $mux $flatten\u_alu.$procmux$428.
+    dead port 1/2 on $mux $flatten\u_alu.$procmux$452.
+    dead port 2/2 on $mux $flatten\u_alu.$procmux$452.
+    dead port 1/2 on $mux $flatten\u_alu.$procmux$454.
+    dead port 2/2 on $mux $flatten\u_alu.$procmux$454.
+    dead port 1/2 on $mux $flatten\u_alu.$procmux$478.
+    dead port 2/2 on $mux $flatten\u_alu.$procmux$478.
+    dead port 1/2 on $mux $flatten\u_alu.$procmux$480.
+    dead port 2/2 on $mux $flatten\u_alu.$procmux$480.
+    dead port 1/2 on $mux $flatten\u_alu.$procmux$504.
+    dead port 2/2 on $mux $flatten\u_alu.$procmux$504.
+    dead port 1/2 on $mux $flatten\u_alu.$procmux$506.
+    dead port 2/2 on $mux $flatten\u_alu.$procmux$506.
+    dead port 1/2 on $mux $flatten\u_alu.$procmux$530.
+    dead port 2/2 on $mux $flatten\u_alu.$procmux$530.
+    dead port 1/2 on $mux $flatten\u_alu.$procmux$532.
+    dead port 2/2 on $mux $flatten\u_alu.$procmux$532.
+    dead port 2/2 on $mux $flatten\u_alu.$procmux$560.
+    dead port 2/2 on $mux $flatten\u_alu.$procmux$562.
+    dead port 2/2 on $mux $flatten\u_alu.$procmux$590.
+    dead port 2/2 on $mux $flatten\u_alu.$procmux$592.
+    dead port 1/2 on $mux $flatten\u_alu.$procmux$618.
+    dead port 2/2 on $mux $flatten\u_alu.$procmux$618.
+    dead port 1/2 on $mux $flatten\u_alu.$procmux$620.
+    dead port 2/2 on $mux $flatten\u_alu.$procmux$620.
+    dead port 1/2 on $mux $flatten\u_alu.$procmux$622.
+    dead port 2/2 on $mux $flatten\u_alu.$procmux$622.
+    dead port 1/2 on $mux $flatten\u_alu.$procmux$647.
+    dead port 2/2 on $mux $flatten\u_alu.$procmux$647.
+    dead port 1/2 on $mux $flatten\u_alu.$procmux$649.
+    dead port 2/2 on $mux $flatten\u_alu.$procmux$649.
+    dead port 2/2 on $mux $flatten\u_alu.$procmux$676.
+    dead port 2/2 on $mux $flatten\u_alu.$procmux$703.
+    dead port 2/2 on $mux $flatten\u_alu.$procmux$730.
+    dead port 2/2 on $mux $flatten\u_alu.$procmux$757.
+    dead port 1/2 on $mux $flatten\u_alu.$procmux$782.
+    dead port 2/2 on $mux $flatten\u_alu.$procmux$782.
+    dead port 1/2 on $mux $flatten\u_alu.$procmux$784.
+    dead port 2/2 on $mux $flatten\u_alu.$procmux$784.
+    dead port 1/2 on $mux $flatten\u_alu.$procmux$809.
+    dead port 2/2 on $mux $flatten\u_alu.$procmux$809.
+    dead port 1/2 on $mux $flatten\u_alu.$procmux$811.
+    dead port 2/2 on $mux $flatten\u_alu.$procmux$811.
+    dead port 1/2 on $mux $flatten\u_alu.$procmux$836.
+    dead port 2/2 on $mux $flatten\u_alu.$procmux$836.
+    dead port 1/2 on $mux $flatten\u_alu.$procmux$838.
+    dead port 2/2 on $mux $flatten\u_alu.$procmux$838.
+    dead port 1/2 on $mux $flatten\u_alu.$procmux$863.
+    dead port 2/2 on $mux $flatten\u_alu.$procmux$863.
+    dead port 1/2 on $mux $flatten\u_alu.$procmux$865.
+    dead port 2/2 on $mux $flatten\u_alu.$procmux$865.
+    dead port 1/2 on $mux $flatten\u_alu.$procmux$890.
+    dead port 2/2 on $mux $flatten\u_alu.$procmux$890.
+    dead port 1/2 on $mux $flatten\u_alu.$procmux$892.
+    dead port 2/2 on $mux $flatten\u_alu.$procmux$892.
+    dead port 1/2 on $mux $flatten\u_alu.$procmux$917.
+    dead port 2/2 on $mux $flatten\u_alu.$procmux$917.
+    dead port 1/2 on $mux $flatten\u_alu.$procmux$919.
+    dead port 2/2 on $mux $flatten\u_alu.$procmux$919.
+    dead port 1/2 on $mux $flatten\u_alu.$procmux$1015.
+    dead port 2/2 on $mux $flatten\u_alu.$procmux$1015.
+    dead port 1/2 on $mux $flatten\u_alu.$procmux$1039.
+    dead port 2/2 on $mux $flatten\u_alu.$procmux$1039.
+    dead port 1/2 on $mux $flatten\u_alu.$procmux$1063.
+    dead port 2/2 on $mux $flatten\u_alu.$procmux$1063.
+    dead port 1/2 on $mux $flatten\u_alu.$procmux$1087.
+    dead port 2/2 on $mux $flatten\u_alu.$procmux$1087.
+    dead port 1/3 on $pmux $flatten\u_alu.$procmux$1110.
+    dead port 2/3 on $pmux $flatten\u_alu.$procmux$1110.
+    dead port 3/3 on $pmux $flatten\u_alu.$procmux$1110.
+    dead port 1/2 on $mux $flatten\u_alu.$procmux$1135.
+    dead port 2/2 on $mux $flatten\u_alu.$procmux$1135.
+    dead port 1/2 on $mux $flatten\u_alu.$procmux$1159.
+    dead port 2/2 on $mux $flatten\u_alu.$procmux$1159.
+    dead port 1/4 on $pmux $flatten\u_alu.$procmux$1274.
+    dead port 2/4 on $pmux $flatten\u_alu.$procmux$1274.
+    dead port 3/4 on $pmux $flatten\u_alu.$procmux$1274.
+    dead port 4/4 on $pmux $flatten\u_alu.$procmux$1274.
+    dead port 1/2 on $mux $flatten\u_alu.$procmux$1299.
+    dead port 2/2 on $mux $flatten\u_alu.$procmux$1299.
+    dead port 1/2 on $mux $flatten\u_alu.$procmux$1322.
+    dead port 2/2 on $mux $flatten\u_alu.$procmux$1322.
+    dead port 1/2 on $mux $flatten\u_alu.$procmux$1345.
+    dead port 2/2 on $mux $flatten\u_alu.$procmux$1345.
+    dead port 1/2 on $mux $flatten\u_alu.$procmux$1368.
+    dead port 2/2 on $mux $flatten\u_alu.$procmux$1368.
 Removed 132 multiplexer ports.
-<suppressed ~80 debug messages>
+<suppressed ~83 debug messages>
 
 11.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
   Optimizing cells in module \m6502.
-    New ctrl vector for $pmux cell $flatten\u_control.$procmux$2585: { $flatten\u_control.$procmux$2580_CTRL $auto$opt_reduce.cc:134:opt_pmux$2684 }
-    New ctrl vector for $pmux cell $flatten\u_control.\u_plan.$procmux$2180: { $auto$opt_reduce.cc:134:opt_pmux$2690 $auto$opt_reduce.cc:134:opt_pmux$2688 $auto$opt_reduce.cc:134:opt_pmux$2686 }
-    New ctrl vector for $pmux cell $flatten\u_control.\u_plan.$procmux$2129: { $auto$opt_reduce.cc:134:opt_pmux$2696 $auto$opt_reduce.cc:134:opt_pmux$2694 $auto$opt_reduce.cc:134:opt_pmux$2692 }
-    New ctrl vector for $pmux cell $flatten\u_control.\u_plan.$procmux$2039: { $auto$opt_reduce.cc:134:opt_pmux$2704 $auto$opt_reduce.cc:134:opt_pmux$2702 $auto$opt_reduce.cc:134:opt_pmux$2700 $auto$opt_reduce.cc:134:opt_pmux$2698 }
-    New ctrl vector for $pmux cell $flatten\u_regs.$procmux$218: { $auto$opt_reduce.cc:134:opt_pmux$2706 $flatten\u_regs.$procmux$200_CMP }
-    New ctrl vector for $pmux cell $flatten\u_regs.$procmux$225: { $flatten\u_regs.$procmux$200_CMP $flatten\u_regs.$procmux$228_CMP $auto$opt_reduce.cc:134:opt_pmux$2710 $auto$opt_reduce.cc:134:opt_pmux$2708 }
-    New ctrl vector for $pmux cell $flatten\u_control.\u_plan.$procmux$1969: { $auto$opt_reduce.cc:134:opt_pmux$2734 $auto$opt_reduce.cc:134:opt_pmux$2732 $auto$opt_reduce.cc:134:opt_pmux$2730 $auto$opt_reduce.cc:134:opt_pmux$2728 $auto$opt_reduce.cc:134:opt_pmux$2726 $auto$opt_reduce.cc:134:opt_pmux$2724 $auto$opt_reduce.cc:134:opt_pmux$2722 $auto$opt_reduce.cc:134:opt_pmux$2720 $auto$opt_reduce.cc:134:opt_pmux$2718 $flatten\u_control.\u_plan.$procmux$1985_CMP $auto$opt_reduce.cc:134:opt_pmux$2716 $auto$opt_reduce.cc:134:opt_pmux$2714 $auto$opt_reduce.cc:134:opt_pmux$2712 $flatten\u_control.\u_plan.$procmux$2131_CMP }
-    New ctrl vector for $pmux cell $flatten\u_alu.$procmux$921: $auto$opt_reduce.cc:134:opt_pmux$2736
-    New ctrl vector for $pmux cell $flatten\u_alu.$procmux$940: $auto$opt_reduce.cc:134:opt_pmux$2738
-    New ctrl vector for $pmux cell $flatten\u_control.\u_plan.$procmux$1945: { $auto$opt_reduce.cc:134:opt_pmux$2742 $auto$opt_reduce.cc:134:opt_pmux$2740 }
-    New ctrl vector for $pmux cell $flatten\u_regs.$procmux$244: { $flatten\u_regs.$procmux$249_CMP $auto$opt_reduce.cc:134:opt_pmux$2744 }
-    New ctrl vector for $pmux cell $flatten\u_alu.$procmux$956: $auto$opt_reduce.cc:134:opt_pmux$2746
-    New ctrl vector for $pmux cell $flatten\u_alu.$procmux$971: $auto$opt_reduce.cc:134:opt_pmux$2748
-    New ctrl vector for $pmux cell $flatten\u_regs.$procmux$254: { $flatten\u_regs.$procmux$263_CMP $auto$opt_reduce.cc:134:opt_pmux$2754 $flatten\u_regs.$procmux$248_CMP $flatten\u_regs.$procmux$228_CMP $auto$opt_reduce.cc:134:opt_pmux$2752 $auto$opt_reduce.cc:134:opt_pmux$2750 }
-    New ctrl vector for $pmux cell $flatten\u_control.\u_plan.$procmux$1913: { $auto$opt_reduce.cc:134:opt_pmux$2764 $auto$opt_reduce.cc:134:opt_pmux$2762 $auto$opt_reduce.cc:134:opt_pmux$2760 $auto$opt_reduce.cc:134:opt_pmux$2758 $auto$opt_reduce.cc:134:opt_pmux$2756 }
-    New ctrl vector for $pmux cell $flatten\u_alu.$procmux$1161: { $flatten\u_alu.$procmux$556_CMP $flatten\u_alu.$procmux$396_CMP $flatten\u_alu.$procmux$928_CMP $auto$opt_reduce.cc:134:opt_pmux$2768 $auto$opt_reduce.cc:134:opt_pmux$2766 $flatten\u_alu.$procmux$923_CMP $flatten\u_alu.$procmux$922_CMP }
-    New ctrl vector for $pmux cell $flatten\u_regs.$procmux$296: { $flatten\u_regs.$procmux$302_CMP $flatten\u_regs.$procmux$300_CMP $flatten\u_regs.$procmux$299_CMP $auto$opt_reduce.cc:134:opt_pmux$2770 $flatten\u_regs.$procmux$297_CMP }
-    New ctrl vector for $pmux cell $flatten\u_control.\u_plan.$procmux$1872: $auto$opt_reduce.cc:134:opt_pmux$2772
-    New ctrl vector for $pmux cell $flatten\u_alu.$procmux$1187: { $flatten\u_alu.$procmux$556_CMP $flatten\u_alu.$procmux$396_CMP $flatten\u_alu.$procmux$952_CMP $flatten\u_alu.$procmux$951_CMP $flatten\u_alu.$procmux$950_CMP $flatten\u_alu.$procmux$928_CMP $flatten\u_alu.$procmux$926_CMP $auto$opt_reduce.cc:134:opt_pmux$2776 $flatten\u_alu.$procmux$924_CMP $flatten\u_alu.$procmux$943_CMP $flatten\u_alu.$procmux$942_CMP $auto$opt_reduce.cc:134:opt_pmux$2774 }
-    New ctrl vector for $pmux cell $flatten\u_alu.$procmux$1211: { $flatten\u_alu.$procmux$556_CMP $flatten\u_alu.$procmux$396_CMP $flatten\u_alu.$procmux$951_CMP $flatten\u_alu.$procmux$950_CMP $flatten\u_alu.$procmux$928_CMP $auto$opt_reduce.cc:134:opt_pmux$2778 $flatten\u_alu.$procmux$927_CMP $flatten\u_alu.$procmux$926_CMP $flatten\u_alu.$procmux$925_CMP $flatten\u_alu.$procmux$924_CMP $flatten\u_alu.$procmux$943_CMP $flatten\u_alu.$procmux$942_CMP $flatten\u_alu.$procmux$941_CMP }
-    New ctrl vector for $pmux cell $flatten\u_control.\u_plan.$procmux$1823: $auto$opt_reduce.cc:134:opt_pmux$2780
-    New ctrl vector for $pmux cell $flatten\u_alu.$procmux$1235: { $flatten\u_alu.$procmux$556_CMP $flatten\u_alu.$procmux$396_CMP $flatten\u_alu.$procmux$951_CMP $flatten\u_alu.$procmux$950_CMP $flatten\u_alu.$procmux$928_CMP $auto$opt_reduce.cc:134:opt_pmux$2782 $flatten\u_alu.$procmux$927_CMP $flatten\u_alu.$procmux$926_CMP $flatten\u_alu.$procmux$925_CMP $flatten\u_alu.$procmux$924_CMP $flatten\u_alu.$procmux$943_CMP $flatten\u_alu.$procmux$942_CMP $flatten\u_alu.$procmux$941_CMP }
-    New ctrl vector for $pmux cell $flatten\u_control.\u_plan.$procmux$1803: $auto$opt_reduce.cc:134:opt_pmux$2784
-    New ctrl vector for $pmux cell $flatten\u_control.\u_plan.$procmux$1750: $auto$opt_reduce.cc:134:opt_pmux$2786
-    New ctrl vector for $pmux cell $flatten\u_alu.$procmux$1372: $auto$opt_reduce.cc:134:opt_pmux$2788
-    New ctrl vector for $pmux cell $flatten\u_control.\u_plan.$procmux$1691: $auto$opt_reduce.cc:134:opt_pmux$2790
-    New ctrl vector for $pmux cell $flatten\u_control.\u_plan.$procmux$1611: $auto$opt_reduce.cc:134:opt_pmux$2792
-    New ctrl vector for $pmux cell $flatten\u_control.\u_plan.$procmux$1556: $auto$opt_reduce.cc:134:opt_pmux$2794
-    New ctrl vector for $pmux cell $flatten\u_control.\u_plan.$procmux$1519: $auto$opt_reduce.cc:134:opt_pmux$2796
-    New ctrl vector for $pmux cell $flatten\u_control.\u_plan.$procmux$1493: $auto$opt_reduce.cc:134:opt_pmux$2798
-    New ctrl vector for $pmux cell $flatten\u_alu.$procmux$1390: $auto$opt_reduce.cc:134:opt_pmux$2800
-    New ctrl vector for $pmux cell $flatten\u_alu.$procmux$1396: $auto$opt_reduce.cc:134:opt_pmux$2802
-    New ctrl vector for $pmux cell $flatten\u_control.\u_plan.$procmux$1476: $auto$opt_reduce.cc:134:opt_pmux$2804
+    New ctrl vector for $pmux cell $flatten\u_control.$procmux$2626: { $flatten\u_control.$procmux$2621_CTRL $auto$opt_reduce.cc:134:opt_pmux$2727 }
+    New ctrl vector for $pmux cell $flatten\u_control.\u_plan.$procmux$2187: { $auto$opt_reduce.cc:134:opt_pmux$2733 $auto$opt_reduce.cc:134:opt_pmux$2731 $auto$opt_reduce.cc:134:opt_pmux$2729 }
+    New ctrl vector for $pmux cell $flatten\u_control.\u_plan.$procmux$2136: { $auto$opt_reduce.cc:134:opt_pmux$2739 $auto$opt_reduce.cc:134:opt_pmux$2737 $auto$opt_reduce.cc:134:opt_pmux$2735 }
+    New ctrl vector for $pmux cell $flatten\u_control.\u_plan.$procmux$2046: { $auto$opt_reduce.cc:134:opt_pmux$2747 $auto$opt_reduce.cc:134:opt_pmux$2745 $auto$opt_reduce.cc:134:opt_pmux$2743 $auto$opt_reduce.cc:134:opt_pmux$2741 }
+    New ctrl vector for $pmux cell $flatten\u_regs.$procmux$225: { $auto$opt_reduce.cc:134:opt_pmux$2749 $flatten\u_regs.$procmux$207_CMP }
+    New ctrl vector for $pmux cell $flatten\u_regs.$procmux$232: { $flatten\u_regs.$procmux$207_CMP $flatten\u_regs.$procmux$235_CMP $auto$opt_reduce.cc:134:opt_pmux$2753 $auto$opt_reduce.cc:134:opt_pmux$2751 }
+    New ctrl vector for $pmux cell $flatten\u_control.\u_plan.$procmux$1976: { $auto$opt_reduce.cc:134:opt_pmux$2777 $auto$opt_reduce.cc:134:opt_pmux$2775 $auto$opt_reduce.cc:134:opt_pmux$2773 $auto$opt_reduce.cc:134:opt_pmux$2771 $auto$opt_reduce.cc:134:opt_pmux$2769 $auto$opt_reduce.cc:134:opt_pmux$2767 $auto$opt_reduce.cc:134:opt_pmux$2765 $auto$opt_reduce.cc:134:opt_pmux$2763 $auto$opt_reduce.cc:134:opt_pmux$2761 $flatten\u_control.\u_plan.$procmux$1992_CMP $auto$opt_reduce.cc:134:opt_pmux$2759 $auto$opt_reduce.cc:134:opt_pmux$2757 $auto$opt_reduce.cc:134:opt_pmux$2755 $flatten\u_control.\u_plan.$procmux$2138_CMP }
+    New ctrl vector for $pmux cell $flatten\u_alu.$procmux$928: $auto$opt_reduce.cc:134:opt_pmux$2779
+    New ctrl vector for $pmux cell $flatten\u_alu.$procmux$947: $auto$opt_reduce.cc:134:opt_pmux$2781
+    New ctrl vector for $pmux cell $flatten\u_control.\u_plan.$procmux$1952: { $auto$opt_reduce.cc:134:opt_pmux$2785 $auto$opt_reduce.cc:134:opt_pmux$2783 }
+    New ctrl vector for $pmux cell $flatten\u_regs.$procmux$251: { $flatten\u_regs.$procmux$256_CMP $auto$opt_reduce.cc:134:opt_pmux$2787 }
+    New ctrl vector for $pmux cell $flatten\u_alu.$procmux$963: $auto$opt_reduce.cc:134:opt_pmux$2789
+    New ctrl vector for $pmux cell $flatten\u_alu.$procmux$978: $auto$opt_reduce.cc:134:opt_pmux$2791
+    New ctrl vector for $pmux cell $flatten\u_regs.$procmux$261: { $flatten\u_regs.$procmux$270_CMP $auto$opt_reduce.cc:134:opt_pmux$2797 $flatten\u_regs.$procmux$255_CMP $flatten\u_regs.$procmux$235_CMP $auto$opt_reduce.cc:134:opt_pmux$2795 $auto$opt_reduce.cc:134:opt_pmux$2793 }
+    New ctrl vector for $pmux cell $flatten\u_control.\u_plan.$procmux$1920: { $auto$opt_reduce.cc:134:opt_pmux$2807 $auto$opt_reduce.cc:134:opt_pmux$2805 $auto$opt_reduce.cc:134:opt_pmux$2803 $auto$opt_reduce.cc:134:opt_pmux$2801 $auto$opt_reduce.cc:134:opt_pmux$2799 }
+    New ctrl vector for $pmux cell $flatten\u_alu.$procmux$1168: { $flatten\u_alu.$procmux$563_CMP $flatten\u_alu.$procmux$403_CMP $flatten\u_alu.$procmux$935_CMP $auto$opt_reduce.cc:134:opt_pmux$2811 $auto$opt_reduce.cc:134:opt_pmux$2809 $flatten\u_alu.$procmux$930_CMP $flatten\u_alu.$procmux$929_CMP }
+    New ctrl vector for $pmux cell $flatten\u_regs.$procmux$303: { $flatten\u_regs.$procmux$309_CMP $flatten\u_regs.$procmux$307_CMP $flatten\u_regs.$procmux$306_CMP $auto$opt_reduce.cc:134:opt_pmux$2813 $flatten\u_regs.$procmux$304_CMP }
+    New ctrl vector for $pmux cell $flatten\u_control.\u_plan.$procmux$1879: $auto$opt_reduce.cc:134:opt_pmux$2815
+    New ctrl vector for $pmux cell $flatten\u_alu.$procmux$1194: { $flatten\u_alu.$procmux$563_CMP $flatten\u_alu.$procmux$403_CMP $flatten\u_alu.$procmux$959_CMP $flatten\u_alu.$procmux$958_CMP $flatten\u_alu.$procmux$957_CMP $flatten\u_alu.$procmux$935_CMP $flatten\u_alu.$procmux$933_CMP $auto$opt_reduce.cc:134:opt_pmux$2819 $flatten\u_alu.$procmux$931_CMP $flatten\u_alu.$procmux$950_CMP $flatten\u_alu.$procmux$949_CMP $auto$opt_reduce.cc:134:opt_pmux$2817 }
+    New ctrl vector for $pmux cell $flatten\u_alu.$procmux$1218: { $flatten\u_alu.$procmux$563_CMP $flatten\u_alu.$procmux$403_CMP $flatten\u_alu.$procmux$958_CMP $flatten\u_alu.$procmux$957_CMP $flatten\u_alu.$procmux$935_CMP $auto$opt_reduce.cc:134:opt_pmux$2821 $flatten\u_alu.$procmux$934_CMP $flatten\u_alu.$procmux$933_CMP $flatten\u_alu.$procmux$932_CMP $flatten\u_alu.$procmux$931_CMP $flatten\u_alu.$procmux$950_CMP $flatten\u_alu.$procmux$949_CMP $flatten\u_alu.$procmux$948_CMP }
+    New ctrl vector for $pmux cell $flatten\u_alu.$procmux$1242: { $flatten\u_alu.$procmux$563_CMP $flatten\u_alu.$procmux$403_CMP $flatten\u_alu.$procmux$958_CMP $flatten\u_alu.$procmux$957_CMP $flatten\u_alu.$procmux$935_CMP $auto$opt_reduce.cc:134:opt_pmux$2823 $flatten\u_alu.$procmux$934_CMP $flatten\u_alu.$procmux$933_CMP $flatten\u_alu.$procmux$932_CMP $flatten\u_alu.$procmux$931_CMP $flatten\u_alu.$procmux$950_CMP $flatten\u_alu.$procmux$949_CMP $flatten\u_alu.$procmux$948_CMP }
+    New ctrl vector for $pmux cell $flatten\u_control.\u_plan.$procmux$1830: $auto$opt_reduce.cc:134:opt_pmux$2825
+    New ctrl vector for $pmux cell $flatten\u_control.\u_plan.$procmux$1810: $auto$opt_reduce.cc:134:opt_pmux$2827
+    New ctrl vector for $pmux cell $flatten\u_control.\u_plan.$procmux$1757: $auto$opt_reduce.cc:134:opt_pmux$2829
+    New ctrl vector for $pmux cell $flatten\u_alu.$procmux$1379: $auto$opt_reduce.cc:134:opt_pmux$2831
+    New ctrl vector for $pmux cell $flatten\u_control.\u_plan.$procmux$1698: $auto$opt_reduce.cc:134:opt_pmux$2833
+    New ctrl vector for $pmux cell $flatten\u_control.\u_plan.$procmux$1618: $auto$opt_reduce.cc:134:opt_pmux$2835
+    New ctrl vector for $pmux cell $flatten\u_control.\u_plan.$procmux$1563: $auto$opt_reduce.cc:134:opt_pmux$2837
+    New ctrl vector for $pmux cell $flatten\u_control.\u_plan.$procmux$1526: $auto$opt_reduce.cc:134:opt_pmux$2839
+    New ctrl vector for $pmux cell $flatten\u_alu.$procmux$1397: $auto$opt_reduce.cc:134:opt_pmux$2841
+    New ctrl vector for $pmux cell $flatten\u_control.\u_plan.$procmux$1500: $auto$opt_reduce.cc:134:opt_pmux$2843
+    New ctrl vector for $pmux cell $flatten\u_alu.$procmux$1403: $auto$opt_reduce.cc:134:opt_pmux$2845
+    New ctrl vector for $pmux cell $flatten\u_control.\u_plan.$procmux$1483: $auto$opt_reduce.cc:134:opt_pmux$2847
   Optimizing cells in module \m6502.
 Performed a total of 33 changes.
 
@@ -660,69 +666,71 @@ Finding identical cells in module `\m6502'.
 Removed a total of 8 cells.
 
 11.6. Executing OPT_DFF pass (perform DFF optimizations).
-Adding SRST signal on $flatten\u_timing.$procdff$2669 ($dff) from module m6502 (D = $flatten\u_timing.$procmux$1414_Y, Q = \u_timing.rs_r, rval = 4'0000).
-Adding EN signal on $auto$ff.cc:266:slice$2805 ($sdff) from module m6502 (D = $flatten\u_timing.$add$rtl/control/m6502_timing.v:36$96_Y, Q = \u_timing.rs_r).
-Adding SRST signal on $flatten\u_timing.$procdff$2668 ($dff) from module m6502 (D = $flatten\u_timing.$procmux$1419_Y, Q = \u_timing.t_r, rval = 3'000).
-Adding EN signal on $auto$ff.cc:266:slice$2807 ($sdff) from module m6502 (D = $flatten\u_timing.$ternary$rtl/control/m6502_timing.v:39$98_Y, Q = \u_timing.t_r).
-Adding SRST signal on $flatten\u_regs.$procdff$2660 ($dff) from module m6502 (D = $flatten\u_regs.$procmux$273_Y, Q = \u_regs.br_sign, rval = 1'0).
-Adding EN signal on $auto$ff.cc:266:slice$2811 ($sdff) from module m6502 (D = \u_regs.d_in [7], Q = \u_regs.br_sign).
-Adding SRST signal on $flatten\u_regs.$procdff$2659 ($dff) from module m6502 (D = $flatten\u_regs.$procmux$225_Y, Q = \u_regs.carry_q, rval = 1'0).
-Adding EN signal on $auto$ff.cc:266:slice$2813 ($sdff) from module m6502 (D = $flatten\u_regs.$procmux$225_Y, Q = \u_regs.carry_q).
-Adding SRST signal on $flatten\u_regs.$procdff$2658 ($dff) from module m6502 (D = $flatten\u_regs.$procmux$239_Y, Q = \u_regs.pl, rval = 8'00000000).
-Adding EN signal on $auto$ff.cc:266:slice$2817 ($sdff) from module m6502 (D = \u_regs.d_in, Q = \u_regs.pl).
-Adding SRST signal on $flatten\u_regs.$procdff$2657 ($dff) from module m6502 (D = $flatten\u_regs.$procmux$244_Y, Q = \u_regs.adh, rval = 8'00000000).
-Adding EN signal on $auto$ff.cc:266:slice$2819 ($sdff) from module m6502 (D = $flatten\u_regs.$procmux$244_Y, Q = \u_regs.adh).
-Adding SRST signal on $flatten\u_regs.$procdff$2656 ($dff) from module m6502 (D = $flatten\u_regs.$procmux$254_Y, Q = \u_regs.adl, rval = 8'00000000).
-Adding EN signal on $auto$ff.cc:266:slice$2823 ($sdff) from module m6502 (D = $flatten\u_regs.$procmux$254_Y, Q = \u_regs.adl).
-Adding SRST signal on $flatten\u_regs.$procdff$2655 ($dff) from module m6502 (D = { $flatten\u_regs.$procmux$198_Y $flatten\u_regs.$procmux$218_Y }, Q = \u_regs.r_pc, rval = 16'0000000000000000).
-Adding EN signal on $auto$ff.cc:266:slice$2827 ($sdff) from module m6502 (D = $flatten\u_regs.$procmux$218_Y, Q = \u_regs.r_pc [7:0]).
-Adding EN signal on $auto$ff.cc:266:slice$2827 ($sdff) from module m6502 (D = $flatten\u_regs.$procmux$198_Y, Q = \u_regs.r_pc [15:8]).
-Adding SRST signal on $flatten\u_regs.$procdff$2654 ($dff) from module m6502 (D = $flatten\u_regs.$procmux$278_Y, Q = \u_regs.y, rval = 8'00000000).
-Adding EN signal on $auto$ff.cc:266:slice$2844 ($sdff) from module m6502 (D = \u_regs.wdata, Q = \u_regs.y).
-Adding SRST signal on $flatten\u_regs.$procdff$2653 ($dff) from module m6502 (D = $flatten\u_regs.$procmux$283_Y, Q = \u_regs.x, rval = 8'00000000).
-Adding EN signal on $auto$ff.cc:266:slice$2846 ($sdff) from module m6502 (D = \u_regs.wdata, Q = \u_regs.x).
-Adding SRST signal on $flatten\u_regs.$procdff$2652 ($dff) from module m6502 (D = $flatten\u_regs.$procmux$288_Y, Q = \u_regs.s, rval = 8'00000000).
-Adding EN signal on $auto$ff.cc:266:slice$2848 ($sdff) from module m6502 (D = $flatten\u_regs.$procmux$288_Y, Q = \u_regs.s).
-Adding SRST signal on $flatten\u_control.$procdff$2682 ($dff) from module m6502 (D = $flatten\u_control.$procmux$2206_Y, Q = \u_control.s3, rval = 2'00).
-Adding EN signal on $auto$ff.cc:266:slice$2852 ($sdff) from module m6502 (D = $flatten\u_control.$procmux$2204_Y, Q = \u_control.s3).
-Adding SRST signal on $flatten\u_control.$procdff$2681 ($dff) from module m6502 (D = $flatten\u_control.$procmux$2223_Y, Q = \u_control.s2, rval = 2'00).
-Adding EN signal on $auto$ff.cc:266:slice$2856 ($sdff) from module m6502 (D = $flatten\u_control.$procmux$2221_Y, Q = \u_control.s2).
-Adding SRST signal on $flatten\u_control.$procdff$2680 ($dff) from module m6502 (D = $flatten\u_control.$procmux$2240_Y, Q = \u_control.s1, rval = 2'00).
-Adding EN signal on $auto$ff.cc:266:slice$2860 ($sdff) from module m6502 (D = $flatten\u_control.$procmux$2238_Y, Q = \u_control.s1).
-Adding SRST signal on $flatten\u_control.$procdff$2679 ($dff) from module m6502 (D = $flatten\u_control.$procmux$2253_Y, Q = \u_control.br3, rval = 1'0).
-Adding EN signal on $auto$ff.cc:266:slice$2864 ($sdff) from module m6502 (D = $flatten\u_control.$procmux$2251_Y, Q = \u_control.br3).
-Adding SRST signal on $flatten\u_control.$procdff$2678 ($dff) from module m6502 (D = $flatten\u_control.$procmux$2269_Y, Q = \u_control.so_latch, rval = 1'0).
-Adding SRST signal on $flatten\u_control.$procdff$2677 ($dff) from module m6502 (D = \u_control.so_n, Q = \u_control.so_q, rval = 1'1).
-Adding SRST signal on $flatten\u_control.$procdff$2676 ($dff) from module m6502 (D = $flatten\u_control.$and$rtl/control/m6502_control.v:137$64_Y, Q = \u_control.nmi_det_q, rval = 1'0).
-Adding SRST signal on $flatten\u_control.$procdff$2675 ($dff) from module m6502 (D = \u_control.nmi_n, Q = \u_control.nmi_q, rval = 1'1).
-Adding SRST signal on $flatten\u_control.$procdff$2674 ($dff) from module m6502 (D = $flatten\u_control.$procmux$2287_Y, Q = \u_control.nmi_latch, rval = 1'0).
-Adding SRST signal on $flatten\u_control.$procdff$2673 ($dff) from module m6502 (D = $flatten\u_control.$procmux$2301_Y, Q = \u_control.intnmi, rval = 1'0).
-Adding EN signal on $auto$ff.cc:266:slice$2877 ($sdff) from module m6502 (D = $flatten\u_control.$procmux$2294_Y, Q = \u_control.intnmi).
-Adding SRST signal on $flatten\u_control.$procdff$2672 ($dff) from module m6502 (D = $flatten\u_control.$procmux$2315_Y, Q = \u_control.intseq, rval = 1'0).
-Adding EN signal on $auto$ff.cc:266:slice$2881 ($sdff) from module m6502 (D = $flatten\u_control.$procmux$2308_Y, Q = \u_control.intseq).
-Adding SRST signal on $flatten\u_control.$procdff$2671 ($dff) from module m6502 (D = $flatten\u_control.$procmux$2328_Y, Q = \u_control.tmp_r, rval = 8'00000000).
-Adding EN signal on $auto$ff.cc:266:slice$2885 ($sdff) from module m6502 (D = \u_control.d_in, Q = \u_control.tmp_r).
-Adding SRST signal on $flatten\u_control.$procdff$2670 ($dff) from module m6502 (D = $flatten\u_control.$procmux$2342_Y, Q = \u_control.ir, rval = 8'00000000).
-Adding EN signal on $auto$ff.cc:266:slice$2891 ($sdff) from module m6502 (D = $flatten\u_control.$procmux$2335_Y, Q = \u_control.ir).
-Adding SRST signal on $flatten\u_alu.$procdff$2667 ($dff) from module m6502 (D = $flatten\u_alu.$procmux$308_Y, Q = \u_alu.fc, rval = 1'0).
-Adding EN signal on $auto$ff.cc:266:slice$2895 ($sdff) from module m6502 (D = $flatten\u_alu.$procmux$308_Y, Q = \u_alu.fc).
-Adding SRST signal on $flatten\u_alu.$procdff$2666 ($dff) from module m6502 (D = $flatten\u_alu.$procmux$318_Y, Q = \u_alu.fz, rval = 1'0).
-Adding EN signal on $auto$ff.cc:266:slice$2905 ($sdff) from module m6502 (D = $flatten\u_alu.$procmux$318_Y, Q = \u_alu.fz).
-Adding SRST signal on $flatten\u_alu.$procdff$2665 ($dff) from module m6502 (D = $flatten\u_alu.$procmux$328_Y, Q = \u_alu.fi, rval = 1'1).
-Adding EN signal on $auto$ff.cc:266:slice$2915 ($sdff) from module m6502 (D = $flatten\u_alu.$procmux$328_Y, Q = \u_alu.fi).
-Adding SRST signal on $flatten\u_alu.$procdff$2664 ($dff) from module m6502 (D = $flatten\u_alu.$procmux$338_Y, Q = \u_alu.fd, rval = 1'0).
-Adding EN signal on $auto$ff.cc:266:slice$2925 ($sdff) from module m6502 (D = $flatten\u_alu.$procmux$338_Y, Q = \u_alu.fd).
-Adding SRST signal on $flatten\u_alu.$procdff$2663 ($dff) from module m6502 (D = $flatten\u_alu.$procmux$348_Y, Q = \u_alu.fv, rval = 1'0).
-Adding EN signal on $auto$ff.cc:266:slice$2935 ($sdff) from module m6502 (D = $flatten\u_alu.$procmux$348_Y, Q = \u_alu.fv).
-Adding SRST signal on $flatten\u_alu.$procdff$2662 ($dff) from module m6502 (D = $flatten\u_alu.$procmux$358_Y, Q = \u_alu.fn, rval = 1'0).
-Adding EN signal on $auto$ff.cc:266:slice$2945 ($sdff) from module m6502 (D = $flatten\u_alu.$procmux$358_Y, Q = \u_alu.fn).
-Adding SRST signal on $flatten\u_alu.$procdff$2661 ($dff) from module m6502 (D = $flatten\u_alu.$procmux$363_Y, Q = \u_alu.a, rval = 8'00000000).
-Adding EN signal on $auto$ff.cc:266:slice$2955 ($sdff) from module m6502 (D = \u_alu.res, Q = \u_alu.a).
+Adding SRST signal on $flatten\u_timing.$procdff$2710 ($dff) from module m6502 (D = $flatten\u_timing.$procmux$1421_Y, Q = \u_timing.rs_r, rval = 4'0000).
+Adding EN signal on $auto$ff.cc:266:slice$2848 ($sdff) from module m6502 (D = $flatten\u_timing.$add$rtl/control/m6502_timing.v:36$103_Y, Q = \u_timing.rs_r).
+Adding SRST signal on $flatten\u_timing.$procdff$2709 ($dff) from module m6502 (D = $flatten\u_timing.$procmux$1426_Y, Q = \u_timing.t_r, rval = 3'000).
+Adding EN signal on $auto$ff.cc:266:slice$2850 ($sdff) from module m6502 (D = $flatten\u_timing.$ternary$rtl/control/m6502_timing.v:39$105_Y, Q = \u_timing.t_r).
+Adding SRST signal on $flatten\u_alu.$procdff$2702 ($dff) from module m6502 (D = $flatten\u_alu.$procmux$370_Y, Q = \u_alu.a, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$2854 ($sdff) from module m6502 (D = \u_alu.res, Q = \u_alu.a).
+Adding SRST signal on $flatten\u_regs.$procdff$2701 ($dff) from module m6502 (D = $flatten\u_regs.$procmux$280_Y, Q = \u_regs.br_sign, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$2856 ($sdff) from module m6502 (D = \u_regs.d_in [7], Q = \u_regs.br_sign).
+Adding SRST signal on $flatten\u_regs.$procdff$2700 ($dff) from module m6502 (D = $flatten\u_regs.$procmux$232_Y, Q = \u_regs.carry_q, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$2858 ($sdff) from module m6502 (D = $flatten\u_regs.$procmux$232_Y, Q = \u_regs.carry_q).
+Adding SRST signal on $flatten\u_regs.$procdff$2699 ($dff) from module m6502 (D = $flatten\u_regs.$procmux$246_Y, Q = \u_regs.pl, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$2862 ($sdff) from module m6502 (D = \u_regs.d_in, Q = \u_regs.pl).
+Adding SRST signal on $flatten\u_regs.$procdff$2698 ($dff) from module m6502 (D = $flatten\u_regs.$procmux$251_Y, Q = \u_regs.adh, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$2864 ($sdff) from module m6502 (D = $flatten\u_regs.$procmux$251_Y, Q = \u_regs.adh).
+Adding SRST signal on $flatten\u_regs.$procdff$2697 ($dff) from module m6502 (D = $flatten\u_regs.$procmux$261_Y, Q = \u_regs.adl, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$2868 ($sdff) from module m6502 (D = $flatten\u_regs.$procmux$261_Y, Q = \u_regs.adl).
+Adding SRST signal on $flatten\u_regs.$procdff$2696 ($dff) from module m6502 (D = { $flatten\u_regs.$procmux$205_Y $flatten\u_regs.$procmux$225_Y }, Q = \u_regs.r_pc, rval = 16'0000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$2872 ($sdff) from module m6502 (D = $flatten\u_regs.$procmux$225_Y, Q = \u_regs.r_pc [7:0]).
+Adding EN signal on $auto$ff.cc:266:slice$2872 ($sdff) from module m6502 (D = $flatten\u_regs.$procmux$205_Y, Q = \u_regs.r_pc [15:8]).
+Adding SRST signal on $flatten\u_regs.$procdff$2695 ($dff) from module m6502 (D = $flatten\u_regs.$procmux$285_Y, Q = \u_regs.y, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$2889 ($sdff) from module m6502 (D = \u_regs.wdata, Q = \u_regs.y).
+Adding SRST signal on $flatten\u_regs.$procdff$2694 ($dff) from module m6502 (D = $flatten\u_regs.$procmux$290_Y, Q = \u_regs.x, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$2891 ($sdff) from module m6502 (D = \u_regs.wdata, Q = \u_regs.x).
+Adding SRST signal on $flatten\u_regs.$procdff$2693 ($dff) from module m6502 (D = $flatten\u_regs.$procmux$295_Y, Q = \u_regs.s, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$2893 ($sdff) from module m6502 (D = $flatten\u_regs.$procmux$295_Y, Q = \u_regs.s).
+Adding SRST signal on $flatten\u_control.$procdff$2725 ($dff) from module m6502 (D = $flatten\u_control.$procmux$2196_Y, Q = \u_control.a3, rval = 1'0).
+Adding SRST signal on $flatten\u_control.$procdff$2724 ($dff) from module m6502 (D = $flatten\u_control.$procmux$2205_Y, Q = \u_control.a2, rval = 1'0).
+Adding SRST signal on $flatten\u_control.$procdff$2723 ($dff) from module m6502 (D = $flatten\u_control.$procmux$2214_Y, Q = \u_control.a1, rval = 1'0).
+Adding SRST signal on $flatten\u_control.$procdff$2722 ($dff) from module m6502 (D = $flatten\u_control.$procmux$2238_Y, Q = \u_control.s3, rval = 2'00).
+Adding EN signal on $auto$ff.cc:266:slice$2906 ($sdff) from module m6502 (D = $flatten\u_control.$procmux$2235_Y, Q = \u_control.s3).
+Adding SRST signal on $flatten\u_control.$procdff$2721 ($dff) from module m6502 (D = $flatten\u_control.$procmux$2256_Y, Q = \u_control.s2, rval = 2'00).
+Adding EN signal on $auto$ff.cc:266:slice$2910 ($sdff) from module m6502 (D = $flatten\u_control.$procmux$2253_Y, Q = \u_control.s2).
+Adding SRST signal on $flatten\u_control.$procdff$2720 ($dff) from module m6502 (D = $flatten\u_control.$procmux$2274_Y, Q = \u_control.s1, rval = 2'00).
+Adding EN signal on $auto$ff.cc:266:slice$2914 ($sdff) from module m6502 (D = $flatten\u_control.$procmux$2271_Y, Q = \u_control.s1).
+Adding SRST signal on $flatten\u_control.$procdff$2719 ($dff) from module m6502 (D = $flatten\u_control.$procmux$2296_Y, Q = \u_control.nmi_pend, rval = 1'0).
+Adding SRST signal on $flatten\u_control.$procdff$2718 ($dff) from module m6502 (D = $flatten\u_control.$procmux$2307_Y, Q = \u_control.br3, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$2919 ($sdff) from module m6502 (D = $flatten\u_control.$procmux$2304_Y, Q = \u_control.br3).
+Adding SRST signal on $flatten\u_control.$procdff$2717 ($dff) from module m6502 (D = $flatten\u_control.$procmux$2324_Y, Q = \u_control.so_latch, rval = 1'0).
+Adding SRST signal on $flatten\u_control.$procdff$2716 ($dff) from module m6502 (D = \u_control.so_n, Q = \u_control.so_q, rval = 1'1).
+Adding SRST signal on $flatten\u_control.$procdff$2715 ($dff) from module m6502 (D = \u_control.nmi_n, Q = \u_control.nmi_q, rval = 1'1).
+Adding SRST signal on $flatten\u_control.$procdff$2714 ($dff) from module m6502 (D = $flatten\u_control.$procmux$2339_Y, Q = \u_control.intnmi, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$2930 ($sdff) from module m6502 (D = $flatten\u_control.$procmux$2331_Y, Q = \u_control.intnmi).
+Adding SRST signal on $flatten\u_control.$procdff$2713 ($dff) from module m6502 (D = $flatten\u_control.$procmux$2354_Y, Q = \u_control.intseq, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$2934 ($sdff) from module m6502 (D = $flatten\u_control.$procmux$2346_Y, Q = \u_control.intseq).
+Adding SRST signal on $flatten\u_control.$procdff$2712 ($dff) from module m6502 (D = $flatten\u_control.$procmux$2368_Y, Q = \u_control.tmp_r, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$2938 ($sdff) from module m6502 (D = \u_control.d_in, Q = \u_control.tmp_r).
+Adding SRST signal on $flatten\u_control.$procdff$2711 ($dff) from module m6502 (D = $flatten\u_control.$procmux$2383_Y, Q = \u_control.ir, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$2944 ($sdff) from module m6502 (D = $flatten\u_control.$procmux$2375_Y, Q = \u_control.ir).
+Adding SRST signal on $flatten\u_alu.$procdff$2708 ($dff) from module m6502 (D = $flatten\u_alu.$procmux$315_Y, Q = \u_alu.fc, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$2948 ($sdff) from module m6502 (D = $flatten\u_alu.$procmux$315_Y, Q = \u_alu.fc).
+Adding SRST signal on $flatten\u_alu.$procdff$2707 ($dff) from module m6502 (D = $flatten\u_alu.$procmux$325_Y, Q = \u_alu.fz, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$2958 ($sdff) from module m6502 (D = $flatten\u_alu.$procmux$325_Y, Q = \u_alu.fz).
+Adding SRST signal on $flatten\u_alu.$procdff$2706 ($dff) from module m6502 (D = $flatten\u_alu.$procmux$335_Y, Q = \u_alu.fi, rval = 1'1).
+Adding EN signal on $auto$ff.cc:266:slice$2968 ($sdff) from module m6502 (D = $flatten\u_alu.$procmux$335_Y, Q = \u_alu.fi).
+Adding SRST signal on $flatten\u_alu.$procdff$2705 ($dff) from module m6502 (D = $flatten\u_alu.$procmux$345_Y, Q = \u_alu.fd, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$2978 ($sdff) from module m6502 (D = $flatten\u_alu.$procmux$345_Y, Q = \u_alu.fd).
+Adding SRST signal on $flatten\u_alu.$procdff$2704 ($dff) from module m6502 (D = $flatten\u_alu.$procmux$355_Y, Q = \u_alu.fv, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$2988 ($sdff) from module m6502 (D = $flatten\u_alu.$procmux$355_Y, Q = \u_alu.fv).
+Adding SRST signal on $flatten\u_alu.$procdff$2703 ($dff) from module m6502 (D = $flatten\u_alu.$procmux$365_Y, Q = \u_alu.fn, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$2998 ($sdff) from module m6502 (D = $flatten\u_alu.$procmux$365_Y, Q = \u_alu.fn).
 
 11.7. Executing OPT_CLEAN pass (remove unused cells and wires).
 Finding unused cells or wires in module \m6502..
-Removed 67 unused cells and 1108 unused wires.
-<suppressed ~83 debug messages>
+Removed 72 unused cells and 1127 unused wires.
+<suppressed ~88 debug messages>
 
 11.8. Executing OPT_EXPR pass (perform const folding).
 Optimizing module m6502.
@@ -736,7 +744,7 @@ Running muxtree optimizer on module \m6502..
   Evaluating internal representation of mux trees.
   Analyzing evaluation results.
 Removed 0 multiplexer ports.
-<suppressed ~68 debug messages>
+<suppressed ~72 debug messages>
 
 11.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
   Optimizing cells in module \m6502.
@@ -744,14 +752,14 @@ Performed a total of 0 changes.
 
 11.12. Executing OPT_MERGE pass (detect identical cells).
 Finding identical cells in module `\m6502'.
-<suppressed ~33 debug messages>
-Removed a total of 11 cells.
+<suppressed ~42 debug messages>
+Removed a total of 14 cells.
 
 11.13. Executing OPT_DFF pass (perform DFF optimizations).
 
 11.14. Executing OPT_CLEAN pass (remove unused cells and wires).
 Finding unused cells or wires in module \m6502..
-Removed 0 unused cells and 11 unused wires.
+Removed 0 unused cells and 14 unused wires.
 <suppressed ~1 debug messages>
 
 11.15. Executing OPT_EXPR pass (perform const folding).
@@ -765,7 +773,7 @@ Running muxtree optimizer on module \m6502..
   Evaluating internal representation of mux trees.
   Analyzing evaluation results.
 Removed 0 multiplexer ports.
-<suppressed ~68 debug messages>
+<suppressed ~72 debug messages>
 
 11.18. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
   Optimizing cells in module \m6502.
@@ -811,7 +819,7 @@ Finding unused cells or wires in module \m6502..
 12.9. Executing MEMORY_COLLECT pass (generating $mem cells).
 
 13. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
-Mapping memory $flatten\u_control.\u_dec.$auto$proc_rom.cc:150:do_switch$185 in module \m6502:
+Mapping memory $flatten\u_control.\u_dec.$auto$proc_rom.cc:150:do_switch$192 in module \m6502:
   created 256 $dff cells and 0 static cells of width 24.
   read interface: 0 $dff and 255 $mux cells.
   write interface: 0 write mux blocks.
@@ -832,7 +840,7 @@ Running muxtree optimizer on module \m6502..
   Evaluating internal representation of mux trees.
   Analyzing evaluation results.
 Removed 0 multiplexer ports.
-<suppressed ~69 debug messages>
+<suppressed ~73 debug messages>
 
 14.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
   Optimizing cells in module \m6502.
@@ -861,7 +869,7 @@ Running muxtree optimizer on module \m6502..
   Evaluating internal representation of mux trees.
   Analyzing evaluation results.
 Removed 0 multiplexer ports.
-<suppressed ~70 debug messages>
+<suppressed ~74 debug messages>
 
 14.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
   Optimizing cells in module \m6502.
@@ -912,8 +920,8 @@ Generating RTLIL representation for module `\_90_lut'.
 Successfully finished Verilog frontend.
 
 15.2. Continuing TECHMAP pass.
-Using extmapper simplemap for cells of type $mux.
 Using extmapper simplemap for cells of type $eq.
+Using extmapper simplemap for cells of type $mux.
 Using extmapper simplemap for cells of type $logic_not.
 Using extmapper simplemap for cells of type $sdffe.
 Running "alumacc" on wrapper $extern:wrap:$add:A_SIGNED=0:A_WIDTH=3:B_SIGNED=0:B_WIDTH=3:Y_WIDTH=3:394426c56d1a028ba8fdd5469b163e04011def47.
@@ -992,7 +1000,7 @@ Using template $paramod\_90_lcu\WIDTH=32'00000000000000000000000000001010 for ce
 Using template $paramod\_90_lcu\WIDTH=32'00000000000000000000000000000101 for cells of type $lcu.
 Using template $paramod\_90_lcu\WIDTH=32'00000000000000000000000000010000 for cells of type $lcu.
 No more expansions possible.
-<suppressed ~3934 debug messages>
+<suppressed ~3943 debug messages>
 
 16. Executing OPT pass (performing simple optimizations).
 
@@ -1085,7 +1093,7 @@ Optimizing module m6502.
 17. Executing ABC pass (technology mapping using ABC).
 
 17.1. Extracting gate netlist of module `\m6502' to `<abc-temp-dir>/input.blif'..
-Extracted 3582 gates and 3715 wires to a netlist network with 130 inputs and 141 outputs.
+Extracted 3589 gates and 3724 wires to a netlist network with 132 inputs and 143 outputs.
 
 17.1.1. Executing ABC.
 Running ABC command: "<yosys-exe-dir>/yosys-abc" -s -f <abc-temp-dir>/abc.script 2>&1
@@ -1110,25 +1118,25 @@ ABC: + &put
 ABC: + write_blif <abc-temp-dir>/output.blif 
 
 17.1.2. Re-integrating ABC results.
-ABC RESULTS:               NOT cells:       23
-ABC RESULTS:                OR cells:      197
-ABC RESULTS:             ORNOT cells:       94
-ABC RESULTS:            ANDNOT cells:      103
-ABC RESULTS:               NOR cells:       57
-ABC RESULTS:              NAND cells:      787
-ABC RESULTS:               XOR cells:       57
-ABC RESULTS:              XNOR cells:       95
+ABC RESULTS:               NOT cells:       24
+ABC RESULTS:                OR cells:      201
+ABC RESULTS:             ORNOT cells:       97
+ABC RESULTS:            ANDNOT cells:      117
+ABC RESULTS:               NOR cells:       61
+ABC RESULTS:              NAND cells:      778
+ABC RESULTS:               XOR cells:       56
+ABC RESULTS:              XNOR cells:       99
 ABC RESULTS:               AND cells:      765
-ABC RESULTS:               MUX cells:      190
-ABC RESULTS:        internal signals:     3444
-ABC RESULTS:           input signals:      130
-ABC RESULTS:          output signals:      141
+ABC RESULTS:               MUX cells:      182
+ABC RESULTS:        internal signals:     3449
+ABC RESULTS:           input signals:      132
+ABC RESULTS:          output signals:      143
 Removing temp directory.
 
 18. Executing OPT_CLEAN pass (remove unused cells and wires).
 Finding unused cells or wires in module \m6502..
-Removed 0 unused cells and 1975 unused wires.
-<suppressed ~193 debug messages>
+Removed 0 unused cells and 1985 unused wires.
+<suppressed ~196 debug messages>
 
 19. Executing CHECK pass (checking for obvious problems).
 Checking module m6502...
@@ -1138,95 +1146,95 @@ Found and reported 0 problems.
 
 === m6502 ===
 
-   Number of wires:               2334
-   Number of wire bits:           2511
-   Number of public wires:          51
-   Number of public wire bits:     187
+   Number of wires:               2348
+   Number of wire bits:           2525
+   Number of public wires:          52
+   Number of public wire bits:     188
    Number of memories:               0
    Number of memory bits:            0
    Number of processes:              0
-   Number of cells:               2485
-     $_ANDNOT_                     103
+   Number of cells:               2499
+     $_ANDNOT_                     117
      $_AND_                        765
-     $_MUX_                        190
-     $_NAND_                       787
-     $_NOR_                         57
-     $_NOT_                         23
-     $_ORNOT_                       94
-     $_OR_                         197
+     $_MUX_                        182
+     $_NAND_                       778
+     $_NOR_                         61
+     $_NOT_                         24
+     $_ORNOT_                       97
+     $_OR_                         201
      $_SDFFE_PN0N_                   9
      $_SDFFE_PN0P_                 102
      $_SDFFE_PN1P_                   1
-     $_SDFF_PN0_                     3
+     $_SDFF_PN0_                     5
      $_SDFF_PN1_                     2
-     $_XNOR_                        95
-     $_XOR_                         57
+     $_XNOR_                        99
+     $_XOR_                         56
 
 21. Executing LTP pass (find longest path).
 
 Longest topological path in m6502 (length=60):
     0: \u_control.ir [1]
-    1: $abc$22071$new_n335_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$22135)
-    2: $abc$22071$new_n336_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$22136)
-    3: $abc$22071$new_n347_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$22147)
-    4: $abc$22071$new_n413_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$22213)
-    5: $abc$22071$new_n414_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$22214)
-    6: $abc$22071$new_n415_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$22215)
-    7: $abc$22071$new_n417_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$22217)
-    8: $abc$22071$new_n418_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$22218)
-    9: $abc$22071$new_n419_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$22219)
-   10: $abc$22071$new_n420_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$22220)
-   11: $abc$22071$new_n422_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$22222)
-   12: $abc$22071$new_n465_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$22265)
-   13: $abc$22071$new_n478_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$22278)
-   14: $abc$22071$new_n864_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$22664)
-   15: $abc$22071$new_n871_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$22671)
-   16: $abc$22071$new_n873_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$22673)
-   17: $abc$22071$new_n874_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$22674)
-   18: $abc$22071$new_n943_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$22743)
-   19: $abc$22071$new_n947_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$22747)
-   20: $abc$22071$new_n1228_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$23028)
-   21: $abc$22071$new_n1229_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$23029)
-   22: $abc$22071$new_n1235_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$23035)
-   23: $abc$22071$new_n1244_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$23044)
-   24: $abc$22071$new_n1322_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$23122)
-   25: $abc$22071$new_n1323_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$23123)
-   26: $abc$22071$new_n1324_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$23124)
-   27: $abc$22071$new_n1325_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$23125)
-   28: $abc$22071$new_n1326_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$23126)
-   29: $abc$22071$new_n1329_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$23129)
-   30: $abc$22071$new_n1330_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$23130)
-   31: $abc$22071$new_n1331_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$23131)
-   32: $abc$22071$new_n1332_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$23132)
-   33: $abc$22071$new_n1349_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$23149)
-   34: $abc$22071$new_n1350_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$23150)
-   35: $abc$22071$new_n1366_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$23166)
-   36: $abc$22071$new_n1368_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$23168)
-   37: $abc$22071$new_n1376_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$23176)
-   38: $abc$22071$new_n1377_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$23177)
-   39: $abc$22071$new_n1380_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$23180)
-   40: $abc$22071$new_n1381_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$23181)
-   41: $abc$22071$new_n1387_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$23187)
-   42: $abc$22071$new_n1388_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$23188)
-   43: $abc$22071$new_n1389_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$23189)
-   44: $abc$22071$new_n1392_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$23192)
-   45: $abc$22071$new_n1597_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$23397)
-   46: $abc$22071$new_n1599_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$23399)
-   47: $abc$22071$new_n1601_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$23401)
-   48: $abc$22071$new_n1605_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$23405)
-   49: $abc$22071$new_n1862_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$23662)
-   50: $abc$22071$new_n1863_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$23663)
-   51: $abc$22071$new_n1864_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$23664)
-   52: $abc$22071$new_n1865_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$23665)
-   53: \u_alu.res [7] (via $abc$22071$auto$blifparse.cc:386:parse_blif$23666)
-   54: $abc$22071$new_n2619_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$24419)
-   55: $abc$22071$new_n2620_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$24420)
-   56: $abc$22071$new_n2621_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$24421)
-   57: $abc$22071$new_n2622_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$24422)
-   58: $abc$22071$new_n2623_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$24423)
-   59: $abc$22071$new_n2624_ (via $abc$22071$auto$blifparse.cc:386:parse_blif$24424)
-   60: \d_out [7] (via $abc$22071$auto$blifparse.cc:386:parse_blif$24425)
+    1: $abc$22131$new_n338_ (via $abc$22131$auto$blifparse.cc:386:parse_blif$22194)
+    2: $abc$22131$new_n339_ (via $abc$22131$auto$blifparse.cc:386:parse_blif$22195)
+    3: $abc$22131$new_n352_ (via $abc$22131$auto$blifparse.cc:386:parse_blif$22208)
+    4: $abc$22131$new_n416_ (via $abc$22131$auto$blifparse.cc:386:parse_blif$22272)
+    5: $abc$22131$new_n417_ (via $abc$22131$auto$blifparse.cc:386:parse_blif$22273)
+    6: $abc$22131$new_n418_ (via $abc$22131$auto$blifparse.cc:386:parse_blif$22274)
+    7: $abc$22131$new_n420_ (via $abc$22131$auto$blifparse.cc:386:parse_blif$22276)
+    8: $abc$22131$new_n421_ (via $abc$22131$auto$blifparse.cc:386:parse_blif$22277)
+    9: $abc$22131$new_n422_ (via $abc$22131$auto$blifparse.cc:386:parse_blif$22278)
+   10: $abc$22131$new_n423_ (via $abc$22131$auto$blifparse.cc:386:parse_blif$22279)
+   11: $abc$22131$new_n425_ (via $abc$22131$auto$blifparse.cc:386:parse_blif$22281)
+   12: $abc$22131$new_n468_ (via $abc$22131$auto$blifparse.cc:386:parse_blif$22324)
+   13: $abc$22131$new_n483_ (via $abc$22131$auto$blifparse.cc:386:parse_blif$22339)
+   14: $abc$22131$new_n874_ (via $abc$22131$auto$blifparse.cc:386:parse_blif$22730)
+   15: $abc$22131$new_n881_ (via $abc$22131$auto$blifparse.cc:386:parse_blif$22737)
+   16: $abc$22131$new_n883_ (via $abc$22131$auto$blifparse.cc:386:parse_blif$22739)
+   17: $abc$22131$new_n884_ (via $abc$22131$auto$blifparse.cc:386:parse_blif$22740)
+   18: $abc$22131$new_n946_ (via $abc$22131$auto$blifparse.cc:386:parse_blif$22802)
+   19: $abc$22131$new_n950_ (via $abc$22131$auto$blifparse.cc:386:parse_blif$22806)
+   20: $abc$22131$new_n1239_ (via $abc$22131$auto$blifparse.cc:386:parse_blif$23095)
+   21: $abc$22131$new_n1240_ (via $abc$22131$auto$blifparse.cc:386:parse_blif$23096)
+   22: $abc$22131$new_n1244_ (via $abc$22131$auto$blifparse.cc:386:parse_blif$23100)
+   23: $abc$22131$new_n1253_ (via $abc$22131$auto$blifparse.cc:386:parse_blif$23109)
+   24: $abc$22131$new_n1339_ (via $abc$22131$auto$blifparse.cc:386:parse_blif$23195)
+   25: $abc$22131$new_n1340_ (via $abc$22131$auto$blifparse.cc:386:parse_blif$23196)
+   26: $abc$22131$new_n1341_ (via $abc$22131$auto$blifparse.cc:386:parse_blif$23197)
+   27: $abc$22131$new_n1345_ (via $abc$22131$auto$blifparse.cc:386:parse_blif$23201)
+   28: $abc$22131$new_n1346_ (via $abc$22131$auto$blifparse.cc:386:parse_blif$23202)
+   29: $abc$22131$new_n1349_ (via $abc$22131$auto$blifparse.cc:386:parse_blif$23205)
+   30: $abc$22131$new_n1350_ (via $abc$22131$auto$blifparse.cc:386:parse_blif$23206)
+   31: $abc$22131$new_n1351_ (via $abc$22131$auto$blifparse.cc:386:parse_blif$23207)
+   32: $abc$22131$new_n1352_ (via $abc$22131$auto$blifparse.cc:386:parse_blif$23208)
+   33: $abc$22131$new_n1369_ (via $abc$22131$auto$blifparse.cc:386:parse_blif$23225)
+   34: $abc$22131$new_n1370_ (via $abc$22131$auto$blifparse.cc:386:parse_blif$23226)
+   35: $abc$22131$new_n1386_ (via $abc$22131$auto$blifparse.cc:386:parse_blif$23242)
+   36: $abc$22131$new_n1388_ (via $abc$22131$auto$blifparse.cc:386:parse_blif$23244)
+   37: $abc$22131$new_n1396_ (via $abc$22131$auto$blifparse.cc:386:parse_blif$23252)
+   38: $abc$22131$new_n1397_ (via $abc$22131$auto$blifparse.cc:386:parse_blif$23253)
+   39: $abc$22131$new_n1400_ (via $abc$22131$auto$blifparse.cc:386:parse_blif$23256)
+   40: $abc$22131$new_n1401_ (via $abc$22131$auto$blifparse.cc:386:parse_blif$23257)
+   41: $abc$22131$new_n1407_ (via $abc$22131$auto$blifparse.cc:386:parse_blif$23263)
+   42: $abc$22131$new_n1408_ (via $abc$22131$auto$blifparse.cc:386:parse_blif$23264)
+   43: $abc$22131$new_n1409_ (via $abc$22131$auto$blifparse.cc:386:parse_blif$23265)
+   44: $abc$22131$new_n1412_ (via $abc$22131$auto$blifparse.cc:386:parse_blif$23268)
+   45: $abc$22131$new_n1622_ (via $abc$22131$auto$blifparse.cc:386:parse_blif$23478)
+   46: $abc$22131$new_n1624_ (via $abc$22131$auto$blifparse.cc:386:parse_blif$23480)
+   47: $abc$22131$new_n1625_ (via $abc$22131$auto$blifparse.cc:386:parse_blif$23481)
+   48: $abc$22131$new_n1626_ (via $abc$22131$auto$blifparse.cc:386:parse_blif$23482)
+   49: $abc$22131$new_n1826_ (via $abc$22131$auto$blifparse.cc:386:parse_blif$23682)
+   50: $abc$22131$new_n1859_ (via $abc$22131$auto$blifparse.cc:386:parse_blif$23715)
+   51: $abc$22131$new_n1860_ (via $abc$22131$auto$blifparse.cc:386:parse_blif$23716)
+   52: $abc$22131$new_n1861_ (via $abc$22131$auto$blifparse.cc:386:parse_blif$23717)
+   53: \u_alu.res [6] (via $abc$22131$auto$blifparse.cc:386:parse_blif$23718)
+   54: $abc$22131$new_n2628_ (via $abc$22131$auto$blifparse.cc:386:parse_blif$24484)
+   55: $abc$22131$new_n2629_ (via $abc$22131$auto$blifparse.cc:386:parse_blif$24485)
+   56: $abc$22131$new_n2630_ (via $abc$22131$auto$blifparse.cc:386:parse_blif$24486)
+   57: $abc$22131$new_n2631_ (via $abc$22131$auto$blifparse.cc:386:parse_blif$24487)
+   58: $abc$22131$new_n2632_ (via $abc$22131$auto$blifparse.cc:386:parse_blif$24488)
+   59: $abc$22131$new_n2633_ (via $abc$22131$auto$blifparse.cc:386:parse_blif$24489)
+   60: \d_out [6] (via $abc$22131$auto$blifparse.cc:386:parse_blif$24490)
 
-End of script. Logfile hash: c356d02d27, CPU: user 2.78s system 0.03s, MEM: 59.11 MB peak
+End of script. Logfile hash: cfdfde5931, CPU: user 2.85s system 0.04s, MEM: 57.86 MB peak
 Yosys 0.33 (git sha1 2584903a060)
-Time spent: 26% 1x abc (0 sec), 25% 26x opt_expr (0 sec), ...
+Time spent: 26% 26x opt_expr (1 sec), 24% 1x abc (0 sec), ...

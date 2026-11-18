@@ -227,7 +227,19 @@ The SST vectors stay a cross-check (§9 item 2). This Decision is what the RTL a
 
 ## 5. Reset
 While `res_n` = 0 the CPU is "guaranteed to be in a Read state" (`rw` = 1), and after release it stays in Read until it has fetched the vector (p.126). Then the 7-cycle sequence in §4, and the first opcode fetch in cycle 8. Minimum low time for `res_n`: not stated in either manual (§1.4.1.2.11, p.40 gives only the behaviour). *Decision*: tests hold `res_n` = 0 for **at least 8 cycles**, and the behaviour for shorter pulses isn't specified. While `res_n` = 0, "writing from the microprocessor is inhibited" (p.40), which confirms `rw` = 1 (§5). p.40 says that after release the CPU "will delay 6 cycles and then fetch the new program count vectors". Example 9.1's per-cycle table (vector reads in cycles 6–7) governs the exact cycles.
-*Decisions*: while `res_n` = 0, `rw` = 1, `d_oe` = 0, and `a`/`sync` are not compared. In reset cycles 1 and 2, `a` is not compared (the manual prints "?"). Comparison of everything starts at the first SYNC (cycle 8), **preamble included, with no exemption window**: the C8 preamble writes A, X, Y, S and P before anything reads them, as for the 8080 (Beru, turichips#26).
+*Decision* (chip-6502#29, 2026-11-17): **what is compared during and after reset.** Reset cycle 1 is the cycle that starts at the first clock edge where `res_n` is sampled 1; cycles 1–7 are the sequence of §4 (Example 9.1), cycle 8 is the first opcode fetch.
+
+| When | `a` | `rw` | `d_oe` | `sync` | `d_out` | Why |
+|------|-----|------|--------|--------|---------|-----|
+| `res_n` = 0 | no | **1** | **0** | no | no | "guaranteed to be in a Read state", writing "inhibited" (pp.126, 40) |
+| cycles 1–2 | no | **1** | **0** | no | no | the manual prints "?" and "? + 1" |
+| cycles 3–5 | no | **1** | **0** | no | no | {01,S}, {01,S−1}, {01,S−2}, and S is not reset (§3), so not predictable at power-on; reads, not writes (Example 9.1) |
+| cycles 6–7 | **FFFC**, **FFFD** | **1** | **0** | no | no | the vector reads (Example 9.1); C6 checks them |
+| cycle 8 on | §4.0, every pin | | | | | first opcode fetch at the vector, `sync` = 1 |
+
+**RDY during reset** (chip-6502#40): not specified. The RDY text (Hardware Manual p.37) is about program execution, and Example 9.1 doesn't mention RDY. So whether `rdy` = 0 holds a reset-sequence cycle is left open. *Decision* (stimulus rule): **tests keep `rdy` = 1 from the edge where `res_n` is first sampled 0 until the edge that starts cycle 8.** `rdy` may fall at that edge (holding the first opcode fetch, which §2 does specify). So "cycle 8" is always the 8th clock after release, and the RTL may do either. C3 doesn't test RDY in reset.
+
+`sync` isn't compared before cycle 8 because no MOS page shows it during reset. From cycle 8 on, comparison never pauses (§4.0), **preamble included, with no exemption window**: the C8 preamble writes A, X, Y, S and P before anything reads them, as for the 8080 (Beru, turichips#26). S after reset stays not compared (§3).
 
 ## 6. Instructions (normative once checked)
 **151 documented opcodes, 56 instructions, 13 addressing modes** (confirmed §10, Programming Manual **Appendix D, "Operation Code Instruction Listing Hexadecimal Sequence"**, D-2 to D-5, page images. Every byte 00–FF is listed, and the other **105 are marked "Future Expansion"**, so they're undocumented by MOS).

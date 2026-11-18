@@ -1,0 +1,4 @@
+compared: 491637 cycles, 105600 instructions (1056 per program), IRQ 8529, NMI 655, RDY-held reads 43510, stopped at an undocumented byte: 2
+note (not a spec check): reset cycles 3-5 not at S, S-1, S-2 in 0 programs
+c8: seed=1 programs=100 cycles=5000 mismatching_programs=0
+PASS

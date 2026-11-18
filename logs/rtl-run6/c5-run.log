@@ -1,0 +1,2 @@
+ADC: PASS 262144 values (131,072 cases: every A x operand x carry, D=1), 0 errors, 5m46s
+SBC: PASS 262144 values, 0 errors, 5m49s
