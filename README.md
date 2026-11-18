@@ -38,7 +38,6 @@ Logs are in `logs/`; the per-behaviour list is `tests/coverage.md`. "RTL" is the
 Generic Yosys synthesis and an open-source sky130 layout (details and logs in `synth/README.md`):
 - Generic synthesis: 2,499 cells (119 flops), longest flop-to-flop path 60 cells.
 - sky130: 2,058 cells, 13,880 µm² of cells, a 196.3 × 196.3 µm die, 65,474 µm of routed wire, 0 router DRC violations (the router's own count, not a signoff). The worst register-to-register path is about 9.4 ns, so roughly 106 MHz: that is with an ideal clock, no wire delay and no timing closure, so it is not a real top speed.
-- The real 6502 is far smaller in transistors than our gate counts suggest; our gates are not transistors, so we do not compare.
 
 ![Our routed sky130 layout of the 6502](synth/sky130/layout.png)
 
@@ -46,8 +45,8 @@ Generic Yosys synthesis and an open-source sky130 layout (details and logs in `s
 Klaus Dormann's 6502 functional test (GNU GPL v3 or later) and Bruce Clark's decimal mode test (public domain) are fetched at test time from github.com/Klaus2m5/6502_65C02_functional_tests, pinned by commit. The per-instruction vectors are SingleStepTests' 65x02 set (MIT), github.com/SingleStepTests/65x02. The spec was written from MOS Technology's *MCS6500 Microcomputer Family Hardware Manual* (6500-10A, January 1976).
 
 ## What went wrong along the way
-- Taken branches: our rules for the dummy reads of a taken branch disagreed with the SingleStepTests vectors, and the first integrated design landed taken branches one byte past their target. Igris decided the rule after checking the manual, and the design was fixed (#17, #19, #31).
-- The reset sequence was one cycle longer than the spec and read the wrong stack addresses; the tests caught both, and the spec had to say exactly which reset cycles are compared (#29, #32, #37, #40).
+- Taken branches: our rules for the dummy reads of a taken branch disagreed with the SingleStepTests vectors, and the first integrated design landed taken branches one byte past their target. Igris made the call in the spec (appendix note A.5.8) and the design was fixed (#17, #19, #31).
+- The reset sequence was one cycle longer than the spec and read the wrong stack addresses; the tests caught both, and the spec had to say exactly which reset cycles are compared and what RDY does during reset (#29, #32, #37, #40).
 - A random-program test found an NMI edge lost when a held RDY landed on the NMI's first cycle (#42).
 - A synthesis step quietly added 23 flops that are not in the design: Leo noticed that the flop count did not match the Verilog (#47).
 - Two of Homer's own checkers had holes that Igris found in review: the decimal checker passed if the run simply stopped early with zeroed memory, and the functional checker ignored bus conflicts. Both were fixed before any evidence was committed (#18, #44).
