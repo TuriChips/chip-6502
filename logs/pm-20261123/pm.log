@@ -1,0 +1,27 @@
+PASS Example 2.1 (p.7): 13 + 211 + carry-in 1 = 225 (E1), Carry 0: PASS: 2 bytes compared , 0 errors
+PASS Example 2.2 (p.8): 254 + 6 + carry-in 1 = 5, Carry 1 (256 + 5 = 261): PASS: 2 bytes compared , 0 errors
+PASS Example 2.3 / 2.4 (p.9): 258 + 4112 = 4370 (0x1112), carry after the low add 0, after the high add 0: PASS: 4 bytes compared , 0 errors
+PASS Example 2.3 / 2.5 (p.10): 384 + 128 = 512 (0x0200), carry after the low add 1, after the high add 0: PASS: 4 bytes compared , 0 errors
+PASS Example 2.6 (p.11): +5 + +7 = +12 (0C), Carry 0, Overflow 0: PASS: 2 bytes compared , 0 errors
+PASS Example 2.7 (p.12): +127 + +2 = 1000 0001 (81), Carry 0, Overflow 1: PASS: 2 bytes compared , 0 errors
+PASS Example 2.8 (p.12): +5 + -3 = +2 (02), Carry 1, Overflow 0: PASS: 2 bytes compared , 0 errors
+PASS Example 2.9 (p.12): +5 + -7 = -2 (FE), Carry 0, Overflow 0: PASS: 2 bytes compared , 0 errors
+PASS Example 2.10 (p.12): -5 + -7 = -12 (F4), Carry 1, Overflow 0: PASS: 2 bytes compared , 0 errors
+PASS Example 2.11 (p.13): -66 + -65 = 0111 1101 (7D), Carry 1, Overflow 1: PASS: 2 bytes compared , 0 errors
+PASS Example 2.12 (p.13): decimal 79 + 14 = 93 (BCD 93): PASS: 1 bytes compared , 0 errors
+PASS Example 2.13 (p.15): 5 - 3 = +2, Carry 1 (no borrow): PASS: 2 bytes compared , 0 errors
+PASS Example 2.14 (p.16): 5 - 6 = -1 (FF), Carry 0 (borrow): PASS: 2 bytes compared , 0 errors
+PASS Example 2.15 / 2.16 (p.17): 512 - 255 = +257 (0x0101): low byte 01 with Carry 0, high byte 01 with Carry 1: PASS: 4 bytes compared , 0 errors
+PASS Example 2.15 / 2.17 (p.18): 255 - 512 = -257 (0xFEFF): low byte FF with Carry 1, high byte FE with Carry 0: PASS: 4 bytes compared , 0 errors
+PASS Example 2.18 (p.19): decimal 44 - 29 = 15 (BCD 15): PASS: 1 bytes compared , 0 errors
+PASS Example 2.19 (X=0) (p.21): 1100 X111 AND 1111 0111 = 1100 0111: PASS: 1 bytes compared , 0 errors
+PASS Example 2.20 (X=0) (p.21): 1110 X111 ORA 0000 1000 = 1110 1111: PASS: 1 bytes compared , 0 errors
+PASS Example 2.19 (X=1) (p.21): 1100 X111 AND 1111 0111 = 1100 0111: PASS: 1 bytes compared , 0 errors
+PASS Example 2.20 (X=1) (p.21): 1110 X111 ORA 0000 1000 = 1110 1111: PASS: 1 bytes compared , 0 errors
+PASS Example 2.21 (p.22): 1010 1111 EOR 1111 1111 = 0101 0000: PASS: 1 bytes compared , 0 errors
+PASS Example 6.1 (p.70): five values moved by 10 instructions; zero page: 30 cycles (p.74): PASS: 7 bytes compared , 0 errors
+PASS Example 6.2 (p.72): the loop moves the five values (self-modifying: START+1 and OTHER+1 are the operands; CLC, LDA FIELD1, ..., CMP #FIELD2+5, BNE START): PASS: 7 bytes compared , 0 errors
+PASS Example 6.4 (p.76): five values moved with index X (LDX #0, LDA FIELD1,X, STA FIELD2,X, INX, CPX #5, BNE); 15 cycles per value for zero page (p.77: 'from 15 cycles'): PASS: 7 bytes compared , 0 errors
+PASS Example 6.5 (p.77): five values moved counting X down (LDX #5, LDA FIELD1-1,X, STA FIELD2-1,X, DEX, BNE); 13 cycles per value for zero page (p.77: 'to 13 cycles'): PASS: 7 bytes compared , 0 errors
+PASS Example 6.16 (p.94, N = 200) (p.94): N bytes moved, N < 256 (the manual prints the code and 'Memory Required: 11 Bytes'; no data): PASS: 202 bytes compared , 0 errors
+pm: 26 programs, 0 failing
