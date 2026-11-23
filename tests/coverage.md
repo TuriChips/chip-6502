@@ -80,9 +80,47 @@ Spec: docs/spec.md (v1). Status per row: **done** (test written and passing, log
 
 `tests/sst_crosscheck.py` runs my machine model (`tests/mach6502.py`, written from spec 4.1/6.1) against all 151 documented opcode files, 10,000 tests each (cycle-by-cycle bus activity, final registers, P and RAM): **1,510,000 tests, 0 differences** with the taken-branch cycles as Igris decided in chip-6502#19/#21 (T2 = PC+2, page-cross T3 = the uncarried target; this is the model's only behaviour since #21 merged); the check also asserts that the model never reads an address the vector does not list. Decimal mode (ADC/SBC with D = 1, spec 6 Decision) agrees with the vectors on every operand they sample.
 
+## MOS Programming Manual examples (spec 9 item 3)
+
+`tests/pm/run_pm.py` (step `pm` of `tests/run_4state.sh`, bench `tb/tb_pm6502.sv`): our own transcription of the examples below from the page images of 6500-50A (Jan 1976), assembled with `tests/asm6502.py`, run on `m6502_system`; each program writes only what the manual prints to $7000 and the testbench compares it (plus X/Z and bus_conflict). **26 runs, 26 PASS**: `logs/pm-20261123/pm.log`. Page numbers are the **printed** page numbers (this scan: printed 9 = PDF 20, printed 70 = PDF 83; the offset changes along the book). Negative check done: a wrong printed value and a wrong clock count both make the run FAIL.
+
+| Example | Page | What the manual prints, and we check | Result |
+|---|---|---|---|
+| 2.1 | 7 | 13 + 211 + carry-in 1 = 225, Carry 0 | PASS |
+| 2.2 | 8 | 254 + 6 + carry-in 1 = 5, Carry 1 | PASS |
+| 2.3 with 2.4's numbers | 9 | 258 + 4112 = 4370; carry 0 after the low add and after the high add | PASS |
+| 2.3 with 2.5's numbers | 10 | 384 + 128 = 512; carry 1 after the low add, 0 after the high add | PASS |
+| 2.6, 2.7, 2.8, 2.9, 2.10, 2.11 | 11-13 | A, Carry and Overflow for +5+7, +127+2, +5-3, +5-7, -5-7, -66-65 | PASS (6 runs) |
+| 2.12 | 13 | decimal 79 + 14 = 93 | PASS |
+| 2.13, 2.14 | 15, 16 | 5 - 3 = +2 Carry 1; 5 - 6 = -1 (FF) Carry 0 | PASS |
+| 2.15 with 2.16's / 2.17's numbers | 17, 18 | 512 - 255 = 0x0101, carries 0 then 1; 255 - 512 = 0xFEFF (-257), carries 1 then 0 | PASS (2 runs) |
+| 2.18 | 19 | decimal 44 - 29 = 15 | PASS |
+| 2.19, 2.20 (X = 0 and 1) | 21 | AND clears bit 3: 1100 0111; ORA sets it: 1110 1111 | PASS (4 runs) |
+| 2.21 | 22 | 1010 1111 EOR FF = 0101 0000 | PASS |
+| 6.1 | 70 | five values moved; zero page, 30 cycles (p.74) | PASS, 30 clocks |
+| 6.2 | 72 | self-modifying move loop moves five values | PASS |
+| 6.4 | 76 | five values moved with X; 15 cycles per value, zero page (p.77 "from 15 cycles") | PASS, 5 x 15 - 1 = 74 clocks (the last BNE falls through) |
+| 6.5 | 77 | five values moved counting X down; 13 cycles per value (p.77 "to 13 cycles") | PASS, 5 x 13 - 1 = 64 clocks |
+| 6.16 (printed "Example: 6.16", p.94) | 94 | N < 256 move, absolute; N = 200 | PASS |
+
+Where the manual prints no data (chapter 6) the data and the result dump are ours, and what is checked is that the printed operation moves the bytes and writes nothing else (sentinels).
+
+**Not checkable (not in the pass count):**
+
+| Example | Page | Why |
+|---|---|---|
+| 6.2 "125 cycles" (25 per pass) | 74 | our count for the listing is 27 per pass (CMP 2, BNE taken 3); the manual's sum does not follow from its own Appendix A table, which C2 checks. Not a RTL disagreement: the text is a loose estimate. |
+| 6.4 "13 or 15 bytes / cycles" | 76 | ambiguous: two figures for one loop. We use the 15 that p.77 repeats. |
+| 6.16 cycle column, "13 cycles" | 94 | lists STA abs,X as 4 cycles; Appendix A (A.3.4) says 5. Only the zero-page form (Example 6.5) gives 13, so no timing check on this one. |
+| 6.17 (printed "Example 6.17", N > 256) | 95 | the listing's tail (BMI OUT / BNE LOOP / LDY #COUNT / BNE LOOP) cannot be assembled unambiguously from the print, and no result is printed. |
+| 10.2 | 150 | the table shows ROL A taking 4 cycles with a fetch at 102; Appendix A says 2 cycles. Contradiction inside the manual, nothing to run. |
+| 4.8, 4.x fragments | 36-48 | listings with symbolic addresses (ADL1, ADH1, "+50") and no printed result. |
+| 9.1, 9.2, 9.6 | 127, 131, 141 | already the basis of spec 4/5/6 (cycle tables); covered by C1-C6, not repeated here. |
+| Chapters 5, 8, 9 (others), 11 | | not individually triaged in this pass. The listed ones are the examples with printed results found in chapters 2, 6 and 10. **Open follow-up** if Sai wants every example accounted for. |
+
 ## CI
 
-`tests/run_4state.sh` is the toolchain's hook (toolchain v0.9 `run_tests.sh` calls it): selftests, the model cross-check against `ref/`, the ALU block vectors, the 16 cycle-by-cycle runs (C1-C4, C6) and C7 with its mutants, about 2 minutes, logs in the run dir; `FULL=1` adds the CPU-level decimal runs for a nightly job. A mutant in the ALU turns it red (logs/ci-run1).
+`tests/run_4state.sh` is the toolchain's hook (toolchain v0.9 `run_tests.sh` calls it): selftests, the model cross-check against `ref/`, the ALU block vectors, the 16 cycle-by-cycle runs (C1-C4, C6) and C7 with its mutants, the Programming Manual examples (`pm`), about 2 minutes, logs in the run dir; `FULL=1` adds the CPU-level decimal runs for a nightly job. A mutant in the ALU turns it red (logs/ci-run1).
 
 ## Tools
 

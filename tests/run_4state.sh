@@ -8,6 +8,7 @@
 #   alu               m6502_alu block, 991,232 spec-model vectors (C5 at block level)
 #   cycles            16 cycle-by-cycle runs on the pins: instructions, RDY, interrupts, resets (C1-C4, C6)
 #   c7                system-level X/Z, bus_conflict, d_oe = NOT rw (C7), then its three mutants (the positive case)
+#   pm                MOS Programming Manual examples (spec 9 item 3): 26 runs checked against the values the manual prints (tests/pm/run_pm.py)
 #   decimal-cpu       (FULL=1) C5 at CPU level
 set -u
 cd "$(git rev-parse --show-toplevel)"
@@ -22,6 +23,7 @@ step selftests bash -c 'python3 tests/asm6502_selftest.py && python3 tests/mach6
 step alu tests/alu/run.sh
 step cycles tests/run_cyc6502.sh
 step c7 bash -c 'tests/c7/run.sh && tests/c7/mutant.sh'
+step pm python3 tests/pm/run_pm.py build/pm
 if [ "${FULL:-}" = 1 ]; then
   step decimal-cpu bash -c 'python3 tests/c5/gen_decimal.py build/gen/c5 >/dev/null && for op in adc sbc; do
     iverilog -g2012 -DMEMFILE="\"build/gen/c5/dec_$op.hex\"" -o build/dec_$op.vvp tb/tb_trace6502.sv $(find "${RTL_DIR:-rtl}" -name "*.v") && vvp -n build/dec_$op.vvp +EXP=build/gen/c5/dec_$op.exp +N=262144 | tee /dev/stderr | grep -q "^PASS" || exit 1; done'
